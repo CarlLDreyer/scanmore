@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:212253288298:android:b6acc5b54fdd868e",
+        "mobilesdk_app_id": "1:212253288298:android:d307902151445e6d",
         "android_client_info": {
-          "package_name": "com.example.scanmore"
+          "package_name": "conmore.scanmore"
         }
       },
       "oauth_client": [
