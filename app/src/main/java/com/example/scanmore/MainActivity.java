@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            Intent i = new Intent(MainActivity.this, Main2Activity.class);
+            Intent i = new Intent(MainActivity.this, ScanActivity.class);
             startActivity(i);
         }  else if (id == R.id.nav_share) {
 
