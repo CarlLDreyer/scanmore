@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
-        databaseHandler.insertProduct("7350015508279", "Lundgrens", "29kr");
-        System.out.println("PRODUCT INSERTED");
+        databaseHandler.insertProduct("7350015508279", "Lundgrens ", "29kr");
+        databaseHandler.insertProduct("7332945033038", "Conmore Vatten ", "80kr");
 
 
        // setupToolbar();
