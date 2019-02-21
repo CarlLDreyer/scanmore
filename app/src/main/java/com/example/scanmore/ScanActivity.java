@@ -99,6 +99,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         List<Product> products = databaseHandler.getAllProducts();
         for(Product p : products){
             if(p.getEan().equals(rawResult.getText())){
+                // Add to shopping list
                 Toast.makeText(getApplicationContext(), "Product: " + p.getName(), Toast.LENGTH_SHORT).show();
             }
         }
