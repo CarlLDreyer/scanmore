@@ -1,4 +1,4 @@
-package conmore.scanmore;
+package com.example.conmore;
 
 import org.junit.Test;
 
