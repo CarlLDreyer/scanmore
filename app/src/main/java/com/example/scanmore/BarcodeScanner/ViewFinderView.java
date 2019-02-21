@@ -229,10 +229,10 @@ public class ViewFinderView extends View implements IViewFinder {
         if(mSquareViewFinder) {
             if(orientation != Configuration.ORIENTATION_PORTRAIT) {
                 height = (int) (getHeight() * DEFAULT_SQUARE_DIMENSION_RATIO);
-                width = height;
+                width = height /2;
             } else {
                 width = (int) (getWidth() * DEFAULT_SQUARE_DIMENSION_RATIO);
-                height = width;
+                height = width /2;
             }
         } else {
             if(orientation != Configuration.ORIENTATION_PORTRAIT) {

@@ -29,9 +29,12 @@ import java.util.Map;
 
 import com.example.scanmore.BarcodeScanner.BarcodeScannerView;
 import com.example.scanmore.BarcodeScanner.DisplayUtils;
+import com.example.scanmore.ScanActivity;
 
 public class ZXingScannerView extends BarcodeScannerView {
     private static final String TAG = "ZXingScannerView";
+    private ScanActivity scanner = new ScanActivity();
+    private boolean isScanActive;
 
     public interface ResultHandler {
         void handleResult(Result rawResult);
@@ -147,8 +150,9 @@ public class ZXingScannerView extends BarcodeScannerView {
             }
 
             final Result finalRawResult = rawResult;
-
-            if (finalRawResult != null) {
+            isScanActive = scanner.getScanActive();
+            if (finalRawResult != null && isScanActive) {
+                System.out.println("isScanActive: " + isScanActive);
                 Handler handler = new Handler(Looper.getMainLooper());
                 handler.post(new Runnable() {
                     @Override
@@ -159,7 +163,6 @@ public class ZXingScannerView extends BarcodeScannerView {
                         ResultHandler tmpResultHandler = mResultHandler;
                         mResultHandler = null;
 
-                        stopCameraPreview();
                         if (tmpResultHandler != null) {
                             tmpResultHandler.handleResult(finalRawResult);
                         }
