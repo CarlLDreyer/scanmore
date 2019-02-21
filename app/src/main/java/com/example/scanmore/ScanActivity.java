@@ -69,8 +69,8 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
     }
 
     private static class CustomViewFinderView extends ViewFinderView {
-        public static final String TRADE_MARK_TEXT = "ZXing";
-        public static final int TRADE_MARK_TEXT_SIZE_SP = 40;
+        public static final String MARK_TEXT = "Scan";
+        public static final int MARK_TEXT_SIZE_SP = 40;
         public final Paint PAINT = new Paint();
 
         public CustomViewFinderView(Context context) {
@@ -87,7 +87,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
             PAINT.setColor(Color.WHITE);
             PAINT.setAntiAlias(true);
             float textPixelSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
-                    TRADE_MARK_TEXT_SIZE_SP, getResources().getDisplayMetrics());
+                    MARK_TEXT_SIZE_SP, getResources().getDisplayMetrics());
             PAINT.setTextSize(textPixelSize);
             setSquareViewFinder(true);
         }
@@ -109,7 +109,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
                 tradeMarkTop = 10;
                 tradeMarkLeft = canvas.getHeight() - PAINT.getTextSize() - 10;
             }
-            canvas.drawText(TRADE_MARK_TEXT, tradeMarkLeft, tradeMarkTop, PAINT);
+            canvas.drawText(MARK_TEXT, tradeMarkLeft, tradeMarkTop, PAINT);
         }
     }
 }
