@@ -1,8 +1,12 @@
 package com.example.scanmore;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,8 +19,12 @@ import android.view.MenuItem;
 //added code below
 import android.content.Intent;
 
+import com.example.scanmore.BarcodeScanner.BarcodeScannerView;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final int ZXING_CAMERA_PERMISSION = 1;
+    private Class<?> mClss;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+       // setupToolbar();
     }
 
     @Override
@@ -86,8 +96,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            Intent i = new Intent(MainActivity.this, ScanActivity.class);
-            startActivity(i);
+            launchActivity(ScanActivity.class);
+
         }  else if (id == R.id.nav_share) {
 
         }
@@ -95,5 +105,21 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void launchActivity(Class<?> clss) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            mClss = clss;
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA}, ZXING_CAMERA_PERMISSION);
+        } else {
+            Intent intent = new Intent(this, clss);
+            startActivity(intent);
+        }
+    }
+
+    public void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 }

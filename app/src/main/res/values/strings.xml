@@ -6,4 +6,6 @@
     <string name="nav_header_subtitle">randomMail@mail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <integer name="viewfinder_border_width">4</integer>
+    <integer name="viewfinder_border_length">60</integer>
 </resources>
