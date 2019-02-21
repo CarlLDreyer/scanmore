@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "34299689052",
-    "firebase_url": "https://scanmore-a483c.firebaseio.com",
-    "project_id": "scanmore-a483c",
-    "storage_bucket": "scanmore-a483c.appspot.com"
+    "project_number": "212253288298",
+    "firebase_url": "https://scanmore-f3e64.firebaseio.com",
+    "project_id": "scanmore-f3e64",
+    "storage_bucket": "scanmore-f3e64.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:34299689052:android:d307902151445e6d",
+        "mobilesdk_app_id": "1:212253288298:android:d307902151445e6d",
         "android_client_info": {
           "package_name": "conmore.scanmore"
         }
       },
       "oauth_client": [
         {
-          "client_id": "34299689052-s5b5vk9ccfvumcji02lcnkku9vtt5vg7.apps.googleusercontent.com",
+          "client_id": "212253288298-6m0bs0sicior19gan6kkt1dcgflme7vm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB89qp4MJMxqMX3G_H-VB1ZPqm5eNLYxPo"
+          "current_key": "AIzaSyDyGd8tSiYj7cXUb5Ay3CtCNFtEpgcBDW0"
         }
       ],
       "services": {
