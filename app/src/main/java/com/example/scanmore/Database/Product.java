@@ -19,7 +19,7 @@ public class Product {
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + COLUMN_EAN + " TEXT,"
+                    + COLUMN_EAN + " TEXT UNIQUE,"
                     + COLUMN_NAME + " TEXT,"
                     + COLUMN_PRICE + " TEXT"
                     + ")";
