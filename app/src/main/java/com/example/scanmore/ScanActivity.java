@@ -37,6 +37,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
     private RecyclerView rvProducts;
     private ShoppingListAdapter adapter;
     private int position = 0;
+    private LinearLayoutManager linearLayoutManager;
 
     @Override
     public void onCreate(Bundle state) {
@@ -69,10 +70,9 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
                 return false;
             }
         });
-        rvProducts = (RecyclerView) findViewById(R.id.shoppingList);
-        adapter = new ShoppingListAdapter(shoppingProducts);
-        rvProducts.setAdapter(adapter);
-        rvProducts.setLayoutManager(new LinearLayoutManager(this));
+        initShoppingList();
+
+
     }
 
     public boolean getScanActive(){
@@ -113,10 +113,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         for(Product p : products){
             if(p.getEan().equals(rawResult.getText())){
                 // Add to shopping list
-                Toast.makeText(getApplicationContext(), "Product: " + p.getName() + " Price: " + p.getPrice(), Toast.LENGTH_SHORT).show();
-
                 addIntoShoppingList(p, adapter);
-
             }
         }
 
@@ -130,7 +127,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
             public void run() {
                 mScannerView.resumeCameraPreview(ScanActivity.this);
             }
-        }, 2000);
+        }, 500);
     }
 
     private static class CustomViewFinderView extends ViewFinderView {
@@ -179,18 +176,34 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
 
     }
 
-    /*private void initShoppingList(){
-        RecyclerView rvProducts = (RecyclerView) findViewById(R.id.shoppingList);
-        ShoppingListAdapter adapter = new ShoppingListAdapter(products);
+    private void initShoppingList(){
+        rvProducts = (RecyclerView) findViewById(R.id.shoppingList);
+        adapter = new ShoppingListAdapter(shoppingProducts);
         rvProducts.setAdapter(adapter);
-        rvProducts.setLayoutManager(new LinearLayoutManager(this));
-    } */
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        rvProducts.setLayoutManager(linearLayoutManager);
+    }
 
     private void addIntoShoppingList(Product product, ShoppingListAdapter adapter){
+        linearLayoutManager.scrollToPosition(position);
         shoppingProducts.add(product);
         adapter.notifyItemInserted(position);
         position++;
 
     }
+
+    public void removeItemFromShoppingList(int itemPosition){
+        System.out.println("ItemPosition: " + itemPosition);
+        System.out.println("Actual: " + position);
+        System.out.println(shoppingProducts.size());
+        shoppingProducts.remove(0);
+        adapter.notifyDataSetChanged();
+        //shoppingProducts.remove(itemPosition);
+        //adapter.notifyItemRemoved(itemPosition);
+        //adapter.notifyItemRangeChanged(itemPosition ,shoppingProducts.size());
+    }
+
     
 }
