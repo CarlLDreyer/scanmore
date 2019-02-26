@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".ScanActivity"></activity>
         <activity android:name=".BaseScannerActivity"></activity>
+        <activity android:name=".PayActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="SCANMORE"

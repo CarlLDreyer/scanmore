@@ -1,6 +1,7 @@
 package com.example.scanmore;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import android.widget.ToggleButton;
@@ -57,7 +59,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
             }
         };
         contentFrame.addView(mScannerView);
-        Button Scanbutton = (Button) findViewById(R.id.scanbutton);
+        final ImageButton Scanbutton = (ImageButton) findViewById(R.id.scanbutton);
         Scanbutton.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -65,8 +67,10 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
                 switch(event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         scanActive = true;
+                        Scanbutton.setBackground(getDrawable(R.drawable.scan_button_active));
                         break;
                     case MotionEvent.ACTION_UP:
+                        Scanbutton.setBackground(getDrawable(R.drawable.scan_button));
                         scanActive = false;
                         break;
                 }
@@ -88,7 +92,15 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
                 }
             }
         });
+        Button button1 = (Button) findViewById(R.id.payButton);
+        button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(), PayActivity.class);
+                startActivityForResult(myIntent, 0);
 
+            }
+        });
 
 
     }

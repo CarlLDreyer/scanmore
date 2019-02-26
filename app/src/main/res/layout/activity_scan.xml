@@ -32,24 +32,38 @@
         android:textColor="@android:color/white"
         android:alpha="0.75"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/scanbutton"
-        android:layout_width="206dp"
-        android:layout_height="94dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/scan_button_margin"
         android:layout_centerHorizontal="true"
         android:layout_alignBottom="@id/content_frame"
-        android:text="SCAN"
-        android:textSize="30dp" />
+        android:background="@drawable/scan_button"
+        android:src="@drawable/ic_scan_icon"
+ />
 
     <ToggleButton
         android:id="@+id/toggleButton"
         style="@style/toggleButton"
-        android:layout_width="wrap_content"
+        android:layout_width="48dp"
+        android:layout_marginLeft="20dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/scanbutton"
         android:layout_marginBottom="-88dp"
-        android:background="@drawable/ic_flash_toggle_bg" />
+        android:background="@drawable/ic_flash_toggle_bg"
+        android:alpha="0.75"/>
+
+    <Button
+        android:id="@+id/payButton"
+        android:layout_width="48dp"
+        android:layout_marginEnd="20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/scanbutton"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="-86dp"
+        android:background="@drawable/ic_payment" />
 
 
     <android.support.v7.widget.Toolbar
