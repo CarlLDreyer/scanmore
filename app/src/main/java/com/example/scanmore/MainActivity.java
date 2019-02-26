@@ -41,9 +41,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
-        databaseHandler.insertProduct("7350015508279", "Lundgrens ", "29kr");
-        databaseHandler.insertProduct("7332945033038", "Conmore Vatten ", "80kr");
-
+        setupDatabaseInserts(databaseHandler);
 
        // setupToolbar();
     }
@@ -115,5 +113,10 @@ public class MainActivity extends AppCompatActivity
     public void setupToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
+
+    public void setupDatabaseInserts(DatabaseHandler db){
+        db.insertProduct("7350015508279", "Lundgrens ", "29kr");
+        db.insertProduct("7332945033038", "Conmore Vatten ", "80kr");
     }
 }
