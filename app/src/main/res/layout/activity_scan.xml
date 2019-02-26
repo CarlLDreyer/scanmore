@@ -42,6 +42,15 @@
         android:text="SCAN"
         android:textSize="30dp" />
 
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        style="@style/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/scanbutton"
+        android:layout_marginBottom="-88dp"
+        android:background="@drawable/ic_flash_toggle_bg" />
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

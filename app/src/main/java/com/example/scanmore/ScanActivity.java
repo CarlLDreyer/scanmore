@@ -16,7 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import android.widget.ToggleButton;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.Product;
@@ -39,12 +40,13 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
     private ShoppingListAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
     private static ScanActivity sInstance = null;
-
+    private ToggleButton flash_toggle;
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.activity_scan);
         sInstance = this;
+
         shoppingProducts = new ArrayList<Product>();
         setupToolbar();
         ViewGroup contentFrame = (ViewGroup) findViewById(R.id.content_frame);
@@ -74,6 +76,20 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         initShoppingList();
         TextView textView = findViewById(R.id.total_text);
         textView.setText("");
+        flash_toggle = findViewById(R.id.toggleButton);
+        flash_toggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Flash toggled");
+                if(mScannerView.getFlash() != true)
+                    mScannerView.setFlash(true);
+                else{
+                    mScannerView.setFlash(false);
+                }
+            }
+        });
+
+
 
     }
 
