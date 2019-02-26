@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void setupDatabaseInserts(DatabaseHandler db){
-        db.insertProduct("7350015508279", "Lundgrens ", "29kr");
-        db.insertProduct("7332945033038", "Conmore Vatten ", "80kr");
+        db.insertProduct("7350015508279", "Lundgrens ", 29);
+        db.insertProduct("7332945033038", "Conmore Vatten ", 80);
     }
 }

@@ -14,7 +14,7 @@ public class Product {
     private int id;
     private String ean;
     private String name;
-    private String price;
+    private int price;
 
 
     // Create table SQL query
@@ -23,13 +23,13 @@ public class Product {
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_EAN + " TEXT UNIQUE,"
                     + COLUMN_NAME + " TEXT,"
-                    + COLUMN_PRICE + " TEXT"
+                    + COLUMN_PRICE + " INTEGER"
                     + ")";
 
     public Product() {
     }
 
-    public Product(int id, String ean, String name, String price) {
+    public Product(int id, String ean, String name, int price) {
         this.id = id;
         this.ean = ean;
         this.name = name;
@@ -61,11 +61,11 @@ public class Product {
     }
 
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

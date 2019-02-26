@@ -51,7 +51,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertProduct(String ean, String name, String price) {
+    public long insertProduct(String ean, String name, int price) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -88,7 +88,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 cursor.getInt(cursor.getColumnIndex(Product.COLUMN_ID)),
                 cursor.getString(cursor.getColumnIndex(Product.COLUMN_EAN)),
                 cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)),
-                cursor.getString(cursor.getColumnIndex(Product.COLUMN_PRICE)));
+                cursor.getInt(cursor.getColumnIndex(Product.COLUMN_PRICE)));
 
         // close the db connection
         cursor.close();
@@ -113,7 +113,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 product.setId(cursor.getInt(cursor.getColumnIndex(Product.COLUMN_ID)));
                 product.setEan(cursor.getString(cursor.getColumnIndex(Product.COLUMN_EAN)));
                 product.setName(cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)));
-                product.setPrice(cursor.getString(cursor.getColumnIndex(Product.COLUMN_PRICE)));
+                product.setPrice(cursor.getInt(cursor.getColumnIndex(Product.COLUMN_PRICE)));
 
 
                 products.add(product);

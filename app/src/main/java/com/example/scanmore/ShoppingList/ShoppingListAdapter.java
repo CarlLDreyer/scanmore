@@ -1,12 +1,14 @@
 package com.example.scanmore.ShoppingList;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.example.scanmore.R;
@@ -14,18 +16,19 @@ import com.example.scanmore.R;
 import com.example.scanmore.Database.Product;
 import com.example.scanmore.ScanActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingListAdapter extends
         RecyclerView.Adapter<ShoppingListAdapter.ViewHolder> {
-    ScanActivity sc = new ScanActivity();
+    ScanActivity sc = ScanActivity.getInstance();
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameTextView;
-        public Button messageButton;
+        public ImageButton removeItemButton;
 
 
         // We also create a constructor that accepts the entire item row
@@ -36,7 +39,7 @@ public class ShoppingListAdapter extends
             super(itemView);
 
             nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
-            messageButton = (Button) itemView.findViewById(R.id.remove_item_button);
+            removeItemButton = (ImageButton) itemView.findViewById(R.id.remove_item_button);
 
 
         }
@@ -55,10 +58,10 @@ public class ShoppingListAdapter extends
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.item_product, viewGroup, false);
+        View productView = inflater.inflate(R.layout.item_product, viewGroup, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
+        ViewHolder viewHolder = new ViewHolder(productView);
         return viewHolder;
     }
 
@@ -69,17 +72,16 @@ public class ShoppingListAdapter extends
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
-        textView.setText(product.getName() + product.getPrice());
-        Button b = viewHolder.messageButton;
+        textView.setText(product.getName() + product.getPrice() + " kr");
+        ImageButton b = viewHolder.removeItemButton;
         b.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view){
                 sc.removeItemFromShoppingList(i);
+
             }
-
         });
-
 
     }
 
@@ -87,6 +89,5 @@ public class ShoppingListAdapter extends
     public int getItemCount() {
         return productList.size();
     }
-
 
 }

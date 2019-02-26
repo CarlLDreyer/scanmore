@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.scanmore.Database.DatabaseHandler;
@@ -33,16 +34,18 @@ import java.util.List;
 public class ScanActivity extends BaseScannerActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     public static boolean scanActive = false;
-    private ArrayList<Product> shoppingProducts = new ArrayList<Product>();
+    private ArrayList<Product> shoppingProducts;
     private RecyclerView rvProducts;
     private ShoppingListAdapter adapter;
-    private int position = 0;
     private LinearLayoutManager linearLayoutManager;
+    private static ScanActivity sInstance = null;
 
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.activity_scan);
+        sInstance = this;
+        shoppingProducts = new ArrayList<Product>();
         setupToolbar();
         ViewGroup contentFrame = (ViewGroup) findViewById(R.id.content_frame);
         mScannerView = new ZXingScannerView(this) {
@@ -59,11 +62,9 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
             public boolean onTouch(View v, MotionEvent event) {
                 switch(event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        System.out.println("HOLDING BUTTON DOWN");
                         scanActive = true;
                         break;
                     case MotionEvent.ACTION_UP:
-                        System.out.println("BUTTON RELESAED");
                         scanActive = false;
                         break;
                 }
@@ -71,12 +72,18 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
             }
         });
         initShoppingList();
-
+        TextView textView = findViewById(R.id.total_text);
+        textView.setText("");
 
     }
 
     public boolean getScanActive(){
         return scanActive;
+    }
+
+    // Getter to access Singleton instance
+    public static ScanActivity getInstance() {
+        return sInstance ;
     }
 
 
@@ -112,15 +119,10 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         List<Product> products = databaseHandler.getAllProducts();
         for(Product p : products){
             if(p.getEan().equals(rawResult.getText())){
-                // Add to shopping list
                 addIntoShoppingList(p, adapter);
             }
         }
 
-        // Note:
-        // * Wait 2 seconds to resume the preview.
-        // * On older devices continuously stopping and resuming camera preview can result in freezing the app.
-        // * I don't know why this is the case but I don't have the time to figure out.
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -187,22 +189,38 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
     }
 
     private void addIntoShoppingList(Product product, ShoppingListAdapter adapter){
-        linearLayoutManager.scrollToPosition(position);
-        shoppingProducts.add(product);
-        adapter.notifyItemInserted(position);
-        position++;
 
+        shoppingProducts.add(product);
+        adapter.notifyItemInserted(shoppingProducts.indexOf(product));
+        linearLayoutManager.scrollToPosition(shoppingProducts.indexOf(product));
+        updateTotalPrice();
     }
 
     public void removeItemFromShoppingList(int itemPosition){
-        System.out.println("ItemPosition: " + itemPosition);
-        System.out.println("Actual: " + position);
-        System.out.println(shoppingProducts.size());
-        shoppingProducts.remove(0);
+        Product p = shoppingProducts.get(itemPosition);
+        int oldIndexP = shoppingProducts.indexOf(p);
+        shoppingProducts.remove(p);
+        adapter.notifyItemRemoved(oldIndexP);
         adapter.notifyDataSetChanged();
-        //shoppingProducts.remove(itemPosition);
-        //adapter.notifyItemRemoved(itemPosition);
-        //adapter.notifyItemRangeChanged(itemPosition ,shoppingProducts.size());
+        updateTotalPrice();
+    }
+
+    public int getTotalPrice(){
+        int tempTotal = 0;
+        for(Product p : shoppingProducts){
+            tempTotal += p.getPrice();
+        }
+        return tempTotal;
+    }
+
+    public void updateTotalPrice(){
+        TextView total = (TextView) findViewById(R.id.total_text);
+        if(getTotalPrice() != 0){
+            total.setText("Total: " + getTotalPrice() + " kr");
+        }
+        else{
+            total.setText("");
+        }
     }
 
     
