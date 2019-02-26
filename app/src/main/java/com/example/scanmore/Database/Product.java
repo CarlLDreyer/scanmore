@@ -1,5 +1,7 @@
 package com.example.scanmore.Database;
 
+import java.util.ArrayList;
+
 public class Product {
     public static final String TABLE_NAME = "products";
 
@@ -66,4 +68,6 @@ public class Product {
     public void setPrice(String price) {
         this.price = price;
     }
+
+
 }

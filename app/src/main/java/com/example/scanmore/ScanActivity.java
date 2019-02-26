@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -17,18 +19,25 @@ import android.widget.Toast;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.Product;
+import com.example.scanmore.ShoppingList.ShoppingListAdapter;
 import com.google.zxing.Result;
 
 import com.example.scanmore.BarcodeScanner.IViewFinder;
 import com.example.scanmore.BarcodeScanner.ViewFinderView;
 import com.example.scanmore.ZXing.ZXingScannerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class ScanActivity extends BaseScannerActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     public static boolean scanActive = false;
+    private ArrayList<Product> shoppingProducts = new ArrayList<Product>();
+    private RecyclerView rvProducts;
+    private ShoppingListAdapter adapter;
+    private int position = 0;
+
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
@@ -60,6 +69,10 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
                 return false;
             }
         });
+        rvProducts = (RecyclerView) findViewById(R.id.shoppingList);
+        adapter = new ShoppingListAdapter(shoppingProducts);
+        rvProducts.setAdapter(adapter);
+        rvProducts.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public boolean getScanActive(){
@@ -101,6 +114,9 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
             if(p.getEan().equals(rawResult.getText())){
                 // Add to shopping list
                 Toast.makeText(getApplicationContext(), "Product: " + p.getName() + " Price: " + p.getPrice(), Toast.LENGTH_SHORT).show();
+
+                addIntoShoppingList(p, adapter);
+
             }
         }
 
@@ -162,4 +178,19 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         }
 
     }
+
+    /*private void initShoppingList(){
+        RecyclerView rvProducts = (RecyclerView) findViewById(R.id.shoppingList);
+        ShoppingListAdapter adapter = new ShoppingListAdapter(products);
+        rvProducts.setAdapter(adapter);
+        rvProducts.setLayoutManager(new LinearLayoutManager(this));
+    } */
+
+    private void addIntoShoppingList(Product product, ShoppingListAdapter adapter){
+        shoppingProducts.add(product);
+        adapter.notifyItemInserted(position);
+        position++;
+
+    }
+    
 }
