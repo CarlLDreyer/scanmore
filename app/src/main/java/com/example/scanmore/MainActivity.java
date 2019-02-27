@@ -85,12 +85,19 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
-
         if (id == R.id.nav_camera) {
             // Handle the camera action
             launchActivity(ScanActivity.class);
 
         }  else if (id == R.id.nav_share) {
+
+        }
+        else if (id == R.id.nav_pay) {
+            launchActivity(PayActivity.class);
+        }
+        else if (id == R.id.nav_shoppinglist) {
+
+        }else if (id == R.id.nav_profile) {
 
         }
 
