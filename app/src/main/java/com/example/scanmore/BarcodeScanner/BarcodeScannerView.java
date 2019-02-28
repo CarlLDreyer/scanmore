@@ -5,13 +5,14 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.hardware.Camera;
-import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import com.example.scanmore.R;
+
+import androidx.annotation.ColorInt;
 
 public abstract class BarcodeScannerView extends FrameLayout implements Camera.PreviewCallback  {
 
@@ -25,7 +26,8 @@ public abstract class BarcodeScannerView extends FrameLayout implements Camera.P
     private boolean mShouldScaleToFill = true;
 
     private boolean mIsLaserEnabled = true;
-    @ColorInt private int mLaserColor = getResources().getColor(R.color.viewfinder_laser);
+    @ColorInt
+    private int mLaserColor = getResources().getColor(R.color.viewfinder_laser);
     @ColorInt private int mBorderColor = getResources().getColor(R.color.viewfinder_border);
     private int mMaskColor = getResources().getColor(R.color.viewfinder_mask);
     private int mBorderWidth = getResources().getInteger(R.integer.viewfinder_border_width);

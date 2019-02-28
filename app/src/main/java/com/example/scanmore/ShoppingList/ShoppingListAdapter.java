@@ -1,23 +1,20 @@
 package com.example.scanmore.ShoppingList;
 
 import android.content.Context;
-import android.media.Image;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.example.scanmore.R;
 
 import com.example.scanmore.Database.Product;
 import com.example.scanmore.ScanActivity;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ShoppingListAdapter extends
         RecyclerView.Adapter<ShoppingListAdapter.ViewHolder> {

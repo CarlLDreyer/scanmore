@@ -35,6 +35,8 @@
         <activity android:name=".BaseScannerActivity" />
         <activity android:name=".PayActivity"
             android:label="Pay"/>
+        <activity android:name=".PaymentMethodActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity
             android:name=".MainActivity"
             android:label="SCANMORE"
