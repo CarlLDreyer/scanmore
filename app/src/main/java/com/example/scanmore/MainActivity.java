@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity
         }  else if (id == R.id.nav_share) {
 
         }
-        else if (id == R.id.nav_pay) {
+        /*else if (id == R.id.nav_pay) {
             launchActivity(PayActivity.class);
         }
         else if (id == R.id.nav_shoppinglist) {
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_profile) {
             launchActivity(ProfileActivity.class);
 
-        }
+        } */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

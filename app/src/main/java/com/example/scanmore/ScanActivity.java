@@ -120,6 +120,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         super.onResume();
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
+        mScannerView.resumeCameraPreview(this);
 
     }
 
@@ -127,19 +128,24 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
     public void onPause() {
         super.onPause();
         mScannerView.stopCamera();
+        mScannerView.stopCameraPreview();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         mScannerView.stopCamera();
+        mScannerView.stopCameraPreview();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mScannerView.stopCamera();
+        mScannerView.stopCameraPreview();
     }
+
+
 
     @Override
     public void handleResult(Result rawResult) {

@@ -30,9 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScanActivity" />
+        <activity android:name=".ScanActivity"
+            android:label="Scanner"/>
         <activity android:name=".BaseScannerActivity" />
-        <activity android:name=".PayActivity" />
+        <activity android:name=".PayActivity"
+            android:label="Pay"/>
         <activity
             android:name=".MainActivity"
             android:label="SCANMORE"
