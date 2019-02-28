@@ -63,7 +63,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="-86dp"
-        android:background="@drawable/ic_payment" />
+        android:background="@drawable/ic_payment"
+        />
 
 
     <android.support.v7.widget.Toolbar
