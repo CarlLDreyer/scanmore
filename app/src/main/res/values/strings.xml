@@ -8,4 +8,11 @@
     <string name="action_settings">Settings</string>
     <integer name="viewfinder_border_width">4</integer>
     <integer name="viewfinder_border_length">60</integer>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="large_text">
+        <string name="profile_name">Conmore</string>
+        "Material is the metaphor.\n\n"
+
+
+    </string>
 </resources>

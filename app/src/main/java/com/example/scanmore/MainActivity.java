@@ -13,8 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
 //added code below
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.Product;
@@ -98,6 +101,7 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_shoppinglist) {
 
         }else if (id == R.id.nav_profile) {
+            launchActivity(ProfileActivity.class);
 
         }
 
@@ -134,4 +138,14 @@ public class MainActivity extends AppCompatActivity
         db.insertProduct("7332945033038", "Vatten", 56);
 
     }
+/*
+    public void profilePicture(){
+openToast("Option for changing profile");
+    }
+
+    public void openToast(String message){
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+    }
+    */
 }
