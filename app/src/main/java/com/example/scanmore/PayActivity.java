@@ -114,7 +114,6 @@ public class PayActivity extends AppCompatActivity {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         /*activePaymentFragment = new ActivePaymentFragment();
         ActivePaymentFragment test2fragment = new ActivePaymentFragment("5225 5002 5000 2000", "Calle Johansson", "07/20", CreditCardUtils.MASTERCARD);
-
         adapter.addFragment(activePaymentFragment);
         adapter.addFragment(test2fragment); */
 
@@ -140,6 +139,6 @@ public class PayActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 this.recreate();
             }
-            }
+        }
     }
 }

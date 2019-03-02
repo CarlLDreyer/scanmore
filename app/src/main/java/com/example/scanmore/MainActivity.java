@@ -1,17 +1,17 @@
 package com.example.scanmore;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
-
-import android.content.Intent;
 import com.example.scanmore.Database.DatabaseHandler;
+import com.example.scanmore.ShoppingList.ShoppingListActivity;
 import com.google.android.material.navigation.NavigationView;
 
+import Profile.ProfileActivity;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -93,15 +93,15 @@ public class MainActivity extends AppCompatActivity
         }  else if (id == R.id.nav_share) {
 
         }
-        /*else if (id == R.id.nav_pay) {
+        else if (id == R.id.nav_pay) {
             launchActivity(PayActivity.class);
         }
         else if (id == R.id.nav_shoppinglist) {
-
+launchActivity(ShoppingListActivity.class);
         }else if (id == R.id.nav_profile) {
             launchActivity(ProfileActivity.class);
 
-        } */
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -136,14 +136,5 @@ public class MainActivity extends AppCompatActivity
         db.insertProduct("7332945033038", "Vatten", 56);
 
     }
-/*
-    public void profilePicture(){
-openToast("Option for changing profile");
-    }
 
-    public void openToast(String message){
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-
-    }
-    */
 }

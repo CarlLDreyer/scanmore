@@ -17,10 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name="Profile.ProfileActivity"></activity>
+        <activity android:name=".ShoppingList.ShoppingListActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -30,13 +28,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScanActivity"
-            android:label="Scanner"/>
+        <activity
+            android:name=".ScanActivity"
+            android:label="Scanner" />
         <activity android:name=".BaseScannerActivity" />
-        <activity android:name=".PayActivity"
-            android:label="Pay"/>
-        <activity android:name=".PaymentMethodActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".PayActivity"
+            android:label="Pay" />
+        <activity
+            android:name=".PaymentMethodActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
             android:label="SCANMORE"

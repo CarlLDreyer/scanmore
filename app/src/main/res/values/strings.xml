@@ -9,12 +9,12 @@
     <integer name="viewfinder_border_width">4</integer>
     <integer name="viewfinder_border_length">60</integer>
     <string name="title_activity_profile">ProfileActivity</string>
-    <string name="large_text">
-        <string name="profile_name">Conmore</string>
-        "Material is the metaphor.\n\n"
+    <string name="large_text">... ... </string>
+    <string name="profile_name">Username</string>
+    <string name="email">hej@conmore.se</string>
+    <string name="location">Gothenburg</string>
+    <string name="title_activity_shopping_list">ShoppingListActivity</string>
 
-
-    </string>
     <string name="card_header">NFN CARD</string>
     <string name="card_number_sample">XXXX XXXX XXXX XXXX</string>
     <string name="card_validity_label">VALID UPTO</string>
