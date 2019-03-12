@@ -29,6 +29,8 @@
     <string name="card_cvv">CVV/CVC Number</string>
 
     <string name="dialog_delete_card">Are you sure you want to delete the active payment method?</string>
+    <string name="dialog_no_payment">You currently have nothing to checkout!</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
+    <string name="ok">OK</string>
 </resources>

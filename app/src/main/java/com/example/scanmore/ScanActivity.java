@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -150,11 +152,13 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
 
     @Override
     public void handleResult(Result rawResult) {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
         List<Product> products = databaseHandler.getAllProducts();
         for(Product p : products){
             if(p.getEan().equals(rawResult.getText())){
                 addIntoShoppingList(p, adapter);
+                v.vibrate(VibrationEffect.createOneShot(250, VibrationEffect.DEFAULT_AMPLITUDE));
             }
         }
 

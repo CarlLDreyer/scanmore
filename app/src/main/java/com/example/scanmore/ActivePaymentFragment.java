@@ -1,5 +1,8 @@
 package com.example.scanmore;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -11,7 +14,6 @@ import android.widget.TextView;
 
 import com.example.scanmore.Payment.PaymentUtils.CreditCardUtils;
 import com.example.scanmore.Payment.PaymentUtils.FontTypeChange;
-import com.example.scanmore.R;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -24,9 +26,11 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ActivePaymentFragment extends Fragment {
+public class ActivePaymentFragment extends Fragment implements View.OnClickListener {
 
-    PayActivity pa = PayActivity.getInstance();
+    private PayActivity pa = PayActivity.getInstance();
+    private ScanActivity sc = ScanActivity.getInstance();
+    private Dialog CCDialog;
 
     private String cardNumber;
     private String cardName;
@@ -57,8 +61,6 @@ public class ActivePaymentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         View view=inflater.inflate(R.layout.activity_active_payment, container, false);
         ButterKnife.bind(this, view);
         fontTypeChange=new FontTypeChange(getActivity());
@@ -66,6 +68,7 @@ public class ActivePaymentFragment extends Fragment {
         activeCardName.setText(cardName);
         activeCardValidity.setText(cardValidity);
         setCardType(cardType);
+        CCDialog = new Dialog(pa);
 
         Button deletionButton = (Button) view.findViewById(R.id.delete_credit_card);
         deletionButton.setOnClickListener(new View.OnClickListener() {
@@ -74,12 +77,48 @@ public class ActivePaymentFragment extends Fragment {
                 pa.openCardDeletionDialog();
             }
         });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sc.getTotalPrice() != 0){
+                    openCCDialog();
+                }
+                else{
+                    pa.openNoPaymentDialog();
+                }
+            }
+        });
         return view;
     }
 
+    private void openCCDialog(){
+        CCDialog.setContentView(R.layout.cc_popup);
+        CCDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        CCDialog.show();
 
+        /*swishDialog.setContentView(R.layout.swish_popup);
+        swishDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        TextView swishAmount = (TextView) swishDialog.findViewById(R.id.swish_amount);
+        swishAmount.setText(total + " SEK");
+        Button payButton = (Button) swishDialog.findViewById(R.id.pay_button);
+        payButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                swishDialog.dismiss();
+                openSwishDialogSuccess();
+            }
+        });
+        Button cancelButton = (Button) swishDialog.findViewById(R.id.cancel_button);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                swishDialog.dismiss();
+            }
+        });
 
-
+        swishDialog.show(); */
+    }
 
     public void setCardType(int type)
     {
@@ -102,4 +141,8 @@ public class ActivePaymentFragment extends Fragment {
         return cardNumber;
     }
 
+    @Override
+    public void onClick(View view) {
+
+    }
 }

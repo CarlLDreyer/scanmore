@@ -19,6 +19,7 @@ import com.example.scanmore.Database.CreditCard;
 import com.example.scanmore.Database.Swish;
 import com.example.scanmore.Payment.CCPreviewAdapter;
 import com.example.scanmore.Payment.CreditCardDeletionDialog;
+import com.example.scanmore.Payment.NoPaymentDialog;
 
 
 import org.w3c.dom.Text;
@@ -112,7 +113,11 @@ public class PayActivity extends AppCompatActivity {
     public void openCardDeletionDialog() {
         CreditCardDeletionDialog dialog = new CreditCardDeletionDialog();
         dialog.show(getSupportFragmentManager(), "Card Deletion Dialog");
+    }
 
+    public void openNoPaymentDialog(){
+        NoPaymentDialog noPaymentDialog = new NoPaymentDialog();
+        noPaymentDialog.show(getSupportFragmentManager(), "No Payment Dialog");
     }
 
     public void deleteCard() {

@@ -58,8 +58,12 @@ public class SwishFragment extends Fragment implements View.OnClickListener {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("FRAGMENT CLICKED");
-                openSwishDialog();
+                if(sc.getTotalPrice() != 0){
+                    openSwishDialog();
+                }
+                else{
+                    pa.openNoPaymentDialog();
+                }
             }
         });
         ButterKnife.bind(this, view);
@@ -97,7 +101,6 @@ public class SwishFragment extends Fragment implements View.OnClickListener {
         payButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Pay");
                 swishDialog.dismiss();
                 openSwishDialogSuccess();
             }
@@ -132,6 +135,5 @@ public class SwishFragment extends Fragment implements View.OnClickListener {
             }
         });
         swishDialogComplete.show();
-
     }
 }
