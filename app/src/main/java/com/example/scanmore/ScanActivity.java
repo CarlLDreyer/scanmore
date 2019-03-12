@@ -258,5 +258,9 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         }
     }
 
+    public void emptyShoppingCart(){
+        shoppingProducts.clear();
+    }
+
     
 }

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="365dp"
+    android:layout_height="700dp"
+    android:background="@drawable/rounded_layout_swish"
+    android:id="@+id/swish_popup_success"
+    android:layout_gravity="center">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/swish_complete_bg">
+        <ImageView
+            android:id="@+id/swish_success"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_marginTop="80dp"
+            android:src="@drawable/ic_swish_success_logo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Betalning skickad!"
+            android:textColor="@android:color/white"
+            android:layout_below="@+id/swish_success"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/current_date_swish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp"
+            android:text="12 mars 2019 15:05:18"
+            android:layout_marginTop="5dp"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/swish_amount_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        android:layout_marginTop="15dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="ICA"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="30sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="ICA AB"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Order-ID: SH35122"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20sp"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Din betalning är nu genomförd. Tack för att du valt att handla hos oss!"
+        android:textAlignment="center"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_swish_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            />
+
+        <Button
+            android:id="@+id/dismiss_success"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/swish_x_button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:drawableLeft="@drawable/ic_swish_dismiss"
+            android:paddingStart="18dp"
+     />
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,8 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class ActivePaymentFragment extends Fragment {
+
+    PayActivity pa = PayActivity.getInstance();
 
     private String cardNumber;
     private String cardName;
@@ -59,19 +62,22 @@ public class ActivePaymentFragment extends Fragment {
         View view=inflater.inflate(R.layout.activity_active_payment, container, false);
         ButterKnife.bind(this, view);
         fontTypeChange=new FontTypeChange(getActivity());
-        //activeCardNumber.setTypeface(fontTypeChange.get_fontface(3));
-        //activeCardName.setTypeface(fontTypeChange.get_fontface(3));
         activeCardNumber.setText(cardNumber);
         activeCardName.setText(cardName);
         activeCardValidity.setText(cardValidity);
         setCardType(cardType);
-        /*activeCardNumber.setText("5226 XXXX XXXX 1222");
-        activeCardName.setText("Calle Larsson");
-        activeCardValidity.setText("07/20");
-        setCardType(VISA); */
 
+        Button deletionButton = (Button) view.findViewById(R.id.delete_credit_card);
+        deletionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pa.openCardDeletionDialog();
+            }
+        });
         return view;
     }
+
+
 
 
 
@@ -90,9 +96,10 @@ public class ActivePaymentFragment extends Fragment {
                 break;
 
         }
-
-
     }
 
+    public String getCardNumber(){
+        return cardNumber;
+    }
 
 }

@@ -69,6 +69,7 @@ public class CCNameFragment extends Fragment {
                     if (TextUtils.isEmpty(editable.toString().trim()))
                         tv_Name.setText("CARD HOLDER");
                     else
+                        tv_Name.requestFocus();
                         tv_Name.setText(editable.toString());
 
                 }

@@ -28,6 +28,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Product.CREATE_TABLE);
         db.execSQL(CreditCard.CREATE_TABLE);
+        db.execSQL(Swish.CREATE_TABLE);
     }
 
     // Upgrading database
@@ -36,6 +37,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + Product.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + CreditCard.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + Swish.TABLE_NAME);
 
         // Create tables again
         onCreate(db);
@@ -44,6 +46,50 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void deleteAllCreditCards(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + CreditCard.TABLE_NAME);
+    }
+
+
+    public void deleteCreditCard(String number) {
+        //Open the database
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        //Execute sql query to remove from database
+        //NOTE: When removing by String in SQL, value must be enclosed with ''
+        database.execSQL("DELETE FROM " + CreditCard.TABLE_NAME + " WHERE " + CreditCard.COLUMN_CARD_NUMBER + "= '" + number + "'");
+
+        //Close the database
+        database.close();
+    }
+
+    public void deleteSwish(String number) {
+        //Open the database
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        //Execute sql query to remove from database
+        //NOTE: When removing by String in SQL, value must be enclosed with ''
+        database.execSQL("DELETE FROM " + Swish.TABLE_NAME + " WHERE " + Swish.COLUMN_PHONE + "= '" + number + "'");
+
+        //Close the database
+        database.close();
+    }
+
+    public long insertSwish(String phoneNumber) {
+        // get writable database as we want to write data
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        // `id` and `timestamp` will be inserted automatically.
+        // no need to add them
+        values.put(Swish.COLUMN_PHONE, phoneNumber);
+
+        // insert row
+        long id = db.insert(Swish.TABLE_NAME, null, values);
+
+        // close db connection
+        db.close();
+
+        // return newly inserted row id
+        return id;
     }
 
     public long insertProduct(String ean, String name, int price) {
@@ -176,5 +222,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // return notes list
         return creditCards;
+    }
+
+    public List<Swish> getAllSwish() {
+        List<Swish> swish = new ArrayList<>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + Swish.TABLE_NAME + " ORDER BY " +
+                Swish.COLUMN_ID + " DESC";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Swish s = new Swish();
+                s.setId(cursor.getInt(cursor.getColumnIndex(CreditCard.COLUMN_ID)));
+                s.setPhoneNumberString(cursor.getString(cursor.getColumnIndex(Swish.COLUMN_PHONE)));
+
+                swish.add(s);
+            } while (cursor.moveToNext());
+        }
+
+        // close db connection
+        db.close();
+
+        // return notes list
+        return swish;
     }
 }
