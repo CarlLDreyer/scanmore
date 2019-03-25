@@ -13,10 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/layout"
-
-        >
-
+        android:id="@+id/layout">
 
         <ImageView
             android:id="@+id/header_cover_image"
