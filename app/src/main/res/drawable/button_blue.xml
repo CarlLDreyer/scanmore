@@ -40,7 +40,7 @@
 
             <stroke android:width="0.2dip" android:color="@color/colorWhite" />
 
-            <solid android:color="@color/colorRed" />
+            <solid android:color="#3B5998" />
 
         </shape>
 
