@@ -2,14 +2,13 @@ package com.example.scanmore;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.CreditCard;
+import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Payment.PaymentUtils.ViewPagerAdapter;
 
 import java.util.List;

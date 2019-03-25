@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Payment.CCFragment.CCNameFragment;
 import com.example.scanmore.Payment.CCFragment.CCNumberFragment;
@@ -22,6 +21,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 
 public class PaymentMethodActivity extends FragmentActivity implements FragmentManager.OnBackStackChangedListener {
 

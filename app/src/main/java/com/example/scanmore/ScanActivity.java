@@ -16,17 +16,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import android.widget.ToggleButton;
-
-import com.example.scanmore.Database.DatabaseHandler;
-import com.example.scanmore.Database.Product;
-import com.example.scanmore.ShoppingList.ShoppingListAdapter;
-import com.google.zxing.Result;
 
 import com.example.scanmore.BarcodeScanner.IViewFinder;
 import com.example.scanmore.BarcodeScanner.ViewFinderView;
+import com.example.scanmore.Database.DatabaseHandler;
+import com.example.scanmore.Database.Product;
+import com.example.scanmore.ShoppingList.ShoppingListAdapter;
 import com.example.scanmore.ZXing.ZXingScannerView;
+import com.google.zxing.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +34,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 public class ScanActivity extends BaseScannerActivity implements ZXingScannerView.ResultHandler {
+
     private ZXingScannerView mScannerView;
     public static boolean scanActive = false;
     private ArrayList<Product> shoppingProducts;
@@ -150,6 +149,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
 
     @Override
     public void handleResult(Result rawResult) {
+
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
         List<Product> products = databaseHandler.getAllProducts();
         for(Product p : products){
