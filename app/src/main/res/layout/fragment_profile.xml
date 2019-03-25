@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="300dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerCrop"
 
@@ -65,12 +65,12 @@
                 android:src="@android:drawable/ic_menu_edit" />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/fragment_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="70dp"
-                android:text="Name will be replaced"
+                android:text="Your profile "
                 android:fontFamily="sans-serif-light"
                 android:textColor="#fff"
                 android:textSize="30sp"
@@ -101,7 +101,6 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
-                android:text="Email: "
                 android:textSize="25dp"
                 android:fontFamily="sans-serif-light"
                 android:textStyle="normal"
@@ -117,13 +116,15 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
-                android:text="j@j"
+
                 android:textSize="25dp"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintLeft_toRightOf="@+id/textView10"
                 app:layout_constraintTop_toTopOf="parent"
                 />
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

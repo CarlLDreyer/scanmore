@@ -19,7 +19,8 @@ import androidx.fragment.app.Fragment;
 
 public class ProfileFragment extends Fragment {
 
-TextView textView;
+
+TextView emailView;
 
 DatabaseHandler db;
 
@@ -33,10 +34,20 @@ DatabaseHandler db;
         db = new DatabaseHandler(getActivity());
         final List<User> users = db.getAllUsers();
 
-        final User user1 = users.get(0);
 
+        emailView = view.findViewById(R.id.profile_email);
+        //get newest user
+        final User user = users.get(0);
+
+        emailView.setText("Email: ");
+        emailView.append(user.getEmail());
+
+//need a function which catch the last item in list
 
         return view;
     }
+
+
+
 
 }

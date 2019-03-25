@@ -17,7 +17,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 //This is the shopping list class
 public class ShoppingListActivity extends AppCompatActivity {
@@ -31,7 +33,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list2);
         readItems();
-
+        setupToolbar();
         itemsAdapter  =new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         lvItems = (ListView) findViewById(R.id.lvItems);
         items = new ArrayList<String>();
@@ -41,8 +43,10 @@ public class ShoppingListActivity extends AppCompatActivity {
         items.add("First Item");
         items.add("Second Item");
         setupListViewListener();
+
+
     }
-/*
+
     private void setupToolbar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,7 +55,7 @@ public class ShoppingListActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
     }
-    */
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

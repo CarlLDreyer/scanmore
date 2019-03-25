@@ -29,7 +29,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(Product.CREATE_TABLE);
         db.execSQL(CreditCard.CREATE_TABLE);
         db.execSQL(Profile.CREATE_TABLE);
-        db.execSQL(DatabaseOptions.CREATE_USERS_TABLE_);
+        db.execSQL(User.CREATE_TABLE);
     }
 
     // Upgrading database
@@ -39,7 +39,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Product.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + CreditCard.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Profile.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + DatabaseOptions.USERS_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + User.TABLE_NAME);
         // Create tables again
         onCreate(db);
     }
@@ -263,9 +263,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         User user = null;
 
-        Cursor cursor = db.query(DatabaseOptions.USERS_TABLE, new String[]{DatabaseOptions.ID,
+        Cursor cursor = db.query(User.TABLE_NAME, new String[]{User.COLUMN_ID,
 
-                        DatabaseOptions.EMAIL, DatabaseOptions.PASSWORD}, DatabaseOptions.EMAIL + "=? and " + DatabaseOptions.PASSWORD + "=?",
+                        User.COLUMN_EMAIL, User.COLUMN_PASSWORD}, User.COLUMN_EMAIL + "=? and " + User.COLUMN_PASSWORD + "=?",
 
                 new String[]{email, password}, null, null, null, "1");
 
@@ -287,23 +287,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
 
+
     public void addUser(User user) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
-        values.put(DatabaseOptions.EMAIL, user.getEmail());
+        values.put(User.COLUMN_EMAIL, user.getEmail());
 
-        values.put(DatabaseOptions.PASSWORD, user.getPassword());
+        values.put(User.COLUMN_PASSWORD, user.getPassword());
 
         // Inserting Row
 
-        db.insert(DatabaseOptions.USERS_TABLE, null, values);
+        db.insert(User.TABLE_NAME, null, values);
 
         db.close(); // Closing database connection
-
-
 
     }
 
@@ -313,8 +312,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<User> users = new ArrayList<>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + DatabaseOptions.USERS_TABLE + " ORDER BY " +
-                DatabaseOptions.ID + " DESC";
+        String selectQuery = "SELECT  * FROM " + User.TABLE_NAME + " ORDER BY " +
+                User.COLUMN_ID + " DESC";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -324,9 +323,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             do {
                 User user = new User();
 
-                user.setId(cursor.getInt(cursor.getColumnIndex(DatabaseOptions.ID)));
-                user.setEmail(cursor.getString(cursor.getColumnIndex(DatabaseOptions.ID)));
-                user.setPassword(cursor.getString(cursor.getColumnIndex(DatabaseOptions.ID)));
+                user.setId(cursor.getInt(cursor.getColumnIndex(User.COLUMN_ID)));
+                user.setEmail(cursor.getString(cursor.getColumnIndex(User.COLUMN_EMAIL)));
+                user.setPassword(cursor.getString(cursor.getColumnIndex(User.COLUMN_PASSWORD)));
 
                 users.add(user);
             } while (cursor.moveToNext());

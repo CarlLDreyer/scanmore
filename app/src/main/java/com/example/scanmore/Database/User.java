@@ -2,27 +2,18 @@ package com.example.scanmore.Database;
 
 public class User {
 
-
-
     private int id;
-
     private String email;
-
     private  String password;
-
-
 
     public User(String email, String password) {
 
         this.email = email;
-
         this.password = password;
 
     }
 
     public User(){}
-
-
 
     public int getId() {
 
@@ -87,5 +78,22 @@ public class User {
                 '}';
 
     }
+
+    public static final String TABLE_NAME = "users";
+
+    public static final String COLUMN_ID = "id";
+
+    public static final String COLUMN_EMAIL = "email";
+
+    public static final String COLUMN_PASSWORD = "password";
+
+
+
+    public static final String CREATE_TABLE =
+            "CREATE TABLE " + TABLE_NAME + "(" +
+                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    COLUMN_EMAIL + " TEXT NOT NULL," +
+                    COLUMN_PASSWORD + " TEXT" +
+                    ")";
 
 }

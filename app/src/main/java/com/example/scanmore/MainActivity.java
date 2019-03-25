@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.ShoppingList.ShoppingListActivity;
@@ -23,8 +24,11 @@ import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     private static final int ZXING_CAMERA_PERMISSION = 1;
     private Class<?> mClss;
+
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,18 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
+
+        /*
+        final List<User> users = databaseHandler.getAllUsers();
+        final User user = users.get(0);
+        textView = findViewById(R.id.textView);
+
+        textView.setText("Email: ");
+        textView.append(user.getEmail());
+*/
         setupDatabaseInserts(databaseHandler);
+
+
 
        // setupToolbar();
     }
