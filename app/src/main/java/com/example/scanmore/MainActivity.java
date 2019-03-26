@@ -12,7 +12,7 @@ import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.ShoppingList.ShoppingListActivity;
 import com.google.android.material.navigation.NavigationView;
 
-import Profile.ProfileFragment;
+import Profile.ProfileActivity;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,7 +20,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -117,9 +116,7 @@ launchActivity(ShoppingListActivity.class);
 
         }else if (id == R.id.nav_profile) {
 
-           FragmentManager fm = getSupportFragmentManager();
-           ProfileFragment fragment = new ProfileFragment();
-           fm.beginTransaction().replace(R.id.drawer_layout, fragment).commit();
+          launchActivity(ProfileActivity.class);
 
         }
 
@@ -148,6 +145,8 @@ launchActivity(ShoppingListActivity.class);
     }
 
     public void setupDatabaseInserts(DatabaseHandler db){
+
+        /*
         db.insertProduct("7350015508279", "Lundgrens ", 29);
         db.insertProduct("7332945033038", "Conmore Vatten ", 80);
         db.insertProduct("7610313412143", "Örtsalt", 23);
@@ -157,6 +156,8 @@ launchActivity(ShoppingListActivity.class);
         db.insertProduct("7350002400531", "Vinäger", 30);
         db.insertProduct("7311310027117", "Citron Peppar", 13);
         db.insertProduct("7332945033038", "Vatten", 56);
+
+        */
 
     }
 

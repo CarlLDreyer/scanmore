@@ -5,10 +5,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-
-    <uses-permission android:name="android.permission.VIBRATE"/>
-
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -21,7 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name="Profile.ProfileActivity"></activity>
         <activity android:name=".ShoppingList.ShoppingListActivity" />
         <activity
             android:name=".SplashActivity"
@@ -45,18 +42,22 @@
         <activity
             android:name=".LoginActivity"
             android:label="Login"
-            android:windowSoftInputMode="adjustResize"/>
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
             android:label="SCANMORE"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SwishActivity" android:label="Connect with Swish" android:windowSoftInputMode="adjustResize" ></activity>
+        <activity
+            android:name=".SwishActivity"
+            android:label="Connect with Swish"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

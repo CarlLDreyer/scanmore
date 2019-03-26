@@ -56,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
                     edtPassword.setText("");
 
 
-
                 }else{
 
                     Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_SHORT).show();
