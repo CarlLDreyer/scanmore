@@ -44,7 +44,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".LoginActivity"
-            android:label="Login" />
+            android:label="Login"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".MainActivity"
             android:label="SCANMORE"
