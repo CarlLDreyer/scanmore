@@ -18,7 +18,7 @@ public class Swish {
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + COLUMN_PHONE + " INT"
+                    + COLUMN_PHONE + " TEXT"
                     + ")";
 
     public Swish() {

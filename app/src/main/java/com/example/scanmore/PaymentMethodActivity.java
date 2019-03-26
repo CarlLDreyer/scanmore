@@ -63,6 +63,8 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
         cardFrontFragment = new CardFrontFragment();
         cardBackFragment = new CardBackFragment();
 
+
+
         if (savedInstanceState == null) {
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction()
@@ -235,5 +237,6 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
     public void nextClick() {
         btnNext.performClick();
     }
+
 
 }

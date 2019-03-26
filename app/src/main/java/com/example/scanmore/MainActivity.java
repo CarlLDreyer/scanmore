@@ -12,7 +12,7 @@ import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.ShoppingList.ShoppingListActivity;
 import com.google.android.material.navigation.NavigationView;
 
-import Profile.ProfileFragment;
+import com.example.scanmore.Profile.ProfileFragment;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

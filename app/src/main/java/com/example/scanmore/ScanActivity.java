@@ -35,6 +35,7 @@ import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
 
 public class ScanActivity extends BaseScannerActivity implements ZXingScannerView.ResultHandler {
@@ -62,6 +63,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
             }
         };
         contentFrame.addView(mScannerView);
+        final PulsatorLayout pulsator = (PulsatorLayout) findViewById(R.id.pulsator);
         final ImageButton Scanbutton = (ImageButton) findViewById(R.id.scanbutton);
         Scanbutton.setOnTouchListener(new View.OnTouchListener() {
 
@@ -69,12 +71,14 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
             public boolean onTouch(View v, MotionEvent event) {
                 switch(event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        Scanbutton.setAlpha(0.75f);
                         scanActive = true;
-                        Scanbutton.setBackground(getDrawable(R.drawable.scan_button_active));
+                        pulsator.start();
                         break;
                     case MotionEvent.ACTION_UP:
-                        Scanbutton.setBackground(getDrawable(R.drawable.scan_button));
+                        Scanbutton.setAlpha(1.0f);
                         scanActive = false;
+                        pulsator.stop();
                         break;
                 }
                 return false;
@@ -104,6 +108,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
 
             }
         });
+
 
 
     }

@@ -171,6 +171,7 @@ public class PayActivity extends AppCompatActivity {
         } else {
             total_price.setText("0kr");
         }
+
         Button payment_method_button = (Button) findViewById(R.id.payment_method_button);
         payment_method_button.setText("ADD NEW PAYMENT METHOD");
     }
@@ -199,10 +200,9 @@ public class PayActivity extends AppCompatActivity {
     }
     public void createActiveSwish(List<Swish> swishList) {
         for (Swish s : swishList) {
-            SwishFragment swishFragment = new SwishFragment(s.getPhoneNumber());
-            adapter.addFrag(swishFragment, s.getPhoneNumber());
+            SwishFragment newSFrag = new SwishFragment(s.getPhoneNumber());
+            adapter.addFrag(newSFrag, s.getPhoneNumber());
         }
-
         updatePaymentMethodsText();
     }
 
@@ -212,7 +212,7 @@ public class PayActivity extends AppCompatActivity {
         ActivePaymentFragment newAPF = new ActivePaymentFragment(cardNumber, cardName, cardValidity, cardType);
         adapter.addFrag(newAPF, cardNumber);
         updatePaymentMethodsText();
-        goToFirstAdapterPos();
+        goToNewFragmentPos();
     }
 
     public void addFragmentSwish(EditText phoneNumber){
@@ -220,7 +220,7 @@ public class PayActivity extends AppCompatActivity {
         SwishFragment newSwish = new SwishFragment(phNumber);
         adapter.addFrag(newSwish, phNumber);
         updatePaymentMethodsText();
-        goToFirstAdapterPos();
+        goToNewFragmentPos();
     }
 
     @Override
@@ -243,6 +243,11 @@ public class PayActivity extends AppCompatActivity {
 
     public void goToFirstAdapterPos() {
         active_viewPager.setCurrentItem(0);
+    }
+
+    public void goToNewFragmentPos(){
+        int newPos = adapter.getCount();
+        active_viewPager.setCurrentItem(newPos);
     }
 
 }
