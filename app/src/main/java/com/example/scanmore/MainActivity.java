@@ -148,8 +148,15 @@ launchActivity(ShoppingListActivity.class);
     }
 
     public void setupDatabaseInserts(DatabaseHandler db){
-
-
+        db.insertProduct("7350015508279", "Lundgrens ", 29);
+        db.insertProduct("7332945033038", "Conmore Vatten ", 80);
+        db.insertProduct("7610313412143", "Örtsalt", 23);
+        db.insertProduct("7311310040598", "Peppar", 16);
+        db.insertProduct("8715800002315", "Salt", 13);
+        db.insertProduct("7350002400340", "Olivolja", 40);
+        db.insertProduct("7350002400531", "Vinäger", 30);
+        db.insertProduct("7311310027117", "Citron Peppar", 13);
+        db.insertProduct("7332945033038", "Vatten", 56);
 
     }
 

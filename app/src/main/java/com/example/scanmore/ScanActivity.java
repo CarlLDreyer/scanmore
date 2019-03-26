@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -16,15 +18,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import android.widget.ToggleButton;
 
-import com.example.scanmore.BarcodeScanner.IViewFinder;
-import com.example.scanmore.BarcodeScanner.ViewFinderView;
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.Product;
 import com.example.scanmore.ShoppingList.ShoppingListAdapter;
-import com.example.scanmore.ZXing.ZXingScannerView;
 import com.google.zxing.Result;
+
+import com.example.scanmore.BarcodeScanner.IViewFinder;
+import com.example.scanmore.BarcodeScanner.ViewFinderView;
+import com.example.scanmore.ZXing.ZXingScannerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +38,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 public class ScanActivity extends BaseScannerActivity implements ZXingScannerView.ResultHandler {
-
     private ZXingScannerView mScannerView;
     public static boolean scanActive = false;
     private ArrayList<Product> shoppingProducts;
@@ -149,12 +152,13 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
 
     @Override
     public void handleResult(Result rawResult) {
-
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
         List<Product> products = databaseHandler.getAllProducts();
         for(Product p : products){
             if(p.getEan().equals(rawResult.getText())){
                 addIntoShoppingList(p, adapter);
+                v.vibrate(VibrationEffect.createOneShot(250, VibrationEffect.DEFAULT_AMPLITUDE));
             }
         }
 
@@ -258,5 +262,9 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         }
     }
 
-    
+    public void emptyShoppingCart(){
+        shoppingProducts.clear();
+    }
+
+
 }
