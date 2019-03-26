@@ -75,17 +75,7 @@ public class SignupActivity extends AppCompatActivity {
         edtName.setText("");
         edtEmail2.setText("");
         edtPassword2.setText("");
-        /*
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                    }
-                }, 3000);
-                */
+
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
     }

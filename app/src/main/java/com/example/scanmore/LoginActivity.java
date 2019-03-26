@@ -24,6 +24,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText edtPassword;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,30 +53,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 startActivity(intent);
 
-
-                //down below is the old login logic, just comment out to try the new one
-
-                /*
-
-                if (!emptyValidation()) {
-
-                    dbHelper.addUser(new User(edtEmail.getText().toString(), edtPassword.getText().toString()));
-
-                    Toast.makeText(LoginActivity.this, "Added User", Toast.LENGTH_SHORT).show();
-
-                    edtEmail.setText("");
-
-                    edtPassword.setText("");
-
-
-                }else{
-
-                    Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_SHORT).show();
-
-                }
-
-                */
-
             }
 
         });
@@ -88,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (!emptyValidation()) {
-//will add new user
+
                     User user = dbHelper.queryUser(edtEmail.getText().toString(), edtPassword.getText().toString());
 
                     if (user != null) {
@@ -96,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                         Bundle mBundle = new Bundle();
 
                         mBundle.putString("user", user.getEmail());
+
 
                         //will log in and open main activity
 
@@ -141,6 +120,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
+
     }
 
 

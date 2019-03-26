@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity
     private Class<?> mClss;
 
     TextView textView;
+    ImageView iv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
+
+
 
         /*
         final List<User> users = databaseHandler.getAllUsers();
