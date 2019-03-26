@@ -2,22 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context="com.example.scanmore.CardFrontFragment">
+    tools:context="com.example.scanmore.CardFrontFragment"
+    android:id="@+id/active_payment_card">
 
     <RelativeLayout
-        android:id="@+id/active_payment_card"
         android:layout_width="match_parent"
         android:layout_height="@dimen/card_height"
         android:layout_margin="@dimen/activity_vertical_margin"
         android:background="@drawable/ic_card_bg"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:padding="7dp">
 
+        <Button
+            android:id="@+id/delete_credit_card"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_delete_card"
+            android:layout_alignParentEnd="true" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="@dimen/activity_horizontal_margin">
-
 
 
             <ImageView

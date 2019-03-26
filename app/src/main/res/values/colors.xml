@@ -11,7 +11,7 @@
     <color name="primary">#3F51B5</color>
     <color name="primary_dark">#303F9F</color>
     <color name="primary_light">#C5CAE9</color>
-    <color name="accent">#E040FB</color>
+    <color name="accent">#16a085</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
     <color name="icons">#FFFFFF</color>
@@ -22,6 +22,7 @@
     <color name="CTA_text">#FFFFFF</color>
     <color name="CTA_bg">#32C25E</color>
 
+
     <color name="colorSecondary">#aa00ff</color>
 
     <color name="colorRed">#ff2026</color>
@@ -29,4 +30,10 @@
     <color name="colorWhite">#FFFFFF</color>
 
     <color name="colorAmber">#FFC400</color>
+
+    <color name="payment_method_color">#94FFD1</color>
+    <color name="buttons_color">#2ecc71</color>
+    <color name="toolbar_color">#16a085</color>
+    <color name="swish_number">#4D4D4F</color>
+    <color name="swish_button">#40ABF9</color>
 </resources>

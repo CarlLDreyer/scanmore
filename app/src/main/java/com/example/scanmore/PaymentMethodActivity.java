@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
 
     String cardNumber, cardCVV, cardValidity, cardName;
 
+    PayActivity pa = PayActivity.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,6 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
         ButterKnife.bind(this);
 
         final DatabaseHandler databaseHandler = new DatabaseHandler(this);
-
 
         cardFrontFragment = new CardFrontFragment();
         cardBackFragment = new CardBackFragment();
@@ -78,7 +79,14 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
         viewPager.setOffscreenPageLimit(4);
         setupViewPager(viewPager);
 
-
+        viewPager.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                return true;
+            }
+        });
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -119,19 +127,9 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
                 cardNumber = numberFragment.getCardNumber();
                 cardValidity = validityFragment.getValidity();
                 cardCVV = secureCodeFragment.getValue();
-    /*
-                if (pos < total_item) {
-                        viewPager.setCurrentItem(pos + 1);
 
-                }
-                else if (pos == total_item) {
-                    checkEntries();
-                    finish();
-                }
-                else {
-                    checkEntries();
-                } */
             if(pos == 0 && CreditCardUtils.isValid(cardNumber)){
+
                 viewPager.setCurrentItem(pos + 1);
                 }
                 else if(pos == 1 && !TextUtils.isEmpty(cardName)){
@@ -142,10 +140,12 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
             }
             else if(pos == 3 && cardCVV.length() == 3){
                 databaseHandler.insertCreditCard(cardNumber, cardName, cardValidity, CreditCardUtils.getCardType(cardNumber));
+                pa.addFragmentCard(cardNumber, cardName, cardValidity, CreditCardUtils.getCardType(cardNumber));
                 Intent intent = new Intent();
                 intent.putExtra("key", "value");
                 setResult(RESULT_OK, intent);
                 finish();
+
                 Toast.makeText(PaymentMethodActivity.this, "Card added successfully!", Toast.LENGTH_SHORT).show();
             }
 
@@ -157,6 +157,7 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
         });
 
     }
+
 
 
 
@@ -234,4 +235,5 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
     public void nextClick() {
         btnNext.performClick();
     }
+
 }
