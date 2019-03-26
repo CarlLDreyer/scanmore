@@ -18,6 +18,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     TextView emailView;
 
+    TextView nameView;
+
     DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         db = new DatabaseHandler(this);
         final List<User> users = db.getAllUsers();
-        emailView = findViewById(R.id.profile_email);
         final User user = users.get(0);
+        nameView = findViewById(R.id.profile_name);
+        nameView.setText("Name: ");
+        nameView.append(user.getName());
+        emailView = findViewById(R.id.profile_email);
         emailView.setText("Email: ");
         emailView.append(user.getEmail());
 

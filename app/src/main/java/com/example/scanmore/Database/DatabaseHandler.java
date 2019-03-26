@@ -16,7 +16,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "2019-03-26";
+    private static final String DATABASE_NAME = "jenny";
 
 
     public DatabaseHandler(Context context) {
@@ -278,6 +278,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return user;
 
     }
+    /*
     public void addUser(User user) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -295,7 +296,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
 
     }
-
+*/
 
     public void addUser2(User user) {
 
@@ -335,6 +336,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 User user = new User();
 
                 user.setId(cursor.getInt(cursor.getColumnIndex(User.COLUMN_ID)));
+
+                //risky!
+                user.setName(cursor.getString(cursor.getColumnIndex(User.COLUMN_NAME)));
 
                 user.setEmail(cursor.getString(cursor.getColumnIndex(User.COLUMN_EMAIL)));
                 user.setPassword(cursor.getString(cursor.getColumnIndex(User.COLUMN_PASSWORD)));

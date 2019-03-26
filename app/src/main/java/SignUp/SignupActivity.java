@@ -69,7 +69,7 @@ public class SignupActivity extends AppCompatActivity {
         String email = edtEmail2.getText().toString();
         String password = edtPassword2.getText().toString();
         // TODO: Implement your own signup logic here.
-        databaseHandler.addUser(new User(name, email, password));
+        databaseHandler.addUser2(new User(name, email, password));
         Toast.makeText(SignupActivity.this, "Added User", Toast.LENGTH_SHORT).show();
 
         edtName.setText("");
@@ -102,6 +102,7 @@ public class SignupActivity extends AppCompatActivity {
         String name = edtName.getText().toString();
         String email = edtEmail2.getText().toString();
         String password = edtPassword2.getText().toString();
+
         if (name.isEmpty() || name.length() < 3) {
             edtName.setError("at least 3 characters");
             valid = false;
