@@ -86,6 +86,8 @@ public class SignupActivity extends AppCompatActivity {
                     }
                 }, 3000);
                 */
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
     }
     public void onSignupSuccess() {
         btnSignup.setEnabled(true);
