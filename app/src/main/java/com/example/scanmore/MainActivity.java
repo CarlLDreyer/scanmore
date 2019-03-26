@@ -115,7 +115,6 @@ public class MainActivity extends AppCompatActivity
 launchActivity(ShoppingListActivity.class);
 
         }else if (id == R.id.nav_profile) {
-
           launchActivity(ProfileActivity.class);
 
         }

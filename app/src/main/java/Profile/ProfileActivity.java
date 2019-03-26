@@ -21,27 +21,18 @@ public class ProfileActivity extends AppCompatActivity {
     DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_profile);
         setupToolbar();
 
-
         db = new DatabaseHandler(this);
         final List<User> users = db.getAllUsers();
-
         emailView = findViewById(R.id.profile_email);
-        //get newest user
         final User user = users.get(0);
-
         emailView.setText("Email: ");
         emailView.append(user.getEmail());
 
-
     }
-
-
     private void setupToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -50,6 +41,4 @@ public class ProfileActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
     }
-
-
 }

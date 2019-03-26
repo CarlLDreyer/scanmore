@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.User;
 
+import SignUp.SignupActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -46,6 +47,15 @@ public class LoginActivity extends AppCompatActivity {
 
             public void onClick(View v) {
 
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+
+                startActivity(intent);
+
+
+                //down below is the old login logic, just comment out to try the new one
+
+                /*
+
                 if (!emptyValidation()) {
 
                     dbHelper.addUser(new User(edtEmail.getText().toString(), edtPassword.getText().toString()));
@@ -62,6 +72,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_SHORT).show();
 
                 }
+
+                */
 
             }
 
