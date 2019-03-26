@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final DatabaseHandler dbHelper = new DatabaseHandler(this);
 
+        //this button should open the signup activity
 
         btSignUp.setOnClickListener(new View.OnClickListener() {
 
@@ -66,6 +67,8 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
+
+//LOGIN button method
         btSignIn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -73,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (!emptyValidation()) {
-
+//will add new user
                     User user = dbHelper.queryUser(edtEmail.getText().toString(), edtPassword.getText().toString());
 
                     if (user != null) {
@@ -82,16 +85,17 @@ public class LoginActivity extends AppCompatActivity {
 
                         mBundle.putString("user", user.getEmail());
 
+                        //will log in and open main activity
+
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
                         intent.putExtras(mBundle);
 
                         startActivity(intent);
-
+//welcome message
                         Toast.makeText(LoginActivity.this, "Welcome " + user.getEmail(), Toast.LENGTH_SHORT).show();
 
-
-
+                        //user not found
                     } else {
 
                         Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
@@ -99,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                         edtPassword.setText("");
 
                     }
-
+//if LOGIN button is clicked and the fields are empty
                 }else{
 
                     Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_SHORT).show();

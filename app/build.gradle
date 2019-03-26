@@ -36,6 +36,10 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+
+    implementation 'com.jakewharton:butterknife:6.1.0'
+
 }
 apply plugin: 'com.google.gms.google-services'
 
