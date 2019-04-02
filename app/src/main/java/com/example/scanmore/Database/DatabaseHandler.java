@@ -16,7 +16,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "scanmore_db";
+    private static final String DATABASE_NAME = "jenny";
 
 
     public DatabaseHandler(Context context) {
@@ -29,7 +29,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(Product.CREATE_TABLE);
         db.execSQL(CreditCard.CREATE_TABLE);
         db.execSQL(Swish.CREATE_TABLE);
-        db.execSQL(Profile.CREATE_TABLE);
         db.execSQL(User.CREATE_TABLE);
     }
 
@@ -40,7 +39,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Product.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + CreditCard.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Swish.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + Profile.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + User.TABLE_NAME);
         // Create tables again
         onCreate(db);
@@ -138,32 +136,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return id;
     }
 
-
-    public Product getProduct(long id) {
-        // get readable database as we are not inserting anything
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(Product.TABLE_NAME,
-                new String[]{Product.COLUMN_ID, Product.COLUMN_EAN, Product.COLUMN_NAME, Product.COLUMN_PRICE},
-                Product.COLUMN_ID + "=?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
-
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        // prepare note object
-        Product note = new Product(
-                cursor.getInt(cursor.getColumnIndex(Product.COLUMN_ID)),
-                cursor.getString(cursor.getColumnIndex(Product.COLUMN_EAN)),
-                cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)),
-                cursor.getInt(cursor.getColumnIndex(Product.COLUMN_PRICE)));
-
-        // close the db connection
-        cursor.close();
-
-        return note;
-    }
-
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
 
@@ -254,76 +226,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // return notes list
         return swishL;
     }
-    public void deleteAllProfiles(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + Profile.TABLE_NAME);
-    }
 
-
-    public long insertProfile(String name, String email, int number){
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put(Profile.COLUMN_PROFILE_NAME, name);
-        values.put(Profile.COLUMN_PROFILE_EMAIL, email);
-        values.put(Profile.COLUMN_PROFILE_NUMBER, number);
-
-        long id = db.insert(Profile.TABLE_NAME, null ,values);
-
-        db.close();
-
-        return id;
-
-    }
-    public Profile getProfile(long id){
-
+    public Product getProduct(long id) {
+        // get readable database as we are not inserting anything
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(Profile.TABLE_NAME, new String[]{Profile.COLUMN_ID, Profile.COLUMN_PROFILE_NAME, Profile.COLUMN_PROFILE_EMAIL, Profile.COLUMN_PROFILE_NUMBER},
-                Profile.COLUMN_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
 
-        if(cursor!=null)
+        Cursor cursor = db.query(Product.TABLE_NAME,
+                new String[]{Product.COLUMN_ID, Product.COLUMN_EAN, Product.COLUMN_NAME, Product.COLUMN_PRICE},
+                Product.COLUMN_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+
+        if (cursor != null)
             cursor.moveToFirst();
 
-        Profile note = new Profile(
-                cursor.getInt(cursor.getColumnIndex(Profile.COLUMN_ID)),
-                cursor.getString(cursor.getColumnIndex(Profile.COLUMN_PROFILE_NAME)),
-                cursor.getString(cursor.getColumnIndex(Profile.COLUMN_PROFILE_EMAIL)),
-                cursor.getInt(cursor.getColumnIndex(Profile.COLUMN_PROFILE_NUMBER)));
+        // prepare note object
+        Product note = new Product(
+                cursor.getInt(cursor.getColumnIndex(Product.COLUMN_ID)),
+                cursor.getString(cursor.getColumnIndex(Product.COLUMN_EAN)),
+                cursor.getString(cursor.getColumnIndex(Product.COLUMN_NAME)),
+                cursor.getInt(cursor.getColumnIndex(Product.COLUMN_PRICE)));
+
+        // close the db connection
         cursor.close();
+
         return note;
-    }
-    public List<Profile> getAllProfiles() {
-
-        List<Profile> profiles = new ArrayList<>();
-
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + Profile.TABLE_NAME + " ORDER BY " +
-                Profile.COLUMN_ID + " DESC";
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                Profile profile = new Profile();
-
-                profile.setId(cursor.getInt(cursor.getColumnIndex(Profile.COLUMN_ID)));
-                profile.setName(cursor.getString(cursor.getColumnIndex(Profile.COLUMN_PROFILE_NAME)));
-                profile.setEmail(cursor.getString(cursor.getColumnIndex(Profile.COLUMN_PROFILE_EMAIL)));
-                profile.setNumber(cursor.getInt(cursor.getColumnIndex(Profile.COLUMN_PROFILE_NUMBER)));
-
-
-                profiles.add(profile);
-            } while (cursor.moveToNext());
-        }
-
-        // close db connection
-        db.close();
-
-        // return notes list
-        return profiles;
     }
     public User queryUser(String email, String password) {
 
@@ -352,11 +278,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return user;
 
     }
+    /*
     public void addUser(User user) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+
+        values.put(User.COLUMN_EMAIL, user.getEmail());
+
+        values.put(User.COLUMN_PASSWORD, user.getPassword());
+
+        // Inserting Row
+
+        db.insert(User.TABLE_NAME, null, values);
+
+        db.close(); // Closing database connection
+
+    }
+*/
+
+    public void addUser2(User user) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(User.COLUMN_NAME, user.getName());
 
         values.put(User.COLUMN_EMAIL, user.getEmail());
 
@@ -388,6 +336,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 User user = new User();
 
                 user.setId(cursor.getInt(cursor.getColumnIndex(User.COLUMN_ID)));
+
+                //risky!
+                user.setName(cursor.getString(cursor.getColumnIndex(User.COLUMN_NAME)));
+
                 user.setEmail(cursor.getString(cursor.getColumnIndex(User.COLUMN_EMAIL)));
                 user.setPassword(cursor.getString(cursor.getColumnIndex(User.COLUMN_PASSWORD)));
 

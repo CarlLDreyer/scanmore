@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.User;
 
+import SignUp.SignupActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -22,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtEmail;
 
     private EditText edtPassword;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final DatabaseHandler dbHelper = new DatabaseHandler(this);
 
+        //this button should open the signup activity
 
         btSignUp.setOnClickListener(new View.OnClickListener() {
 
@@ -45,28 +49,16 @@ public class LoginActivity extends AppCompatActivity {
 
             public void onClick(View v) {
 
-                if (!emptyValidation()) {
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
 
-                    dbHelper.addUser(new User(edtEmail.getText().toString(), edtPassword.getText().toString()));
-
-                    Toast.makeText(LoginActivity.this, "Added User", Toast.LENGTH_SHORT).show();
-
-                    edtEmail.setText("");
-
-                    edtPassword.setText("");
-
-
-
-                }else{
-
-                    Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_SHORT).show();
-
-                }
+                startActivity(intent);
 
             }
 
         });
 
+
+//LOGIN button method
         btSignIn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -83,16 +75,18 @@ public class LoginActivity extends AppCompatActivity {
 
                         mBundle.putString("user", user.getEmail());
 
+
+                        //will log in and open main activity
+
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
                         intent.putExtras(mBundle);
 
                         startActivity(intent);
-
+//welcome message
                         Toast.makeText(LoginActivity.this, "Welcome " + user.getEmail(), Toast.LENGTH_SHORT).show();
 
-
-
+                        //user not found
                     } else {
 
                         Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
@@ -100,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                         edtPassword.setText("");
 
                     }
-
+//if LOGIN button is clicked and the fields are empty
                 }else{
 
                     Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_SHORT).show();
@@ -126,6 +120,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
+
     }
 
 

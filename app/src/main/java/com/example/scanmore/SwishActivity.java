@@ -1,18 +1,13 @@
 package com.example.scanmore;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.scanmore.Database.DatabaseHandler;
-import com.example.scanmore.Database.Swish;
-
-import java.io.Console;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -43,7 +38,6 @@ public class SwishActivity extends AppCompatActivity {
             }
         });
         phoneNumber.requestFocus();
-
     }
     public static SwishActivity getInstance() {
         return sInstance;
