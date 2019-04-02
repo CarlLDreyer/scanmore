@@ -14,8 +14,6 @@ import com.example.scanmore.ShoppingList.ShoppingListActivity;
 import com.google.android.material.navigation.NavigationView;
 
 
-import com.example.scanmore.Profile.ProfileFragment;
-
 import Profile.ProfileActivity;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -153,7 +151,7 @@ launchActivity(ShoppingListActivity.class);
 
     public void setupDatabaseInserts(DatabaseHandler db){
 
-        /*
+        
         db.insertProduct("7350015508279", "Lundgrens ", 29);
         db.insertProduct("7332945033038", "Conmore Vatten ", 80);
         db.insertProduct("7610313412143", "Örtsalt", 23);
@@ -164,7 +162,7 @@ launchActivity(ShoppingListActivity.class);
         db.insertProduct("7311310027117", "Citron Peppar", 13);
         db.insertProduct("7332945033038", "Vatten", 56);
 
-        */
+
 
     }
 
