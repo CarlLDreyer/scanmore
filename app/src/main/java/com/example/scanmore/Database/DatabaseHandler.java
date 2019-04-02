@@ -228,7 +228,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public List<Swish> getAllSwish() {
-        List<Swish> swish = new ArrayList<>();
+        List<Swish> swishL = new ArrayList<>();
 
         // Select All Query
         String selectQuery = "SELECT  * FROM " + Swish.TABLE_NAME + " ORDER BY " +
@@ -241,10 +241,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Swish s = new Swish();
-                s.setId(cursor.getInt(cursor.getColumnIndex(CreditCard.COLUMN_ID)));
+                s.setId(cursor.getInt(cursor.getColumnIndex(Swish.COLUMN_ID)));
                 s.setPhoneNumberString(cursor.getString(cursor.getColumnIndex(Swish.COLUMN_PHONE)));
 
-                swish.add(s);
+                swishL.add(s);
             } while (cursor.moveToNext());
         }
 
@@ -252,7 +252,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
 
         // return notes list
-        return swish;
+        return swishL;
     }
     public void deleteAllProfiles(){
         SQLiteDatabase db = this.getWritableDatabase();

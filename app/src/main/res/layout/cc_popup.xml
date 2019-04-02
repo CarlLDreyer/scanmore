@@ -1,27 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="365dp"
-    android:layout_height="500dp"
+    android:layout_height="550dp"
     android:background="@drawable/rounded_layout_swish"
     android:id="@+id/CC_popup"
     android:layout_gravity="center">
-
-    <TextView
+    <Button
+        android:id="@+id/dismiss_confirm"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:drawableRight="@drawable/ic_swish_dismiss" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/confirm_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CONFIRM PAYMENT"
+        android:layout_below="@id/dismiss_confirm">
+        <ImageButton
+            android:id="@+id/credit_card_option"
+            android:layout_width="108dp"
+            android:layout_height="77dp"
+            android:background="@android:color/transparent"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/creditcardlogo" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm and pay"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pay_with_text"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/confirm_text"
+        android:layout_marginTop="40dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay with"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+
+        <LinearLayout
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
+            android:background="@color/confirm_fill"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginEnd="20dp">
+
+            <ImageView
+                android:id="@+id/active_card_type_two"
+                android:layout_width="75dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="2dp"
+                />
+            <TextView
+                android:id="@+id/cc_number_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginEnd="15dp"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/name_text"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/pay_with_text"
+        android:layout_marginTop="30dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="45dp"/>
+
+        <LinearLayout
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
+            android:background="@color/confirm_fill"
+            android:gravity="center"
+            android:layout_marginEnd="20dp">
+
+            <TextView
+                android:id="@+id/cc_name_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/receipt_text"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/name_text"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total (SEK)"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="125dp"
+            android:layout_marginStart="20dp"/>
+        <TextView
+            android:id="@+id/total_text_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="19kr"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="40sp"/>
+    </LinearLayout>
+
+    <Button
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
-        android:layout_marginTop="20dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total: 290kr"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        android:layout_below="@+id/confirm_text"/>
+        android:layout_marginBottom="40dp"
+        android:background="@color/buttons_color"
+        android:text="PAY"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:textColor="@android:color/white"
+        android:id="@+id/pay_button_confirm"
+        android:textSize="25sp"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

@@ -32,16 +32,41 @@
         android:textColor="@android:color/white"
         android:alpha="0.75"/>
 
-    <ImageButton
-        android:id="@+id/scanbutton"
+
+    <RelativeLayout
+        android:id="@+id/scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/scan_button_margin"
         android:layout_centerHorizontal="true"
         android:layout_alignBottom="@id/content_frame"
-        android:background="@drawable/scan_button"
-        android:src="@drawable/ic_scan_icon"
- />
+        android:layout_marginBottom="20dp">
+
+        <ImageButton
+            android:id="@+id/scanbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="35dp"
+            android:layout_marginBottom="@dimen/scan_button_margin"
+            android:background="@drawable/scan_button"
+            android:src="@drawable/ic_scan_icon" />
+
+        <pl.bclogic.pulsator4droid.library.PulsatorLayout
+            android:id="@+id/pulsator"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="0dp"
+            app:pulse_color="@color/buttons_color"
+            app:pulse_count="4"
+            app:pulse_duration="1500"
+            app:pulse_interpolator="Decelerate"
+            app:pulse_repeat="0"
+            app:pulse_startFromScratch="true">
+
+        </pl.bclogic.pulsator4droid.library.PulsatorLayout>
+
+    </RelativeLayout>
 
     <ToggleButton
         android:id="@+id/toggleButton"
@@ -49,8 +74,9 @@
         android:layout_width="48dp"
         android:layout_marginLeft="20dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/scanbutton"
-        android:layout_marginBottom="-88dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/ic_flash_toggle_bg"
         android:alpha="0.75"/>
 
@@ -59,10 +85,9 @@
         android:layout_width="48dp"
         android:layout_marginEnd="20dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/scanbutton"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="-86dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/ic_payment"
         />
 

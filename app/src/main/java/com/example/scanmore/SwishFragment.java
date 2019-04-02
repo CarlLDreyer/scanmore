@@ -49,6 +49,7 @@ public class SwishFragment extends Fragment implements View.OnClickListener {
         this.phoneNumber = phoneNumber;
     }
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -95,6 +96,7 @@ public class SwishFragment extends Fragment implements View.OnClickListener {
     private void openSwishDialog(){
         swishDialog.setContentView(R.layout.swish_popup);
         swishDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        swishDialog.setCanceledOnTouchOutside(false);
         TextView swishAmount = (TextView) swishDialog.findViewById(R.id.swish_amount);
         swishAmount.setText(total + " SEK");
         Button payButton = (Button) swishDialog.findViewById(R.id.pay_button);
@@ -119,6 +121,7 @@ public class SwishFragment extends Fragment implements View.OnClickListener {
     private void openSwishDialogSuccess(){
         swishDialogComplete.setContentView(R.layout.swish_popup_success);
         swishDialogComplete.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        swishDialogComplete.setCanceledOnTouchOutside(false);
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         TextView dateSwish = (TextView) swishDialogComplete.findViewById(R.id.current_date_swish);
         dateSwish.setText(currentDateTimeString);

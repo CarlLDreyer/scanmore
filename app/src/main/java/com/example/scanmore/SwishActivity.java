@@ -30,6 +30,7 @@ public class SwishActivity extends AppCompatActivity {
         sInstance = this;
         setupToolbar();
         final DatabaseHandler databaseHandler = new DatabaseHandler(this);
+
         phoneNumber = (EditText) findViewById(R.id.phone_number_input);
         Button submitButton = (Button) findViewById(R.id.submit_swish);
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -47,8 +48,6 @@ public class SwishActivity extends AppCompatActivity {
     public static SwishActivity getInstance() {
         return sInstance;
     }
-
-
 
     public EditText getPhoneNumber(){
         return phoneNumber;
@@ -71,7 +70,4 @@ public class SwishActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }
