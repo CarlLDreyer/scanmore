@@ -88,6 +88,13 @@ public class SignupActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
         btnSignup.setEnabled(true);
     }
+
+      @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+    }
+
 //checks if the inputs are valid
     public boolean validate() {
         boolean valid = true;
