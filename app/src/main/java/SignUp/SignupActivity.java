@@ -1,5 +1,6 @@
 package SignUp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +43,11 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signup();
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result", edtEmail2.getText().toString());
+                setResult(RESULT_OK,returnIntent);
+                finish();
+
             }
         });
         //should go back to log in
@@ -49,9 +55,6 @@ public class SignupActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Finish the registration screen and return to the Login activity
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
                 finish();
             }
         });
@@ -72,12 +75,9 @@ public class SignupActivity extends AppCompatActivity {
         databaseHandler.addUser2(new User(name, email, password));
         Toast.makeText(SignupActivity.this, "Added User", Toast.LENGTH_SHORT).show();
 
-        edtName.setText("");
+        /*edtName.setText("");
         edtEmail2.setText("");
-        edtPassword2.setText("");
-
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        startActivity(intent);
+        edtPassword2.setText(""); */
     }
     public void onSignupSuccess() {
         btnSignup.setEnabled(true);
@@ -122,4 +122,5 @@ public class SignupActivity extends AppCompatActivity {
         }
         return valid;
     }
+
 }

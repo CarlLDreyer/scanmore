@@ -6,11 +6,13 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.ShoppingList.ShoppingListActivity;
+import com.example.scanmore.Utils.PreferenceUtils;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -23,6 +25,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity
 
     TextView textView;
     ImageView iv;
-
+    LoginActivity la = LoginActivity.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,24 +51,26 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        TextView navName = (TextView) headerView.findViewById(R.id.nav_name);
+        CircleImageView profilePicture = (CircleImageView) headerView.findViewById(R.id.profile_picture);
+        TextView navEmail = (TextView) headerView.findViewById(R.id.nav_email);
+        try{
+            navName.setText(la.getActiveUser().getName());
+            navEmail.setText(la.getActiveUser().getEmail());
+            profilePicture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    launchActivity(ProfileActivity.class);
+                }
+            });
+
+        }
+        catch(NullPointerException e){ e.printStackTrace();}
 
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
 
-
-
-        /*
-        final List<User> users = databaseHandler.getAllUsers();
-        final User user = users.get(0);
-        textView = findViewById(R.id.textView);
-
-        textView.setText("Email: ");
-        textView.append(user.getEmail());
-*/
         setupDatabaseInserts(databaseHandler);
-
-
-
-       // setupToolbar();
     }
 
     @Override
@@ -82,6 +87,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
     }
 
@@ -110,19 +116,19 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
             launchActivity(ScanActivity.class);
-
-        }  else if (id == R.id.nav_share) {
-
         }
         else if (id == R.id.nav_pay) {
             launchActivity(PayActivity.class);
         }
         else if (id == R.id.nav_shoppinglist) {
-launchActivity(ShoppingListActivity.class);
+            launchActivity(ShoppingListActivity.class);
 
-        }else if (id == R.id.nav_profile) {
-          launchActivity(ProfileActivity.class);
-
+        }
+        else if (id == R.id.nav_logout) {
+            PreferenceUtils.setLoggedInUserEmail(this, "");
+            PreferenceUtils.setUserLoggedInStatus(this, false);
+            launchActivity(LoginActivity.class);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -150,8 +156,6 @@ launchActivity(ShoppingListActivity.class);
     }
 
     public void setupDatabaseInserts(DatabaseHandler db){
-
-        
         db.insertProduct("7350015508279", "Lundgrens ", 29);
         db.insertProduct("7332945033038", "Conmore Vatten ", 80);
         db.insertProduct("7610313412143", "Örtsalt", 23);
@@ -161,9 +165,6 @@ launchActivity(ShoppingListActivity.class);
         db.insertProduct("7350002400531", "Vinäger", 30);
         db.insertProduct("7311310027117", "Citron Peppar", 13);
         db.insertProduct("7332945033038", "Vatten", 56);
-
-
-
     }
 
 }

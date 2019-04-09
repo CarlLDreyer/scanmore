@@ -162,7 +162,12 @@ public class PayActivity extends AppCompatActivity {
     }
 
     private void setupTextViews() {
-        int total = sc.getTotalPrice();
+        int total = 0;
+        try {
+            total = sc.getTotalPrice();
+        }
+        catch(NullPointerException e){e.printStackTrace();
+        }
         TextView toPay = (TextView) findViewById(R.id.toPay_text);
         toPay.setText("To pay");
         TextView total_price = (TextView) findViewById(R.id.total_text_pay);

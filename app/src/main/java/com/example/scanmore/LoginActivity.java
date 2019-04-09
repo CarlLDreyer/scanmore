@@ -10,9 +10,12 @@ import android.widget.Toast;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.User;
+import com.example.scanmore.Utils.PreferenceUtils;
 
 import SignUp.SignupActivity;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,12 +27,20 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText edtPassword;
 
+    private User user;
+
+    private static LoginActivity sInstance = null;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sInstance = this;
+
+        setupToolbar();
 
         btSignIn = findViewById(R.id.btSignIn);
 
@@ -48,15 +59,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-
-                startActivity(intent);
+                Intent i = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivityForResult(i, 1);
 
             }
 
         });
-
 
 //LOGIN button method
         btSignIn.setOnClickListener(new View.OnClickListener() {
@@ -67,14 +75,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (!emptyValidation()) {
 
-                    User user = dbHelper.queryUser(edtEmail.getText().toString(), edtPassword.getText().toString());
+                    user = dbHelper.getUser(edtEmail.getText().toString());
 
-                    if (user != null) {
+                    if (user != null && user.getPassword().equals(edtPassword.getText().toString())) {
 
                         Bundle mBundle = new Bundle();
 
                         mBundle.putString("user", user.getEmail());
-
+                        verifySQL(user);
+                        setActiveUser(user);
 
                         //will log in and open main activity
 
@@ -84,43 +93,83 @@ public class LoginActivity extends AppCompatActivity {
 
                         startActivity(intent);
 //welcome message
-                        Toast.makeText(LoginActivity.this, "Welcome " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Welcome " + user.getName(), Toast.LENGTH_SHORT).show();
 
                         //user not found
-                    } else {
-
-                        Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
-
+                    }
+                    else if(user == null){
+                        edtEmail.setError("User not found");
                         edtPassword.setText("");
 
                     }
-//if LOGIN button is clicked and the fields are empty
-                }else{
 
+                    else if(!(user.getPassword().equals(edtPassword.getText().toString()))){
+                        edtPassword.setError("Incorrect password");
+                        edtPassword.setText("");
+                    }
+                    else if(user != null && (user.getPassword().equals(""))){
+                        edtPassword.setError("Incorrect password");
+                        edtPassword.setText("");
+                    }
+
+                }else{
+                    edtPassword.setError(null);
                     Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_SHORT).show();
 
                 }
-
             }
 
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                String result=data.getStringExtra("result");
+                edtEmail.setText(result);
+                System.out.println(result);
+            }
+        }
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        final ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    public static LoginActivity getInstance() {
+        if(sInstance == null){
+            sInstance = new LoginActivity();
+        }
+        return sInstance ;
+    }
 
     private boolean emptyValidation() {
 
         if (TextUtils.isEmpty(edtEmail.getText().toString()) || TextUtils.isEmpty(edtPassword.getText().toString())) {
-
             return true;
-
         }else {
-
             return false;
-
         }
-
     }
 
+    private void verifySQL(User user){
+        PreferenceUtils.setLoggedInUserEmail(this, user.getEmail());
+        PreferenceUtils.setUserLoggedInStatus(this, true);
+    }
+
+    public void setActiveUser(User user){
+        this.user = user;
+    }
+    public User getActiveUser(){
+        return user;
+    }
 
     }
 

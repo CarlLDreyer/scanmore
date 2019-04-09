@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.scanmore"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -22,13 +21,17 @@
         android:label="SCANMORE"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="SignUp.SignupActivity"></activity>
-        <activity android:name="Profile.ProfileActivity" />
-        <activity android:name=".ShoppingList.ShoppingListActivity" />
+        android:theme="@style/AppTheme" >
+        <activity android:name="Profile.ProfileActivity"
+            android:label="Profile"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ShoppingList.ShoppingListActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,33 +40,38 @@
         </activity>
         <activity
             android:name=".ScanActivity"
-            android:label="Scanner" />
-        <activity android:name=".BaseScannerActivity" />
+            android:label="Scanner"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".BaseScannerActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PayActivity"
-            android:label="Pay" />
+            android:label="Pay"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PaymentMethodActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".LoginActivity"
             android:label="Login"
-            android:noHistory="true"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="SignUp.SignupActivity"
+            android:label="Sign up"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".MainActivity"
             android:label="SCANMORE"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".SwishActivity"
             android:label="Connect with Swish"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

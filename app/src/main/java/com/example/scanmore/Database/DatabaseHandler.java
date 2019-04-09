@@ -251,6 +251,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         return note;
     }
+
+    public User getUser(String email) {
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + User.TABLE_NAME + " WHERE TRIM(email) = '"+email.trim()+"'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        User user = null;
+        // looping through all rows and adding to list
+        if (cursor != null)
+
+            cursor.moveToFirst();
+
+        if (cursor != null && cursor.getCount() > 0) {
+
+            user = new User(cursor.getString(1), cursor.getString(2), cursor.getString(3));
+
+        }
+
+        // close db connection
+        db.close();
+
+        // return notes list
+        return user;
+
+    }
     public User queryUser(String email, String password) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -278,25 +305,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return user;
 
     }
-    /*
-    public void addUser(User user) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-
-        values.put(User.COLUMN_EMAIL, user.getEmail());
-
-        values.put(User.COLUMN_PASSWORD, user.getPassword());
-
-        // Inserting Row
-
-        db.insert(User.TABLE_NAME, null, values);
-
-        db.close(); // Closing database connection
-
-    }
-*/
 
     public void addUser2(User user) {
 

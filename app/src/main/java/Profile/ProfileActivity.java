@@ -1,6 +1,12 @@
 package Profile;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
@@ -20,30 +26,31 @@ public class ProfileActivity extends AppCompatActivity {
     TextView nameView;
     DatabaseHandler db;
 
-    LoginActivity loginActivity;
+    LoginActivity la = LoginActivity.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         setupToolbar();
-        loginActivity = new LoginActivity();
         db = new DatabaseHandler(this);
         final List<User> users = db.getAllUsers();
 
-        //this method will only get the most current addded user
-        final User user = users.get(0);
-
-
+        User user = la.getActiveUser();
 
         nameView = findViewById(R.id.profile_name);
-        nameView.setText("Name: ");
-        nameView.append(user.getName());
-        emailView = findViewById(R.id.profile_email);
-        emailView.setText("Email: ");
-        emailView.append(user.getEmail());
+        nameView.setText(user.getName());
+        //nameView.append(user.getName());
+        emailView = findViewById(R.id.email_profile);
+        emailView.setText(user.getEmail());
 
+        ImageButton settings = (ImageButton) findViewById(R.id.settings_button);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
 
     }
     private void setupToolbar() {
@@ -53,5 +60,15 @@ public class ProfileActivity extends AppCompatActivity {
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

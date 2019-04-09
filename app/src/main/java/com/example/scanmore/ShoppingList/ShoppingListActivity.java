@@ -1,6 +1,7 @@
 package com.example.scanmore.ShoppingList;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.scanmore.R;
 
@@ -28,19 +31,23 @@ public class ShoppingListActivity extends AppCompatActivity {
     private ArrayAdapter<String> itemsAdapter;
     private ListView lvItems;
 
+    private TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list2);
         readItems();
         setupToolbar();
+        textView = findViewById(R.id.textViewShopping);
         itemsAdapter  =new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         lvItems = (ListView) findViewById(R.id.lvItems);
         items = new ArrayList<String>();
         itemsAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, items);
         lvItems.setAdapter(itemsAdapter);
-        items.add("First Item");
+        //items.add("First Item");
+
 
         setupListViewListener();
 
@@ -95,11 +102,23 @@ public class ShoppingListActivity extends AppCompatActivity {
     }
 
     public void onAddItem(View v) {
+        textView.setText(" ");
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
         String itemText = etNewItem.getText().toString();
-        itemsAdapter.add(itemText);
-        etNewItem.setText("");
-        writeItems();
+        if(itemText.isEmpty()){
+            Toast toast = Toast.makeText(ShoppingListActivity.this, "Fältet är tomt " , Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
+
+        }
+
+        else {
+
+            itemsAdapter.add(itemText);
+            etNewItem.setText("");
+            writeItems();
+        }
+
     }
 
     private void readItems() {
@@ -121,6 +140,9 @@ public class ShoppingListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+
 
 
 }
