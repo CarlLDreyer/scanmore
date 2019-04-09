@@ -6,13 +6,18 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.User;
+import com.example.scanmore.Utils.PreferenceUtils;
+import com.google.android.material.navigation.NavigationView;
 
 import SignUp.SignupActivity;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,12 +29,20 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText edtPassword;
 
+    private User user;
+
+    private static LoginActivity sInstance = null;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sInstance = this;
+
+        setupToolbar();
 
         btSignIn = findViewById(R.id.btSignIn);
 
@@ -57,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
-
 //LOGIN button method
         btSignIn.setOnClickListener(new View.OnClickListener() {
 
@@ -67,14 +79,16 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (!emptyValidation()) {
 
-                    User user = dbHelper.queryUser(edtEmail.getText().toString(), edtPassword.getText().toString());
+                    // user = dbHelper.queryUser(edtEmail.getText().toString(), edtPassword.getText().toString());
+                    user = dbHelper.getUser(edtEmail.getText().toString(), edtPassword.getText().toString());
 
                     if (user != null) {
 
                         Bundle mBundle = new Bundle();
 
                         mBundle.putString("user", user.getEmail());
-
+                        verifySQL(user);
+                        setActiveUser(user);
 
                         //will log in and open main activity
 
@@ -84,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         startActivity(intent);
 //welcome message
-                        Toast.makeText(LoginActivity.this, "Welcome " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Welcome " + user.getName(), Toast.LENGTH_SHORT).show();
 
                         //user not found
                     } else {
@@ -106,19 +120,39 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        final ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    public static LoginActivity getInstance() {
+        return sInstance ;
+    }
+
 
     private boolean emptyValidation() {
 
         if (TextUtils.isEmpty(edtEmail.getText().toString()) || TextUtils.isEmpty(edtPassword.getText().toString())) {
-
             return true;
-
         }else {
-
             return false;
-
         }
+    }
 
+    private void verifySQL(User user){
+        PreferenceUtils.setLoggedInUserEmail(this, user.getEmail());
+        PreferenceUtils.setUserLoggedInStatus(this, true);
+    }
+
+    public void setActiveUser(User user){
+        this.user = user;
+    }
+    public User getActiveUser(){
+        return user;
     }
 
 

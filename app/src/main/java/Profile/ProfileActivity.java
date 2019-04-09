@@ -1,6 +1,7 @@
 package Profile;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
@@ -20,28 +21,27 @@ public class ProfileActivity extends AppCompatActivity {
     TextView nameView;
     DatabaseHandler db;
 
-    LoginActivity loginActivity;
+    LoginActivity la = LoginActivity.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         setupToolbar();
-        loginActivity = new LoginActivity();
         db = new DatabaseHandler(this);
         final List<User> users = db.getAllUsers();
 
         //this method will only get the most current addded user
-        final User user = users.get(0);
+        User user = la.getActiveUser();
 
 
 
         nameView = findViewById(R.id.profile_name);
-        nameView.setText("Name: ");
-        nameView.append(user.getName());
+        nameView.setText("Name: " + user.getName());
+        //nameView.append(user.getName());
         emailView = findViewById(R.id.profile_email);
-        emailView.setText("Email: ");
-        emailView.append(user.getEmail());
+        emailView.setText("Email: " + user.getEmail());
+        //emailView.append(user.getEmail());
 
 
 

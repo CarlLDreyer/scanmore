@@ -4,8 +4,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
-android:background="@drawable/gradient"
-    >
+    android:background="@drawable/gradient_bg"
+    android:alpha="0.8">
 
     <LinearLayout
         android:orientation="vertical"
@@ -26,9 +26,11 @@ android:background="@drawable/gradient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:textColorHint="@android:color/white">
             <EditText android:id="@+id/input_name"
                 android:layout_width="match_parent"
+                android:textColor="@android:color/white"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:hint="Name" />
@@ -39,9 +41,11 @@ android:background="@drawable/gradient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:textColorHint="@android:color/white">
             <EditText android:id="@+id/input_email"
                 android:layout_width="match_parent"
+                android:textColor="@android:color/white"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="Email" />
@@ -52,10 +56,12 @@ android:background="@drawable/gradient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:textColorHint="@android:color/white">
             <EditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
                 android:inputType="textPassword"
                 android:hint="Password"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -67,20 +73,27 @@ android:background="@drawable/gradient"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/button_white"
+            android:background="@drawable/button_blue"
             android:padding="12dp"
-            android:textColor="#3B5998"
+            android:textColor="@android:color/white"
             android:text="Create Account"
             />
 
 
-        <TextView android:id="@+id/link_login"
-            android:layout_width="fill_parent"
+
+        <Button
+            android:id="@+id/link_login"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="Already a member? Login"
-            android:gravity="center"
-            android:textSize="18dip"/>
+            android:layout_below="@id/btSignIn"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/transparent"
+            android:text="Already a member? Sign in"
+            android:textColor="@color/colorWhite" />
 
     </LinearLayout>
 </ScrollView>

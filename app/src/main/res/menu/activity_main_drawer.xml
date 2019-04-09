@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group>
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_person_black_24dp"
@@ -12,27 +12,19 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Scan your item" />
+            android:title="Scanner" />
+        <item
+            android:id="@+id/nav_pay"
+            android:icon="@drawable/ic_payment_black_24dp"
+            android:title="Pay" />
+        <item
+            android:id="@+id/nav_shoppinglist"
+            android:icon="@drawable/ic_view_list_black_24dp"
+            android:title="My Shoppinglist" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="Log out" />
 
     </group>
-
-    <item android:title="Choose-title/or remove it">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_pay"
-                android:icon="@drawable/ic_payment_black_24dp"
-                android:title="Pay" />
-            <item
-                android:id="@+id/nav_shoppinglist"
-                android:icon="@drawable/ic_view_list_black_24dp"
-                android:title="My Shoppinglist" />
-
-
-        </menu>
-    </item>
-
 </menu>

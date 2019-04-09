@@ -6,7 +6,6 @@ public class User {
 
     //added name
     private String name;
-
     private String email;
     private  String password;
 
