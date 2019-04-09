@@ -116,9 +116,4 @@ public class SignupActivity extends AppCompatActivity {
         return valid;
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
 }

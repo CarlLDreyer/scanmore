@@ -2,6 +2,7 @@ package Profile;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
@@ -34,16 +35,12 @@ public class ProfileActivity extends AppCompatActivity {
         //this method will only get the most current addded user
         User user = la.getActiveUser();
 
-
-
         nameView = findViewById(R.id.profile_name);
         nameView.setText("Name: " + user.getName());
         //nameView.append(user.getName());
         emailView = findViewById(R.id.profile_email);
         emailView.setText("Email: " + user.getEmail());
         //emailView.append(user.getEmail());
-
-
 
     }
     private void setupToolbar() {
@@ -53,5 +50,15 @@ public class ProfileActivity extends AppCompatActivity {
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
