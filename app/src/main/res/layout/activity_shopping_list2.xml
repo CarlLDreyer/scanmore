@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".ShoppingList.ShoppingListActivity">
 
     <ListView
@@ -25,6 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/btnAddItem"
         android:hint="Lägg till en vara"
+        android:maxLines="1"
+        android:inputType="textCapWords"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/btnAddItem"
@@ -41,6 +42,14 @@
         android:onClick="onAddItem"
         android:background="@drawable/ic_add_circle_outline_black_24dp"
         />
+
+    <TextView
+        android:id="@+id/textViewShopping"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:text="För att lägg till en vara, skriv i fältet nedan och klicka på +, för att ta bort varan håller du inne på texten"/>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
