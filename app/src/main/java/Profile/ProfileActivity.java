@@ -36,11 +36,11 @@ public class ProfileActivity extends AppCompatActivity {
         User user = la.getActiveUser();
 
         nameView = findViewById(R.id.profile_name);
-        nameView.setText("Name: " + user.getName());
+        nameView.setText(user.getName());
         //nameView.append(user.getName());
-        emailView = findViewById(R.id.profile_email);
-        emailView.setText("Email: " + user.getEmail());
-        //emailView.append(user.getEmail());
+        emailView = findViewById(R.id.email_profile);
+        emailView.setText(user.getEmail());
+
 
     }
     private void setupToolbar() {

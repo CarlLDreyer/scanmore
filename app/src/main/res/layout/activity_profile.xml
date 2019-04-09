@@ -1,131 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/profie_activty"
-    android:layout_below="@id/toolbar"
-    android:background="@drawable/gradient"
-    >
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/profile_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/layout">
-
-        <ImageView
-            android:id="@+id/header_cover_image"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerCrop"
-
-            android:layout_below="@id/toolbar"
-
-            android:src="@drawable/gradient"
-            app:srcCompat="@drawable/gradient" />
+        android:layout_height="325dp"
+        android:background="@drawable/gradient_bg"
+        android:orientation="vertical"
+        android:paddingTop="60dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-
-            android:clickable="true"
-            app:civ_border_width="3dp"
-            app:civ_border_color="#FFFFFFFF"
-
             android:id="@+id/profile"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_below="@+id/header_cover_image"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="-130dp"
-            android:elevation="5dp"
-            android:padding="20dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
             android:src="@drawable/man" />
 
-        <RelativeLayout
-            android:id="@+id/profile_layout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/header_cover_image"
-            android:background="#8B008B"
-            android:elevation="4dp"
-            android:paddingBottom="24dp">
+            android:layout_gravity="center"
+            android:text="Carl L Dreyer"
+            android:paddingTop="10dp"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+    </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/profile_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
-                android:text="Your profile "
-                android:fontFamily="sans-serif-light"
-                android:textColor="#fff"
-                android:textSize="30sp"
-                />
-        </RelativeLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/profile_layout"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="5dp"
-            android:background="#8B008B"
-            android:elevation="4dp"
-            android:orientation="vertical"
-            android:paddingLeft="5dp"
-            android:paddingTop="20dp"
-            android:paddingRight="5dp"
-            android:paddingBottom="20dp">
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                android:textSize="25dp"
-                android:fontFamily="sans-serif-light"
-                android:textStyle="normal"
-                android:textColor="@color/colorWhite"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/profile_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-
-                android:textSize="25dp"
-                android:fontFamily="sans-serif-light"
-                android:textColor="@color/colorWhite"
-                app:layout_constraintLeft_toRightOf="@+id/textView10"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/profile_layout"
+        android:paddingTop="50dp">
+        <TextView
+            android:id="@+id/email_p"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:background="@color/actionbar_opacity"
-            android:minHeight="?attr/actionBarSize"
-            app:theme="@style/TransparentToolbar" />
+            android:textStyle="bold"
+            android:textColor="@color/buttons_color"
+            android:text="Email:"
+            android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/email_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="Carl.lidsrom.dreyer@gmail.com "/>
+    </LinearLayout>
 
-    </RelativeLayout>
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@android:color/transparent"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/TransparentToolbar">
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="settingsButton"
+            android:background="@drawable/ic_settings"
+            android:layout_gravity="end"
+            android:layout_marginEnd="15dp"/>
+    </androidx.appcompat.widget.Toolbar>
 
-</ScrollView>
+</RelativeLayout>

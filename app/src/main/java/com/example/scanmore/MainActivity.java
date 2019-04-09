@@ -26,6 +26,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,19 +53,21 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
-        TextView navHeader = (TextView) headerView.findViewById(R.id.nav_name);
-        ImageView profilePicture = (ImageView) findViewById(R.id.profile_picture);
+        TextView navName = (TextView) headerView.findViewById(R.id.nav_name);
+        CircleImageView profilePicture = (CircleImageView) headerView.findViewById(R.id.profile_picture);
+        TextView navEmail = (TextView) headerView.findViewById(R.id.nav_email);
         try{
-            navHeader.setText(la.getActiveUser().getName());
+            navName.setText(la.getActiveUser().getName());
+            navEmail.setText(la.getActiveUser().getEmail());
             profilePicture.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //launchActivity(ProfileActivity.class);
-                    System.out.println("CLICKED");
+                    launchActivity(ProfileActivity.class);
                 }
             });
+
         }
-        catch(NullPointerException e){}
+        catch(NullPointerException e){ e.printStackTrace();}
 
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
 
@@ -121,8 +124,6 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_shoppinglist) {
             launchActivity(ShoppingListActivity.class);
 
-        }else if (id == R.id.nav_profile) {
-          launchActivity(ProfileActivity.class);
         }
         else if (id == R.id.nav_logout) {
             PreferenceUtils.setLoggedInUserEmail(this, "");

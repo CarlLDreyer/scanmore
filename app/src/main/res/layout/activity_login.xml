@@ -102,12 +102,5 @@
                 android:textColor="@color/colorWhite" />
 
         </RelativeLayout>
-
-
-
-
-
-
-
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
