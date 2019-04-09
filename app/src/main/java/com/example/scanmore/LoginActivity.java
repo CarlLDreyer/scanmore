@@ -1,5 +1,6 @@
 package com.example.scanmore;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -61,10 +62,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-
-                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-
-                startActivity(intent);
+                Intent i = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivityForResult(i, 1);
 
             }
 
@@ -102,26 +101,23 @@ public class LoginActivity extends AppCompatActivity {
                         //user not found
                     }
                     else if(user == null){
-                        Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
-
+                        edtEmail.setError("User not found");
                         edtPassword.setText("");
 
                     }
 
                     else if(!(user.getPassword().equals(edtPassword.getText().toString()))){
-                        Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
-
+                        edtPassword.setError("Incorrect password");
                         edtPassword.setText("");
                     }
                     else if(user != null && (user.getPassword().equals(""))){
-                        Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
-
+                        edtPassword.setError("Incorrect password");
                         edtPassword.setText("");
                     }
 
 //if LOGIN button is clicked and the fields are empty
                 }else{
-
+                    edtPassword.setError(null);
                     Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_SHORT).show();
 
                 }
@@ -129,6 +125,21 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                String result=data.getStringExtra("result");
+                edtEmail.setText(result);
+                System.out.println(result);
+            }
+            if (resultCode == RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
     }
 
     private void setupToolbar() {

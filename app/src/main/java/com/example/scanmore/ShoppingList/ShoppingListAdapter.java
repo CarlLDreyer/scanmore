@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.scanmore.Database.ScannedProduct;
 import com.example.scanmore.R;
 
 import com.example.scanmore.Database.Product;
@@ -42,9 +44,9 @@ public class ShoppingListAdapter extends
         }
     }
 
-    private List<Product> productList;
+    private List<ScannedProduct> productList;
 
-    public ShoppingListAdapter(List<Product> products) {
+    public ShoppingListAdapter(List<ScannedProduct> products) {
         productList = products;
     }
 
@@ -65,7 +67,7 @@ public class ShoppingListAdapter extends
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         // Get the data model based on position
-        Product product = productList.get(i);
+        ScannedProduct product = productList.get(i);
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
