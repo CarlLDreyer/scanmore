@@ -15,6 +15,7 @@ import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.ShoppingList.ShoppingListActivity;
 import com.example.scanmore.Utils.PreferenceUtils;
 import com.google.android.material.navigation.NavigationView;
+import com.google.zxing.client.android.Intents;
 
 
 import Profile.ProfileActivity;

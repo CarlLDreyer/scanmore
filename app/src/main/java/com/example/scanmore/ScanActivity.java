@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PersistableBundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.AttributeSet;
@@ -24,6 +25,7 @@ import android.widget.ToggleButton;
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.Product;
 import com.example.scanmore.ShoppingList.ShoppingListAdapter;
+import com.example.scanmore.Utils.DataHolder;
 import com.google.zxing.Result;
 
 import com.example.scanmore.BarcodeScanner.IViewFinder;
@@ -52,8 +54,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         super.onCreate(state);
         setContentView(R.layout.activity_scan);
         sInstance = this;
-
-        shoppingProducts = new ArrayList<Product>();
+        shoppingProducts = DataHolder.getInstance().products;
         setupToolbar();
         ViewGroup contentFrame = (ViewGroup) findViewById(R.id.content_frame);
         mScannerView = new ZXingScannerView(this) {
@@ -108,9 +109,6 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
 
             }
         });
-
-
-
     }
 
     public boolean getScanActive(){
@@ -123,9 +121,11 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
     }
 
 
+
     @Override
     public void onResume() {
         super.onResume();
+        updateTotalPrice();
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
         mScannerView.resumeCameraPreview(this);
@@ -204,20 +204,6 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         public void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             //drawTradeMark(canvas);
-        }
-
-        private void drawTradeMark(Canvas canvas) {
-            Rect framingRect = getFramingRect();
-            float tradeMarkTop;
-            float tradeMarkLeft;
-            if (framingRect != null) {
-                tradeMarkTop = framingRect.bottom + PAINT.getTextSize() + 10;
-                tradeMarkLeft = framingRect.left + 50;
-            } else {
-                tradeMarkTop = 10;
-                tradeMarkLeft = canvas.getHeight() - PAINT.getTextSize() - 10;
-            }
-            canvas.drawText(MARK_TEXT, tradeMarkLeft, tradeMarkTop, PAINT);
         }
 
     }
