@@ -3,7 +3,6 @@ package com.example.scanmore;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +14,6 @@ import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.ShoppingList.ShoppingListActivity;
 import com.example.scanmore.Utils.PreferenceUtils;
 import com.google.android.material.navigation.NavigationView;
-import com.google.zxing.client.android.Intents;
 
 
 import Profile.ProfileActivity;
@@ -158,8 +156,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void setupDatabaseInserts(DatabaseHandler db){
-
-
         db.insertProduct("7350015508279", "Lundgrens ", 29);
         db.insertProduct("7332945033038", "Conmore Vatten ", 80);
         db.insertProduct("7610313412143", "Örtsalt", 23);
@@ -169,9 +165,6 @@ public class MainActivity extends AppCompatActivity
         db.insertProduct("7350002400531", "Vinäger", 30);
         db.insertProduct("7311310027117", "Citron Peppar", 13);
         db.insertProduct("7332945033038", "Vatten", 56);
-
-
-
     }
 
 }

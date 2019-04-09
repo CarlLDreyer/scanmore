@@ -17,7 +17,7 @@ public class PreferenceUtils {
     {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putString(PREF_LOGGEDIN_USER_EMAIL, email);
-        editor.commit();
+        editor.apply();
     }
 
     public static String getLoggedInEmailUser(Context ctx)

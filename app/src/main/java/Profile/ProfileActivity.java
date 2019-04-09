@@ -1,8 +1,12 @@
 package Profile;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
@@ -32,7 +36,6 @@ public class ProfileActivity extends AppCompatActivity {
         db = new DatabaseHandler(this);
         final List<User> users = db.getAllUsers();
 
-        //this method will only get the most current addded user
         User user = la.getActiveUser();
 
         nameView = findViewById(R.id.profile_name);
@@ -41,6 +44,13 @@ public class ProfileActivity extends AppCompatActivity {
         emailView = findViewById(R.id.email_profile);
         emailView.setText(user.getEmail());
 
+        ImageButton settings = (ImageButton) findViewById(R.id.settings_button);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
     private void setupToolbar() {

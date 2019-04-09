@@ -1,19 +1,16 @@
 package com.example.scanmore;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.User;
 import com.example.scanmore.Utils.PreferenceUtils;
-import com.google.android.material.navigation.NavigationView;
 
 import SignUp.SignupActivity;
 import androidx.appcompat.app.ActionBar;
@@ -115,13 +112,11 @@ public class LoginActivity extends AppCompatActivity {
                         edtPassword.setText("");
                     }
 
-//if LOGIN button is clicked and the fields are empty
                 }else{
                     edtPassword.setError(null);
                     Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_SHORT).show();
 
                 }
-
             }
 
         });
@@ -136,9 +131,6 @@ public class LoginActivity extends AppCompatActivity {
                 edtEmail.setText(result);
                 System.out.println(result);
             }
-            if (resultCode == RESULT_CANCELED) {
-                //Write your code if there's no result
-            }
         }
     }
 
@@ -152,9 +144,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public static LoginActivity getInstance() {
+        if(sInstance == null){
+            sInstance = new LoginActivity();
+        }
         return sInstance ;
     }
-
 
     private boolean emptyValidation() {
 
@@ -176,7 +170,6 @@ public class LoginActivity extends AppCompatActivity {
     public User getActiveUser(){
         return user;
     }
-
 
     }
 

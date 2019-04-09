@@ -51,13 +51,43 @@
             android:textStyle="bold"
             android:textColor="@color/buttons_color"
             android:text="Email:"
-            android:textSize="15sp"/>
+            android:textSize="17sp"/>
         <TextView
             android:id="@+id/email_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="19sp"
             android:text="Carl.lidsrom.dreyer@gmail.com "/>
+        <TextView
+            android:id="@+id/street_p"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/buttons_color"
+            android:text="Adress:"
+            android:layout_marginTop="20dp"
+            android:textSize="17sp"/>
+        <TextView
+            android:id="@+id/street_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19sp"
+            android:text="Stuartsgatan 2"/>
+        <TextView
+            android:id="@+id/mobile_p"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/buttons_color"
+            android:text="Telefonnummer:"
+            android:layout_marginTop="20dp"
+            android:textSize="17sp"/>
+        <TextView
+            android:id="@+id/mobile_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19sp"
+            android:text="0707126421"/>
     </LinearLayout>
 
 
@@ -70,6 +100,7 @@
         android:minHeight="?attr/actionBarSize"
         app:theme="@style/TransparentToolbar">
         <ImageButton
+            android:id="@+id/settings_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:contentDescription="settingsButton"

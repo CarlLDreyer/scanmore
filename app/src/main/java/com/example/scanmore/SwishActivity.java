@@ -23,8 +23,8 @@ public class SwishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swish);
         sInstance = this;
-        setupToolbar();
         final DatabaseHandler databaseHandler = new DatabaseHandler(this);
+        setupToolbar();
 
         phoneNumber = (EditText) findViewById(R.id.phone_number_input);
         Button submitButton = (Button) findViewById(R.id.submit_swish);
