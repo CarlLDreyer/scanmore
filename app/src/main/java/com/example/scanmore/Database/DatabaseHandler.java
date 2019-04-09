@@ -252,7 +252,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return note;
     }
 
-    public User getUser(String email, String password) {
+    public User getUser(String email) {
 
         // Select All Query
         String selectQuery = "SELECT  * FROM " + User.TABLE_NAME + " WHERE TRIM(email) = '"+email.trim()+"'";

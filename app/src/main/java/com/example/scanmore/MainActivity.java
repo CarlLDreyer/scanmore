@@ -59,31 +59,16 @@ public class MainActivity extends AppCompatActivity
             profilePicture.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    launchActivity(ProfileActivity.class);
+                    //launchActivity(ProfileActivity.class);
+                    System.out.println("CLICKED");
                 }
             });
         }
         catch(NullPointerException e){}
 
-
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
 
-
-
-
-        /*
-        final List<User> users = databaseHandler.getAllUsers();
-        final User user = users.get(0);
-        textView = findViewById(R.id.textView);
-
-        textView.setText("Email: ");
-        textView.append(user.getEmail());
-*/
         setupDatabaseInserts(databaseHandler);
-
-
-
-       // setupToolbar();
     }
 
     @Override
@@ -134,7 +119,7 @@ public class MainActivity extends AppCompatActivity
             launchActivity(PayActivity.class);
         }
         else if (id == R.id.nav_shoppinglist) {
-launchActivity(ShoppingListActivity.class);
+            launchActivity(ShoppingListActivity.class);
 
         }else if (id == R.id.nav_profile) {
           launchActivity(ProfileActivity.class);

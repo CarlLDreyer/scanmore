@@ -79,10 +79,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (!emptyValidation()) {
 
-                    // user = dbHelper.queryUser(edtEmail.getText().toString(), edtPassword.getText().toString());
-                    user = dbHelper.getUser(edtEmail.getText().toString(), edtPassword.getText().toString());
+                    user = dbHelper.getUser(edtEmail.getText().toString());
 
-                    if (user != null) {
+                    if (user != null && user.getPassword().equals(edtPassword.getText().toString())) {
 
                         Bundle mBundle = new Bundle();
 
@@ -101,13 +100,25 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Welcome " + user.getName(), Toast.LENGTH_SHORT).show();
 
                         //user not found
-                    } else {
-
+                    }
+                    else if(user == null){
                         Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
 
                         edtPassword.setText("");
 
                     }
+
+                    else if(!(user.getPassword().equals(edtPassword.getText().toString()))){
+                        Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+
+                        edtPassword.setText("");
+                    }
+                    else if(user != null && (user.getPassword().equals(""))){
+                        Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+
+                        edtPassword.setText("");
+                    }
+
 //if LOGIN button is clicked and the fields are empty
                 }else{
 
