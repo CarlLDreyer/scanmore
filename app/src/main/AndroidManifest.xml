@@ -23,12 +23,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="SignUp.SignupActivity"></activity>
         <activity android:name="Profile.ProfileActivity" />
         <activity android:name=".ShoppingList.ShoppingListActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,8 +48,10 @@
         <activity
             android:name=".LoginActivity"
             android:label="Login"
-            android:noHistory="true"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity android:name="SignUp.SignupActivity"
+            android:label="Sign up"/>
 
         <activity
             android:name=".MainActivity"

@@ -41,7 +41,7 @@ public class SignupActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signup();
+                finish();
             }
         });
         //should go back to log in
@@ -114,5 +114,11 @@ public class SignupActivity extends AppCompatActivity {
             edtPassword2.setError(null);
         }
         return valid;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
