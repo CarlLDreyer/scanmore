@@ -84,7 +84,7 @@ public class ToDoList extends AppCompatActivity {
 
     }
     private void setupToolbar(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarToDo);
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
         if(ab != null) {
