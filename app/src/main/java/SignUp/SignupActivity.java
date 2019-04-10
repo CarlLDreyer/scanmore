@@ -42,11 +42,17 @@ public class SignupActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signup();
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("result", edtEmail2.getText().toString());
-                setResult(RESULT_OK,returnIntent);
-                finish();
+                if (!validate()) {
+                    onSignupFailed();
+                    return;
+                }
+                else {
+                    signup();
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("result", edtEmail2.getText().toString());
+                    setResult(RESULT_OK, returnIntent);
+                    finish();
+                }
 
             }
         });
@@ -63,10 +69,6 @@ public class SignupActivity extends AppCompatActivity {
     }
     public void signup() {
         Log.d(TAG, "Signup");
-        if (!validate()) {
-            onSignupFailed();
-            return;
-        }
         btnSignup.setEnabled(false);
         String name = edtName.getText().toString();
         String email = edtEmail2.getText().toString();
