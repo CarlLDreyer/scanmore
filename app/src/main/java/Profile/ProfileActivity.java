@@ -1,11 +1,9 @@
 package Profile;
 
-import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -26,6 +24,9 @@ public class ProfileActivity extends AppCompatActivity {
     TextView nameView;
     DatabaseHandler db;
 
+    private EditText number;
+    private EditText address;
+
     LoginActivity la = LoginActivity.getInstance();
 
     @Override
@@ -44,10 +45,19 @@ public class ProfileActivity extends AppCompatActivity {
         emailView = findViewById(R.id.email_profile);
         emailView.setText(user.getEmail());
 
+        number = findViewById(R.id.mobile_profile);
+        number.setEnabled(false);
+
+        address = findViewById(R.id.street_profile);
+        address.setEnabled(false);
+
         ImageButton settings = (ImageButton) findViewById(R.id.settings_button);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                address.setEnabled(true);
+                address.setEnabled(true);
 
             }
         });

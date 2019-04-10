@@ -67,12 +67,15 @@
             android:text="Adress:"
             android:layout_marginTop="20dp"
             android:textSize="17sp"/>
-        <TextView
+
+        <EditText
             android:id="@+id/street_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="19sp"
-            android:text="Stuartsgatan 2"/>
+            android:hint="Klicka på kugghjul för att redigera"
+            android:maxLines="1"
+            android:inputType="text"/>
         <TextView
             android:id="@+id/mobile_p"
             android:layout_width="wrap_content"
@@ -82,12 +85,16 @@
             android:text="Telefonnummer:"
             android:layout_marginTop="20dp"
             android:textSize="17sp"/>
-        <TextView
+
+        <EditText
             android:id="@+id/mobile_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="19sp"
-            android:text="0707126421"/>
+            android:hint="Klicka på kugghjul för att redigera"
+            android:maxLines="1"
+            android:inputType="number"
+            />
     </LinearLayout>
 
 
