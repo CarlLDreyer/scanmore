@@ -59,10 +59,14 @@ public class SwishFragment extends Fragment implements View.OnClickListener {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sc.getTotalPrice() != 0){
+                int total = 0;
+                try{ total = sc.getTotalPrice(); }
+                catch(NullPointerException e){e.printStackTrace();}
+
+                if(total != 0){
                     openSwishDialog();
                 }
-                else{
+                else {
                     pa.openNoPaymentDialog();
                 }
             }
@@ -81,7 +85,10 @@ public class SwishFragment extends Fragment implements View.OnClickListener {
                 pa.openCardDeletionDialog();
             }
         });
-        total = sc.getTotalPrice();
+        try{
+            total = sc.getTotalPrice();
+        }
+        catch(NullPointerException e) {e.printStackTrace();}
       return view;
     }
     public String getPhoneNumberString(){

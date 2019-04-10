@@ -17,24 +17,38 @@ import androidx.appcompat.widget.Toolbar;
 public class SwishActivity extends AppCompatActivity {
     PayActivity pa = PayActivity.getInstance();
     EditText phoneNumber;
+    private int clicks;
     private static SwishActivity sInstance = null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swish);
+        clicks = 0;
         sInstance = this;
         final DatabaseHandler databaseHandler = new DatabaseHandler(this);
         setupToolbar();
-
         phoneNumber = (EditText) findViewById(R.id.phone_number_input);
-        Button submitButton = (Button) findViewById(R.id.submit_swish);
+        final Button submitButton = (Button) findViewById(R.id.submit_swish);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseHandler.insertSwish(phoneNumber.getText().toString());
-                pa.addFragmentSwish(phoneNumber);
-                Toast.makeText(SwishActivity.this, "Swish payment added successfully!", Toast.LENGTH_SHORT).show();
-                finish();
+                System.out.println(phoneNumber.getText().toString());
+                System.out.println(phoneNumber.getText().toString().length());
+                if(phoneNumber.getText().toString().length() >= 10){
+                    clicks++;
+                    if(clicks == 1){
+                        databaseHandler.insertSwish(phoneNumber.getText().toString());
+                        pa.addFragmentSwish(phoneNumber);
+                        Toast.makeText(SwishActivity.this, "Swish payment added successfully!", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }
+                else{
+                    System.out.println("Invalid number");
+                    clicks = 0;
+                }
+
+
             }
         });
         phoneNumber.requestFocus();
