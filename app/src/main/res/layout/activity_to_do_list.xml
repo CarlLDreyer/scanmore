@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShoppingList.ShoppingListActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/toolbar"
+        >
+
+        <EditText
+            android:id="@+id/item_edit_text"
+            android:hint="Lägg till vara"
+            android:maxLines="1"
+            android:inputType="textCapWords"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/add_btn"
+            android:layout_width="1dp"
+            android:layout_weight="1"
+            android:layout_height="70dp"
+            android:background="@drawable/ic_add_circle_outline_black_24dp"
+
+            />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/items_list"
+        android:layout_marginBottom="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/textViewTodo"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:text="För att lägg till en vara, skriv i fältet ovan och klicka på +, för att ta bort varan klickar du på texten"
+        android:textColor="@color/card_cvv_color"/>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@color/actionbar_opacity"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/TransparentToolbar" />
+</RelativeLayout>

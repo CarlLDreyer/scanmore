@@ -11,13 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
-import com.example.scanmore.ShoppingList.ShoppingListActivity;
 import com.example.scanmore.Utils.PreferenceUtils;
 import com.google.android.material.navigation.NavigationView;
 
-
 import Profile.ProfileActivity;
-
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -121,7 +118,9 @@ public class MainActivity extends AppCompatActivity
             launchActivity(PayActivity.class);
         }
         else if (id == R.id.nav_shoppinglist) {
-            launchActivity(ShoppingListActivity.class);
+           // launchActivity(ShoppingListActivity.class);
+
+            launchActivity(ToDoList.class);
 
         }
         else if (id == R.id.nav_logout) {
