@@ -25,9 +25,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Welcome"
-            android:textSize="50dp"
+            android:textSize="40dp"
             android:layout_marginTop="50dp"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorWhite"
+            android:layout_marginLeft="20dp"/>
 
 
         <Button
@@ -41,8 +42,6 @@
             android:text="Översikt"
             android:textColor="@color/colorWhite"
             />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
