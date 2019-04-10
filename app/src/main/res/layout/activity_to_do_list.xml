@@ -6,12 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ToDoList">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarToDo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@color/accent"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/TransparentToolbar" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/todoLinear"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal"
         android:layout_below="@id/toolbarToDo"
         >
@@ -48,16 +57,9 @@
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="200dp"
         android:layout_centerInParent="true"
         android:text="För att lägg till en vara, skriv i fältet ovan och klicka på +, för att ta bort varan klickar du på texten"
         android:textColor="@color/card_cvv_color"/>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarToDo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="@color/actionbar_opacity"
-        android:minHeight="?attr/actionBarSize"
-        app:theme="@style/TransparentToolbar" />
 </RelativeLayout>

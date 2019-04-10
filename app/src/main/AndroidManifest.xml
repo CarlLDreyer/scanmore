@@ -26,9 +26,6 @@
             android:label="Profile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ShoppingList.ShoppingListActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
