@@ -58,7 +58,10 @@ public class ToDoList extends AppCompatActivity {
                             adapter.add(itemEntered);
                             itemET.setText("");
                             FileHelper.writeData(items, getApplicationContext());
-                            Toast.makeText(getApplicationContext(), "Item Added", Toast.LENGTH_SHORT).show();
+                            Toast toast2 = Toast.makeText(getApplicationContext(), "Vara tillagd", Toast.LENGTH_SHORT);
+                            toast2.setGravity(Gravity.CENTER, 0,0);
+                            toast2.show();
+
                             break;
                     }
             }
@@ -79,6 +82,7 @@ public class ToDoList extends AppCompatActivity {
 
             }
         });
+
 
 
 
