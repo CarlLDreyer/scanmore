@@ -41,13 +41,17 @@ public class ToDoList extends AppCompatActivity {
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         itemsList.setAdapter(adapter);
+if(!items.isEmpty()){
+    tw.setText(" ");
 
+}else{
+    tw.setText("För att lägg till en vara, skriv i fältet ovan och klicka på +, för att ta bort varan klickar du på texten");
+}
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String itemEntered = itemET.getText().toString();
-                tw.setText(" ");
                 if (itemEntered.isEmpty()) {
                     Toast toast = Toast.makeText(ToDoList.this, "Fältet är tomt ", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
@@ -62,7 +66,7 @@ public class ToDoList extends AppCompatActivity {
                             Toast toast2 = Toast.makeText(getApplicationContext(), "Vara tillagd", Toast.LENGTH_SHORT);
                             toast2.setGravity(Gravity.CENTER, 0,0);
                             toast2.show();
-
+                            tw.setText(" ");
                             break;
                     }
             }
