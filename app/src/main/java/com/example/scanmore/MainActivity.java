@@ -7,12 +7,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Utils.PreferenceUtils;
 import com.google.android.material.navigation.NavigationView;
+
+
+import java.util.Calendar;
 
 import Profile.ProfileActivity;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -39,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        setupMainContent();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -135,7 +140,46 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void setupMainContent(){
+        Calendar c = Calendar.getInstance();
+        String[] monthName = {"January", "February",
+                "March", "April", "May", "June", "July",
+                "August", "September", "October", "November",
+                "December"};
+        String month = monthName[c.get(Calendar.MONTH)];
+        TextView welcomeName = (TextView) findViewById(R.id.welcome_name);
+        welcomeName.setText("Welcome " + trimFirstWord(la.getActiveUser().getName()) + "!");
+        TextView mainMonth = (TextView) findViewById(R.id.main_month);
+        mainMonth.setText(month);
 
+        Button scanMain = (Button) findViewById(R.id.scan_button_main);
+        scanMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchActivity(ScanActivity.class);
+            }
+        });
+        Button cartMain = (Button) findViewById(R.id.cart_button_main);
+        cartMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchActivity(ToDoList.class);
+            }
+        });
+        Button payMain = (Button) findViewById(R.id.pay_button_main);
+        payMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchActivity(PayActivity.class);
+            }
+        });
+
+    }
+
+    public String trimFirstWord(String s) {
+        String[] sp = s.split(" ");
+        return sp[0];
+    }
 
     public void launchActivity(Class<?> clss) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)

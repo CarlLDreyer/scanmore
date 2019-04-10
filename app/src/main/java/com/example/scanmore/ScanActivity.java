@@ -92,7 +92,6 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         flash_toggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Flash toggled");
                 if(mScannerView.getFlash() != true)
                     mScannerView.setFlash(true);
                 else{
