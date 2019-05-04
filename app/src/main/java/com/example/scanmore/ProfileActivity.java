@@ -1,4 +1,4 @@
-package Profile;
+package com.example.scanmore;
 
 import android.os.Bundle;
 import android.view.MenuItem;

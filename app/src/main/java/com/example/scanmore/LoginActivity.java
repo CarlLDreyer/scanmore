@@ -11,8 +11,8 @@ import android.widget.Toast;
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.User;
 import com.example.scanmore.Utils.PreferenceUtils;
+import com.google.android.material.textfield.TextInputLayout;
 
-import SignUp.SignupActivity;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,6 +24,10 @@ public class LoginActivity extends AppCompatActivity {
     private Button btSignUp;
 
     private EditText edtEmail;
+
+    private TextInputLayout edtPasswordWrapper;
+
+    private TextInputLayout edtEmailWrapper;
 
     private EditText edtPassword;
 
@@ -48,7 +52,13 @@ public class LoginActivity extends AppCompatActivity {
 
         edtEmail = findViewById(R.id.emailinput);
 
+        edtEmailWrapper = findViewById(R.id.edt_email_wrapper);
+
+        edtPasswordWrapper = findViewById(R.id.edt_password_wrapper);
+        edtPasswordWrapper.setPasswordVisibilityToggleEnabled(true);
+
         edtPassword = findViewById(R.id.passwordinput);
+
 
         final DatabaseHandler dbHelper = new DatabaseHandler(this);
 
@@ -72,53 +82,37 @@ public class LoginActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-
-                if (!emptyValidation()) {
-
+                if(!isEmailFormEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText().toString()).matches()){
                     user = dbHelper.getUser(edtEmail.getText().toString());
+                    if(user != null){
+                        if(!isPasswordFormEmpty()){
+                            if(user.getPassword().equals(edtPassword.getText().toString())){
+                                Bundle mBundle = new Bundle();
 
-                    if (user != null && user.getPassword().equals(edtPassword.getText().toString())) {
+                                mBundle.putString("user", user.getEmail());
+                                verifySQL(user);
+                                setActiveUser(user);
 
-                        Bundle mBundle = new Bundle();
-
-                        mBundle.putString("user", user.getEmail());
-                        verifySQL(user);
-                        setActiveUser(user);
-
-                        //will log in and open main activity
-
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-                        intent.putExtras(mBundle);
-
-                        startActivity(intent);
-//welcome message
-                        Toast.makeText(LoginActivity.this, "Welcome " + user.getName(), Toast.LENGTH_SHORT).show();
-
-                        //user not found
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.putExtras(mBundle);
+                                startActivity(intent);
+                            }
+                            else{
+                                edtPasswordWrapper.setError("Incorrect password");
+                            }
+                        }
+                        else{
+                            edtPasswordWrapper.setError("Please enter a valid password");
+                        }
                     }
-                    else if(user == null){
-                        edtEmail.setError("User not found");
-                        edtPassword.setText("");
-
+                    else{
+                        edtEmailWrapper.setError("User not found");
                     }
-
-                    else if(!(user.getPassword().equals(edtPassword.getText().toString()))){
-                        edtPassword.setError("Incorrect password");
-                        edtPassword.setText("");
-                    }
-                    else if(user != null && (user.getPassword().equals(""))){
-                        edtPassword.setError("Incorrect password");
-                        edtPassword.setText("");
-                    }
-
-                }else{
-                    edtPassword.setError(null);
-                    Toast.makeText(LoginActivity.this, "Empty Fields", Toast.LENGTH_SHORT).show();
-
+                }
+                else{
+                    edtEmailWrapper.setError("Please enter a valid email");
                 }
             }
-
         });
     }
 
@@ -150,13 +144,12 @@ public class LoginActivity extends AppCompatActivity {
         return sInstance ;
     }
 
-    private boolean emptyValidation() {
+    private boolean isEmailFormEmpty(){
+        return TextUtils.isEmpty(edtEmail.getText().toString());
+    }
 
-        if (TextUtils.isEmpty(edtEmail.getText().toString()) || TextUtils.isEmpty(edtPassword.getText().toString())) {
-            return true;
-        }else {
-            return false;
-        }
+    private boolean isPasswordFormEmpty(){
+        return TextUtils.isEmpty(edtPassword.getText().toString());
     }
 
     private void verifySQL(User user){

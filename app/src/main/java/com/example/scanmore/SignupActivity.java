@@ -1,6 +1,5 @@
-package SignUp;
+package com.example.scanmore;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +11,7 @@ import android.widget.Toast;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.User;
-import com.example.scanmore.LoginActivity;
-import com.example.scanmore.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,21 +40,19 @@ public class SignupActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validate()) {
-                    onSignupFailed();
-                    return;
-                }
-                else {
-                    signup();
-                    Intent returnIntent = new Intent();
-                    returnIntent.putExtra("result", edtEmail2.getText().toString());
-                    setResult(RESULT_OK, returnIntent);
-                    finish();
-                }
-
+            if (!validate()) {
+                onSignupFailed();
+                return;
+            }
+            else {
+                signup();
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result", edtEmail2.getText().toString());
+                setResult(RESULT_OK, returnIntent);
+                finish();
+            }
             }
         });
-        //should go back to log in
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +60,6 @@ public class SignupActivity extends AppCompatActivity {
                 finish();
             }
         });
-        //end of onCreate method
-
     }
     public void signup() {
         Log.d(TAG, "Signup");
@@ -73,19 +67,11 @@ public class SignupActivity extends AppCompatActivity {
         String name = edtName.getText().toString();
         String email = edtEmail2.getText().toString();
         String password = edtPassword2.getText().toString();
-        // TODO: Implement your own signup logic here.
         databaseHandler.addUser2(new User(name, email, password));
         Toast.makeText(SignupActivity.this, "Added User", Toast.LENGTH_SHORT).show();
 
-        /*edtName.setText("");
-        edtEmail2.setText("");
-        edtPassword2.setText(""); */
     }
-    public void onSignupSuccess() {
-        btnSignup.setEnabled(true);
-        setResult(RESULT_OK, null);
-        finish();
-    }
+
     public void onSignupFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
         btnSignup.setEnabled(true);

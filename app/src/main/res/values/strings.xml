@@ -33,4 +33,12 @@
     <string name="yes">YES</string>
     <string name="no">NO</string>
     <string name="ok">OK</string>
+
+    <!-- Sign-up screen -->
+    <string name="signup">Sign up</string>
+    <string name="already_a_member">Already a member? <b>Sign in!</b></string>
+
+    <!-- Login screen -->
+    <string name="not_a_member">Don\'t have an account? <b>Sign up!</b></string>
+    <string name="welcome">Welcome!</string>
 </resources>

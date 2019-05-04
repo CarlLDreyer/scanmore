@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
@@ -36,16 +38,15 @@
                 android:id="@+id/logInTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@id/logo"
                 android:layout_marginTop="30dp"
                 android:textColor="@color/colorWhite"
                 android:fontFamily="sans-serif-light"
-                android:textSize="40dp"
-                android:text="Log in" />
+                android:textSize="40sp"
+                android:text="@string/welcome" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/email_shit"
+                android:id="@+id/edt_email_wrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -62,13 +63,14 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/password_shit"
+                android:id="@+id/edt_password_wrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="8dp"
-                android:layout_below="@id/email_shit"
-                android:textColorHint="@android:color/white">
+                android:layout_below="@id/edt_email_wrapper"
+                android:textColorHint="@android:color/white"
+                app:passwordToggleTint="@android:color/white">
                 <EditText android:id="@+id/passwordinput"
                     android:layout_width="match_parent"
                     android:textColor="@android:color/white"
@@ -79,17 +81,16 @@
 
             <Button
                 android:id="@+id/btSignIn"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_centerHorizontal="true"
                 android:layout_height="60dp"
-                android:layout_below="@id/password_shit"
+                android:layout_below="@id/edt_password_wrapper"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/button_blue"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/white"
                 android:text="LOGIN"
-                android:textColor="@android:color/white"/>
+                android:textSize="25sp"
+                android:textColor="@color/toolbar_color"/>
 
             <Button
                 android:id="@+id/btSignUp"
@@ -102,8 +103,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@android:color/transparent"
-                android:text="Not a member? Sign up now"
-                android:textColor="@color/colorWhite" />
+                android:text="@string/not_a_member"
+                android:textColor="@android:color/white" />
 
         </RelativeLayout>
     </RelativeLayout>
