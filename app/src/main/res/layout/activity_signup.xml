@@ -33,6 +33,7 @@
 
         <!--  Name Label -->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_name_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -49,6 +50,7 @@
 
         <!-- Email Label -->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_email_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -62,13 +64,16 @@
                 android:hint="Email" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <!-- Password Label -->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_password_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:textColorHint="@android:color/white">
+            android:textColorHint="@android:color/white"
+            app:passwordToggleTint="@android:color/white">
             <EditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,12 +89,12 @@
             android:layout_height="60dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/button_blue"
+            android:background="@android:color/white"
             android:padding="12dp"
-            android:textColor="@android:color/white"
-            android:text="Create Account"
-            />
-        
+            android:textSize="25sp"
+            android:textColor="@color/toolbar_color"
+            android:text="@string/account" />
+
         <Button
             android:id="@+id/link_login"
             android:textAllCaps="false"
