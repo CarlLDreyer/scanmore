@@ -43,4 +43,7 @@
     <string name="not_a_member">Don\'t have an account? <b>Sign up!</b></string>
     <string name="welcome">Welcome!</string>
     <string name="login">LOGIN</string>
+
+    <!-- Scan screen -->
+    <string name="shoppingList">Scanned Products</string>
 </resources>

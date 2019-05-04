@@ -1,6 +1,9 @@
 package com.example.scanmore;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -49,6 +52,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
     private LinearLayoutManager linearLayoutManager;
     private static ScanActivity sInstance = null;
     private ToggleButton flash_toggle;
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
@@ -92,7 +96,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         flash_toggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mScannerView.getFlash() != true)
+                if(!mScannerView.getFlash())
                     mScannerView.setFlash(true);
                 else{
                     mScannerView.setFlash(false);
@@ -106,6 +110,15 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
                 Intent myIntent = new Intent(v.getContext(), PayActivity.class);
                 startActivityForResult(myIntent, 0);
 
+            }
+        });
+
+        ImageButton shoppingListButton = (ImageButton) findViewById(R.id.shoppingList_button);
+        shoppingListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent listIntent = new Intent(v.getContext(), ScannedListActivity.class);
+                startActivity(listIntent);
             }
         });
     }
@@ -176,7 +189,6 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
     }
 
     private static class CustomViewFinderView extends ViewFinderView {
-        public static final String MARK_TEXT = "Scan";
         public static final int MARK_TEXT_SIZE_SP = 40;
         public final Paint PAINT = new Paint();
 
@@ -226,12 +238,25 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
     }
 
     public void removeItemFromShoppingList(int itemPosition){
-        Product p = shoppingProducts.get(itemPosition);
-        int oldIndexP = shoppingProducts.indexOf(p);
-        shoppingProducts.remove(p);
-        adapter.notifyItemRemoved(oldIndexP);
-        adapter.notifyDataSetChanged();
-        updateTotalPrice();
+        final Product p = shoppingProducts.get(itemPosition);
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Remove product");
+        alert.setMessage("Are you sure you want to remove " + p.getName() + "?");
+        alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            int oldIndexP = shoppingProducts.indexOf(p);
+            shoppingProducts.remove(p);
+            adapter.notifyItemRemoved(oldIndexP);
+            adapter.notifyDataSetChanged();
+            updateTotalPrice();
+            }
+        });
+        alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alert.show();
     }
 
     public int getTotalPrice(){

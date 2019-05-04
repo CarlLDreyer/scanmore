@@ -1,5 +1,6 @@
 package com.example.scanmore.ShoppingList;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ShoppingListAdapter extends
         RecyclerView.Adapter<ShoppingListAdapter.ViewHolder> {
-    ScanActivity sc = ScanActivity.getInstance();
+        ScanActivity sc = ScanActivity.getInstance();
+
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -66,7 +68,6 @@ public class ShoppingListAdapter extends
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         // Get the data model based on position
         Product product = productList.get(i);
-
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
         textView.setText(product.getName() + product.getPrice() + " kr");
@@ -75,8 +76,7 @@ public class ShoppingListAdapter extends
 
             @Override
             public void onClick(View view){
-                sc.removeItemFromShoppingList(i);
-
+               sc.removeItemFromShoppingList(i);
             }
         });
 

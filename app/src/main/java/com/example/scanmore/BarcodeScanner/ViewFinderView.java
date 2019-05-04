@@ -33,8 +33,9 @@ public class ViewFinderView extends View implements IViewFinder {
 
     private final int mDefaultLaserColor = getResources().getColor(R.color.viewfinder_laser);
     private final int mDefaultMaskColor = getResources().getColor(R.color.viewfinder_mask);
-    private final int mDefaultBorderColor = getResources().getColor(R.color.viewfinder_border);
-    private final int mDefaultBorderStrokeWidth = getResources().getInteger(R.integer.viewfinder_border_width);
+    private final int mDefaultBorderColor = getResources().getColor(R.color.buttons_color);
+   // private final int mDefaultBorderStrokeWidth = getResources().getInteger(R.integer.viewfinder_border_width);
+    private final int mDefaultBorderStrokeWidth = 5;
     private final int mDefaultBorderLineLength = getResources().getInteger(R.integer.viewfinder_border_length);
 
     protected Paint mLaserPaint;

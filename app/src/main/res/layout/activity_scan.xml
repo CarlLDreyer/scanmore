@@ -15,12 +15,35 @@
 
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/shoppingList_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/toolbar"
+        android:alpha="0.75"
+        android:gravity="left"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:text="@string/shoppingList" />
+    <ImageButton
+        android:id="@+id/shoppingList_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/toolbar"
+        android:alpha="0.75"
+        android:background="@android:color/transparent"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_more_horiz_black_24dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/shoppingList"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/toolbar"
-        android:layout_marginTop="2dp" />
+        android:layout_height="150dp"
+        android:layout_below="@id/shoppingList_text"
+        android:layout_marginTop="10dp" />
     <TextView
         android:id="@+id/total_text"
         android:layout_width="wrap_content"

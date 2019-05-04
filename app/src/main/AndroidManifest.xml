@@ -73,6 +73,9 @@
             android:name=".ToDoList"
             android:label="Shopping List"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".ScannedListActivity"
+            android:label="Scanned products"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
