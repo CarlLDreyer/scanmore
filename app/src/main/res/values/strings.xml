@@ -45,5 +45,5 @@
     <string name="login">LOGIN</string>
 
     <!-- Scan screen -->
-    <string name="shoppingList">Scanned Products</string>
+    <string name="shopping_cart">Shopping Cart</string>
 </resources>

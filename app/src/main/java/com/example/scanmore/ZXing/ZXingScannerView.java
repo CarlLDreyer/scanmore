@@ -29,7 +29,7 @@ import java.util.Map;
 
 import com.example.scanmore.BarcodeScanner.BarcodeScannerView;
 import com.example.scanmore.BarcodeScanner.DisplayUtils;
-import com.example.scanmore.ScanActivity;
+import com.example.scanmore.Scanner.ScanActivity;
 
 public class ZXingScannerView extends BarcodeScannerView {
     private static final String TAG = "ZXingScannerView";

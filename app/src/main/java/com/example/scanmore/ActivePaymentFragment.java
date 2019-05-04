@@ -14,8 +14,7 @@ import android.widget.TextView;
 
 import com.example.scanmore.Payment.PaymentUtils.CreditCardUtils;
 import com.example.scanmore.Payment.PaymentUtils.FontTypeChange;
-
-import org.w3c.dom.Text;
+import com.example.scanmore.Scanner.ScanActivity;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;

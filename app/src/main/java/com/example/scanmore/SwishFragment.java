@@ -9,13 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.scanmore.Database.DatabaseHandler;
-import com.example.scanmore.Database.Swish;
-
-import org.w3c.dom.Text;
+import com.example.scanmore.Scanner.ScanActivity;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -25,7 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class SwishFragment extends Fragment implements View.OnClickListener {
 

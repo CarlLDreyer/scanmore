@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.os.Bundle;
 
 import android.view.MenuItem;
@@ -20,20 +19,16 @@ import com.example.scanmore.Database.Swish;
 import com.example.scanmore.Payment.CCPreviewAdapter;
 import com.example.scanmore.Payment.CreditCardDeletionDialog;
 import com.example.scanmore.Payment.NoPaymentDialog;
+import com.example.scanmore.Scanner.ScanActivity;
 
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 public class PayActivity extends AppCompatActivity {

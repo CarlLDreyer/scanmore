@@ -1,4 +1,4 @@
-package com.example.scanmore;
+package com.example.scanmore.Scanner;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -8,10 +8,8 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.AttributeSet;
@@ -25,8 +23,12 @@ import android.widget.TextView;
 
 import android.widget.ToggleButton;
 
+import com.example.scanmore.BaseScannerActivity;
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.Product;
+import com.example.scanmore.PayActivity;
+import com.example.scanmore.R;
+import com.example.scanmore.Scanner.ScannedList.ScannedListActivity;
 import com.example.scanmore.ShoppingList.ShoppingListAdapter;
 import com.example.scanmore.Utils.DataHolder;
 import com.google.zxing.Result;
@@ -279,6 +281,10 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
 
     public void emptyShoppingCart(){
         shoppingProducts.clear();
+    }
+
+    public ArrayList<Product> getShoppingProducts(){
+        return shoppingProducts;
     }
 
 

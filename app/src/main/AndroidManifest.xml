@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ScanActivity"
+            android:name=".Scanner.ScanActivity"
             android:label="Scanner"
             android:screenOrientation="portrait" />
         <activity
@@ -73,8 +73,8 @@
             android:name=".ToDoList"
             android:label="Shopping List"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".ScannedListActivity"
-            android:label="Scanned products"
+        <activity android:name=".Scanner.ScannedList.ScannedListActivity"
+            android:label="Shopping Cart"
             android:screenOrientation="portrait"></activity>
     </application>
 

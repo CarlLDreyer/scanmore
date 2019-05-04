@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
+import com.example.scanmore.Scanner.ScanActivity;
 import com.example.scanmore.Utils.PreferenceUtils;
 import com.google.android.material.navigation.NavigationView;
 
