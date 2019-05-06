@@ -15,23 +15,29 @@ import com.example.scanmore.Database.Product;
 import com.example.scanmore.R;
 import com.example.scanmore.Scanner.ScanActivity;
 import com.example.scanmore.ShoppingList.ShoppingListAdapter;
+import com.example.scanmore.Utils.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ScannedProdAdapter extends RecyclerView.Adapter<ScannedProdAdapter.ScannedViewHolder> {
-    private List<Product> scannedProducts;
+    private ArrayList<Pair<Product, Integer>> scannedProducts;
     private ScanActivity sa = ScanActivity.getInstance();
 
     public static class ScannedViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nameTextView;
+        public TextView scannedProductQuantity;
+        public TextView scannedProductName;
+        public TextView scannedProductPrice;
         public ImageButton removeItemButton;
 
         public ScannedViewHolder(View itemView) {
 
             super(itemView);
 
-            nameTextView = (TextView) itemView.findViewById(R.id.scanned_product_name);
+            scannedProductQuantity = (TextView) itemView.findViewById(R.id.scanned_product_quantity);
+            scannedProductName = (TextView) itemView.findViewById(R.id.scanned_product_name);
+            scannedProductPrice = (TextView) itemView.findViewById(R.id.scanned_product_price);
             removeItemButton = (ImageButton) itemView.findViewById(R.id.remove_item_button);
 
         }
@@ -52,11 +58,19 @@ public class ScannedProdAdapter extends RecyclerView.Adapter<ScannedProdAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ScannedViewHolder viewHolder, final int i) {
-        // Get the data model based on position
-        Product product = scannedProducts.get(i);
-        // Set item views based on your views and data model
-        TextView textView = viewHolder.nameTextView;
-        textView.setText(product.getName());
+        Pair productPair = scannedProducts.get(i);
+        Product product = productPair.getProduct();
+        int quantity = productPair.getQuantity();
+
+        TextView quantityView = viewHolder.scannedProductQuantity;
+        TextView nameView = viewHolder.scannedProductName;
+        TextView priceView = viewHolder.scannedProductPrice;
+
+
+        quantityView.setText(String.valueOf(quantity));
+        nameView.setText(product.getName());
+        priceView.setText(String.valueOf(product.getPrice() * quantity) + " SEK");
+
         ImageButton b = viewHolder.removeItemButton;
         b.setOnClickListener(new View.OnClickListener(){
 
@@ -79,7 +93,7 @@ public class ScannedProdAdapter extends RecyclerView.Adapter<ScannedProdAdapter.
 
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ScannedProdAdapter(List<Product> products) {
+    public ScannedProdAdapter(ArrayList<Pair<Product, Integer>> products) {
         scannedProducts = products;
     }
 

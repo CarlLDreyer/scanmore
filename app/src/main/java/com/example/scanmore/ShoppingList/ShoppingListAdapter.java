@@ -6,11 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import com.example.scanmore.R;
 
 import com.example.scanmore.Database.Product;
 import com.example.scanmore.Scanner.ScanActivity;
+import com.example.scanmore.Utils.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -22,24 +25,28 @@ public class ShoppingListAdapter extends
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nameTextView;
+        public TextView productQuantity;
+        public TextView productName;
+        public TextView productPrice;
         public ImageButton removeItemButton;
 
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-            nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
+            productQuantity = (TextView) itemView.findViewById(R.id.product_quantity);
+            productName = (TextView) itemView.findViewById(R.id.product_name);
+            productPrice = (TextView) itemView.findViewById(R.id.product_price);
             removeItemButton = (ImageButton) itemView.findViewById(R.id.remove_item_button);
 
 
         }
     }
 
-    private List<Product> productList;
+    //private List<Product> productList;
+    private ArrayList<Pair<Product, Integer>> productList;
 
-    public ShoppingListAdapter(List<Product> products) {
+    public ShoppingListAdapter(ArrayList<Pair<Product, Integer>> products) {
         productList = products;
     }
 
@@ -60,10 +67,21 @@ public class ShoppingListAdapter extends
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         // Get the data model based on position
-        Product product = productList.get(i);
+        //Product product = productList.get(i);
+        Pair productPair = productList.get(i);
+        Product product = productPair.getProduct();
+        int quantity = productPair.getQuantity();
         // Set item views based on your views and data model
-        TextView textView = viewHolder.nameTextView;
-        textView.setText(product.getName() + product.getPrice() + " kr");
+
+        TextView quantityView = viewHolder.productQuantity;
+        TextView nameView = viewHolder.productName;
+        TextView priceView = viewHolder.productPrice;
+
+
+
+        quantityView.setText(String.valueOf(quantity));
+        nameView.setText(product.getName());
+        priceView.setText(String.valueOf(product.getPrice() * quantity) + " SEK");
         ImageButton b = viewHolder.removeItemButton;
         b.setOnClickListener(new View.OnClickListener(){
 
@@ -72,8 +90,8 @@ public class ShoppingListAdapter extends
                sc.removeItemFromShoppingList(i);
             }
         });
-
     }
+
 
     @Override
     public int getItemCount() {

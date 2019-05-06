@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataHolder {
-    final public ArrayList<Product> products = new ArrayList<>();
-    final public int total = 0;
+    //final public ArrayList<Product> products = new ArrayList<>();
+    final public ArrayList<Pair<Product, Integer>> products = new ArrayList<>();
+
 
     private DataHolder() {}
 

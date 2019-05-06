@@ -2,6 +2,7 @@ package com.example.scanmore.Scanner.ScannedList;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.scanmore.Database.Product;
 import com.example.scanmore.R;
 import com.example.scanmore.Scanner.ScanActivity;
+import com.example.scanmore.Utils.Pair;
 
 import java.util.ArrayList;
 
@@ -21,7 +23,7 @@ public class ScannedListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ScanActivity sa;
-    private ArrayList<Product> scannedList;
+    private ArrayList<Pair<Product, Integer>> scannedList;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public class ScannedListActivity extends AppCompatActivity {
         scannedList = sa.getShoppingProducts();
         mAdapter = new ScannedProdAdapter(scannedList);
         scannedProducts.setAdapter(mAdapter);
-
+        initTextViews();
     }
 
     private void setupToolbar() {
@@ -55,5 +57,17 @@ public class ScannedListActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void initTextViews(){
+        TextView totalItems = (TextView) findViewById(R.id.scanned_product_quantity);
+        //totalItems.setText();
+        int total = 1;
+        for(Pair p : scannedList){
+            total *= p.getQuantity();
+        }
+        totalItems.setText(String.valueOf(total) + " Items");
+        TextView totalPrice = (TextView) findViewById(R.id.scanned_product_price);
+        totalPrice.setText(String.valueOf(sa.getTotalPrice()) + " SEK");
     }
 }

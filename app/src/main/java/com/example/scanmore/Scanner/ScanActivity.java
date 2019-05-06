@@ -32,6 +32,7 @@ import com.example.scanmore.Scanner.ScannedList.ScannedListActivity;
 import com.example.scanmore.ShoppingList.ShoppingListAdapter;
 import com.example.scanmore.Utils.DataHolder;
 import com.google.zxing.Result;
+import com.example.scanmore.Utils.Pair;
 
 import com.example.scanmore.BarcodeScanner.IViewFinder;
 import com.example.scanmore.BarcodeScanner.ViewFinderView;
@@ -44,11 +45,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
-
 public class ScanActivity extends BaseScannerActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     public static boolean scanActive = false;
-    private ArrayList<Product> shoppingProducts;
+   //private ArrayList<Product> shoppingProducts;
+    private ArrayList<Pair<Product, Integer>> shoppingProducts;
     private RecyclerView rvProducts;
     private ShoppingListAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
@@ -176,7 +177,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         List<Product> products = databaseHandler.getAllProducts();
         for(Product p : products){
             if(p.getEan().equals(rawResult.getText())){
-                addIntoShoppingList(p, adapter);
+                addIntoShoppingList(p);
                 v.vibrate(VibrationEffect.createOneShot(250, VibrationEffect.DEFAULT_AMPLITUDE));
             }
         }
@@ -189,6 +190,32 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
             }
         }, 500);
     }
+
+    private void addIntoShoppingList(Product product){
+        Pair<Product, Integer> p = new Pair(product, 1);
+        if(shoppingProducts.size() != 0) {
+            for (Pair pair : shoppingProducts) {
+                if (pair.getProduct().getName().equals(p.getProduct().getName())) {
+                    int oldQuantity = pair.getQuantity();
+                    pair.setQuantity(oldQuantity+1);
+                    adapter.notifyDataSetChanged();;
+                    updateTotalPrice();
+                } else {
+                    shoppingProducts.add(p);
+                    adapter.notifyItemInserted(shoppingProducts.indexOf(p));
+                    linearLayoutManager.scrollToPosition(shoppingProducts.indexOf(p));
+                    updateTotalPrice();
+                }
+            }
+        }
+        else{
+            shoppingProducts.add(p);
+            adapter.notifyItemInserted(shoppingProducts.indexOf(p));
+            linearLayoutManager.scrollToPosition(shoppingProducts.indexOf(p));
+            updateTotalPrice();
+        }
+    }
+
 
     private static class CustomViewFinderView extends ViewFinderView {
         public static final int MARK_TEXT_SIZE_SP = 40;
@@ -231,19 +258,14 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         rvProducts.setLayoutManager(linearLayoutManager);
     }
 
-    private void addIntoShoppingList(Product product, ShoppingListAdapter adapter){
-
-        shoppingProducts.add(product);
-        adapter.notifyItemInserted(shoppingProducts.indexOf(product));
-        linearLayoutManager.scrollToPosition(shoppingProducts.indexOf(product));
-        updateTotalPrice();
-    }
 
     public void removeItemFromShoppingList(int itemPosition){
-        final Product p = shoppingProducts.get(itemPosition);
+        //final Product p = shoppingProducts.get(itemPosition);
+        //final Product p = shoppingProducts.get(itemPosition).getProduct();
+        final Pair p = shoppingProducts.get(itemPosition);
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Remove product");
-        alert.setMessage("Are you sure you want to remove " + p.getName() + "?");
+        alert.setMessage("Are you sure you want to remove " + p.getProduct().getName() + "?");
         alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
             int oldIndexP = shoppingProducts.indexOf(p);
@@ -263,8 +285,8 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
 
     public int getTotalPrice(){
         int tempTotal = 0;
-        for(Product p : shoppingProducts){
-            tempTotal += p.getPrice();
+        for(Pair p : shoppingProducts){
+            tempTotal += (p.getProduct().getPrice() * p.getQuantity());
         }
         return tempTotal;
     }
@@ -283,9 +305,10 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         shoppingProducts.clear();
     }
 
-    public ArrayList<Product> getShoppingProducts(){
+    public ArrayList<Pair<Product, Integer>> getShoppingProducts(){
         return shoppingProducts;
     }
+
 
 
 }
