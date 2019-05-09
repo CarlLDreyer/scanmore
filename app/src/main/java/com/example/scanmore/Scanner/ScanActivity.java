@@ -194,28 +194,23 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
     }
 
     private void addIntoShoppingList(Product product){
-        Pair<Product, Integer> p = new Pair(product, 1);
-        if(shoppingProducts.size() != 0) {
-            for (Pair pair : shoppingProducts) {
-                if (pair.getProduct().getName().equals(p.getProduct().getName())) {
-                    int oldQuantity = pair.getQuantity();
-                    pair.setQuantity(oldQuantity+1);
-                    adapter.notifyDataSetChanged();;
-                    updateTotalPrice();
-                } else {
-                    shoppingProducts.add(p);
-                    adapter.notifyItemInserted(shoppingProducts.indexOf(p));
-                    linearLayoutManager.scrollToPosition(shoppingProducts.indexOf(p));
-                    updateTotalPrice();
-                }
+            if (shoppingListContainsProduct(shoppingProducts, product)) {
+                Pair p = getPairFromList(shoppingProducts, product);
+                int oldQuantity = p.getQuantity();
+                p.setQuantity(oldQuantity+1);
+                adapter.notifyDataSetChanged();
+                updateTotalPrice();
+                System.out.println("asdas");
+
+            } else {
+                Pair<Product, Integer> pa = new Pair(product, 1);
+                pa.setProduct(product);
+                shoppingProducts.add(pa);
+                adapter.notifyItemInserted(shoppingProducts.indexOf(pa));
+                linearLayoutManager.scrollToPosition(shoppingProducts.indexOf(pa));
+                updateTotalPrice();
+                System.out.println("hhh");
             }
-        }
-        else{
-            shoppingProducts.add(p);
-            adapter.notifyItemInserted(shoppingProducts.indexOf(p));
-            linearLayoutManager.scrollToPosition(shoppingProducts.indexOf(p));
-            updateTotalPrice();
-        }
     }
 
 
@@ -361,6 +356,21 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         return shoppingProducts;
     }
 
+    public boolean shoppingListContainsProduct(ArrayList<Pair<Product, Integer>> list, Product p){
+        for(Pair k : list){
+            if(k.getProduct().getName().equals(p.getName()))
+                return true;
+        }
+        return false;
+    }
+
+    public Pair getPairFromList(ArrayList<Pair<Product, Integer>> list, Product p){
+        for(Pair k : list){
+            if(k.getProduct().getName().equals(p.getName()))
+                return k;
+        }
+        return null;
+    }
 
 
 }
