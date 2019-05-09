@@ -23,6 +23,7 @@ import java.util.List;
 public class ScannedProdAdapter extends RecyclerView.Adapter<ScannedProdAdapter.ScannedViewHolder> {
     private ArrayList<Pair<Product, Integer>> scannedProducts;
     private ScanActivity sa = ScanActivity.getInstance();
+    private ScannedListActivity sla = ScannedListActivity.getInstance();
 
     public static class ScannedViewHolder extends RecyclerView.ViewHolder {
 
@@ -60,7 +61,7 @@ public class ScannedProdAdapter extends RecyclerView.Adapter<ScannedProdAdapter.
     public void onBindViewHolder(@NonNull ScannedViewHolder viewHolder, final int i) {
         Pair productPair = scannedProducts.get(i);
         Product product = productPair.getProduct();
-        int quantity = productPair.getQuantity();
+        final int quantity = productPair.getQuantity();
 
         TextView quantityView = viewHolder.scannedProductQuantity;
         TextView nameView = viewHolder.scannedProductName;
@@ -76,7 +77,13 @@ public class ScannedProdAdapter extends RecyclerView.Adapter<ScannedProdAdapter.
 
             @Override
             public void onClick(View view){
-                sa.removeItemFromShoppingList(i);
+                if(quantity > 1){
+                    sla.removeMultipleItems(i);
+                }
+                else{
+                    sla.removeSingleItem(i);
+                }
+
             }
         });
         if (i %2 == 0) {
@@ -96,6 +103,5 @@ public class ScannedProdAdapter extends RecyclerView.Adapter<ScannedProdAdapter.
     public ScannedProdAdapter(ArrayList<Pair<Product, Integer>> products) {
         scannedProducts = products;
     }
-
 
 }

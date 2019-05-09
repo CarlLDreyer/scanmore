@@ -2,6 +2,7 @@ package com.example.scanmore.Scanner;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -37,6 +38,7 @@ import com.example.scanmore.Utils.Pair;
 import com.example.scanmore.BarcodeScanner.IViewFinder;
 import com.example.scanmore.BarcodeScanner.ViewFinderView;
 import com.example.scanmore.ZXing.ZXingScannerView;
+import com.shawnlin.numberpicker.NumberPicker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -243,7 +245,6 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         @Override
         public void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            //drawTradeMark(canvas);
         }
 
     }
@@ -259,9 +260,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
     }
 
 
-    public void removeItemFromShoppingList(int itemPosition){
-        //final Product p = shoppingProducts.get(itemPosition);
-        //final Product p = shoppingProducts.get(itemPosition).getProduct();
+    public void removeSingleItem(int itemPosition){
         final Pair p = shoppingProducts.get(itemPosition);
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Remove product");
@@ -281,6 +280,59 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
             }
         });
         alert.show();
+    }
+
+    public void removeMultipleItems(int itemPos){
+        final Pair p = shoppingProducts.get(itemPos);
+        final Dialog d = new Dialog(ScanActivity.this);
+        d.setTitle("NumberPicker");
+        d.setContentView(R.layout.delete_amount_dialog);
+        Button okButton = (Button) d.findViewById(R.id.button_ok);
+        Button cancelButton = (Button) d.findViewById(R.id.button_avbryt);
+        final NumberPicker np = (NumberPicker) d.findViewById(R.id.number_picker);
+        int max = p.getQuantity();
+        np.setMaxValue(max); // max value 100
+        np.setMinValue(1);   // min value 0
+        np.setWrapSelectorWheel(false);
+        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+
+            }
+        });
+
+        okButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                int valueToRemove = np.getValue();
+                if(p.getQuantity() - valueToRemove == 0){
+                    int oldIndexP = shoppingProducts.indexOf(p);
+                    shoppingProducts.remove(p);
+                    adapter.notifyItemRemoved(oldIndexP);
+                    adapter.notifyDataSetChanged();
+                    //sa.updateTotalPrice();
+                    updateTotalPrice();
+                    d.dismiss();
+                }
+                else{
+                    int newQuantity = p.getQuantity() - valueToRemove;
+                    p.setQuantity(newQuantity);
+                    adapter.notifyDataSetChanged();
+                    updateTotalPrice();
+                    d.dismiss();
+                }
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                d.dismiss(); // dismiss the dialog
+            }
+        });
+        d.show();
     }
 
     public int getTotalPrice(){

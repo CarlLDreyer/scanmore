@@ -70,7 +70,7 @@ public class ShoppingListAdapter extends
         //Product product = productList.get(i);
         Pair productPair = productList.get(i);
         Product product = productPair.getProduct();
-        int quantity = productPair.getQuantity();
+        final int quantity = productPair.getQuantity();
         // Set item views based on your views and data model
 
         TextView quantityView = viewHolder.productQuantity;
@@ -87,7 +87,13 @@ public class ShoppingListAdapter extends
 
             @Override
             public void onClick(View view){
-               sc.removeItemFromShoppingList(i);
+
+                if(quantity > 1){
+                    sc.removeMultipleItems(i);
+                }
+                else{
+                    sc.removeSingleItem(i);
+                }
             }
         });
     }

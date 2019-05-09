@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="365dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_layout_swish"
+    android:id="@+id/swish_popup_success"
+    android:layout_gravity="center">
+    <TextView
+        android:id="@+id/remove_products"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remove_products"
+        android:layout_marginStart="20dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/how_many_products"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"/>
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/number_picker"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        app:np_width="60dp"
+        app:np_height="180dp"
+        app:np_dividerColor="@color/colorPrimary"
+        app:np_selectedTextColor="@color/colorPrimary"
+        app:np_selectedTextSize="22sp"
+        app:np_textColor="@color/colorPrimary"
+        app:np_textSize="22sp"
+        app:np_value="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp">
+        <Button
+            android:id="@+id/button_avbryt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@color/accent"
+            android:textSize="20sp"
+            android:text="@string/avbryt" />
+
+        <Button
+            android:id="@+id/button_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@color/accent"
+            android:textSize="20sp"
+            android:text="@string/ok" />
+    </LinearLayout>
+</LinearLayout>

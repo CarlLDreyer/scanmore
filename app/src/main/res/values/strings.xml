@@ -46,4 +46,10 @@
 
     <!-- Scan screen -->
     <string name="shopping_cart">Shopping Cart</string>
+
+    <!-- Delete items dialog -->
+    <string name="remove_products">Remove products</string>
+    <string name="how_many_products">How many items would you like to remove?</string>
+    <string name="avbryt">AVBRYT</string>
+    <string name="OK">OK</string>
 </resources>

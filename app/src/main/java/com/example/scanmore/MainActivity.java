@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Scanner.ScanActivity;
+import com.example.scanmore.Utils.DataHolder;
 import com.example.scanmore.Utils.PreferenceUtils;
 import com.google.android.material.navigation.NavigationView;
 
@@ -33,14 +34,17 @@ public class MainActivity extends AppCompatActivity
 
     private static final int ZXING_CAMERA_PERMISSION = 1;
     private Class<?> mClss;
+    private DataHolder dataholder;
 
     TextView textView;
     ImageView iv;
     LoginActivity la = LoginActivity.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dataholder = DataHolder.getInstance();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setupMainContent();
@@ -94,9 +98,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_logout) {
             PreferenceUtils.setLoggedInUserEmail(this, "");
             PreferenceUtils.setUserLoggedInStatus(this, false);
+            dataholder.products.clear();
             launchActivity(LoginActivity.class);
             finish();
         }
@@ -208,6 +210,6 @@ public class MainActivity extends AppCompatActivity
         db.insertProduct("7311310027117", "Citron Peppar", 13);
         db.insertProduct("7332945033038", "Vatten ", 56);
         db.insertProduct("7391835917292", "Rooibos Original ", 21);
+        db.insertProduct("7311250004797", "Rapé Sparkling", 32);
     }
-
 }
