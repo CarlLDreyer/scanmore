@@ -76,6 +76,9 @@
         <activity android:name=".Scanner.ScannedList.ScannedListActivity"
             android:label="Shopping Cart"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".Payment.CheckoutActivity"
+            android:label="Checkout"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

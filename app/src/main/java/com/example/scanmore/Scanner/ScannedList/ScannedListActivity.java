@@ -3,6 +3,7 @@ package com.example.scanmore.Scanner.ScannedList;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
@@ -19,8 +20,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.scanmore.Database.Product;
+import com.example.scanmore.LoginActivity;
+import com.example.scanmore.Payment.CheckoutActivity;
 import com.example.scanmore.R;
 import com.example.scanmore.Scanner.ScanActivity;
+import com.example.scanmore.SignupActivity;
 import com.example.scanmore.Utils.Pair;
 import com.shawnlin.numberpicker.NumberPicker;
 
@@ -48,6 +52,16 @@ public class ScannedListActivity extends AppCompatActivity {
         mAdapter = new ScannedProdAdapter(scannedList);
         scannedProducts.setAdapter(mAdapter);
         initTextViews();
+
+        Button checkout = (Button) findViewById(R.id.checkout_button);
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ScannedListActivity.this, CheckoutActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     public static ScannedListActivity getInstance() {
@@ -92,7 +106,7 @@ public class ScannedListActivity extends AppCompatActivity {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Remove product");
         alert.setMessage("Are you sure you want to remove " + p.getProduct().getName() + "?");
-        alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 int oldIndexP = scannedList.indexOf(p);
                 scannedList.remove(p);
@@ -102,7 +116,7 @@ public class ScannedListActivity extends AppCompatActivity {
                 initTextViews();
             }
         });
-        alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(R.string.avbryt, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

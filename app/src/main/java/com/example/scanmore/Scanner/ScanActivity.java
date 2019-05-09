@@ -28,6 +28,7 @@ import com.example.scanmore.BaseScannerActivity;
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.Product;
 import com.example.scanmore.PayActivity;
+import com.example.scanmore.Payment.CheckoutActivity;
 import com.example.scanmore.R;
 import com.example.scanmore.Scanner.ScannedList.ScannedListActivity;
 import com.example.scanmore.ShoppingList.ShoppingListAdapter;
@@ -112,7 +113,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(v.getContext(), PayActivity.class);
+                Intent myIntent = new Intent(v.getContext(), CheckoutActivity.class);
                 startActivityForResult(myIntent, 0);
 
             }
@@ -260,7 +261,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Remove product");
         alert.setMessage("Are you sure you want to remove " + p.getProduct().getName() + "?");
-        alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
             int oldIndexP = shoppingProducts.indexOf(p);
             shoppingProducts.remove(p);
@@ -269,7 +270,7 @@ public class ScanActivity extends BaseScannerActivity implements ZXingScannerVie
             updateTotalPrice();
             }
         });
-        alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(R.string.avbryt, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Payment.CheckoutActivity"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/checkout_items"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:scrollbars="vertical">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/checkout_info"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/checkout_items"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/total_items_checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/total_price"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/checkout_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="28sp"
+            android:layout_marginEnd="20dp"
+            android:text="227 SEK"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/kuk"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/checkout_info">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        <TextView
+            android:id="@+id/pay_with"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/pay_with"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:textSize="19sp" />
+
+    </RelativeLayout>
+    <ListView
+        android:background="@android:color/white"
+        android:id="@+id/payment_list_view"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/kuk"
+        android:layout_width="wrap_content"
+        android:layout_above="@id/checkout_method_button"
+        android:layout_height="wrap_content"></ListView>
+
+    <Button
+        android:onClick="openPaymentMethodDialog"
+        android:id="@+id/checkout_method_button"
+        android:layout_width="360dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:text="@string/add_payment"
+        android:textSize="18sp"
+        android:textColor="@color/toolbar_color"/>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        app:titleTextColor="@android:color/white"
+        android:background="@color/toolbar_color"
+        android:minHeight="?attr/actionBarSize" />
+
+</RelativeLayout>

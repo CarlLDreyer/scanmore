@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:textColor="@color/accent"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:text="@string/avbryt" />
 
         <Button
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:textColor="@color/accent"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:text="@string/ok" />
     </LinearLayout>
 </LinearLayout>

@@ -50,6 +50,11 @@
     <!-- Delete items dialog -->
     <string name="remove_products">Remove products</string>
     <string name="how_many_products">How many items would you like to remove?</string>
-    <string name="avbryt">AVBRYT</string>
+    <string name="avbryt">CANCEL</string>
     <string name="OK">OK</string>
+
+    <!-- Checkout screen -->
+    <string name="add_payment">ADD A NEW PAYMENT METHOD</string>
+    <string name="total_price">Total price:</string>
+    <string name="pay_with">Pay with</string>
 </resources>
