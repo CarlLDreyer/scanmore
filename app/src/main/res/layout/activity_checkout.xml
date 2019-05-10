@@ -27,7 +27,7 @@
 
         <TextView
             android:id="@+id/total_items_checkout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@string/total_price"

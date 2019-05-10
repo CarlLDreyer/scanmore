@@ -1,6 +1,8 @@
 package com.example.scanmore.Payment;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -21,7 +23,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.scanmore.ActivePaymentFragment;
+import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.Product;
+import com.example.scanmore.Database.Swish;
 import com.example.scanmore.Payment.PaymentCheckout.PaymentMethodAdapter;
 import com.example.scanmore.Payment.PaymentCheckout.PaymentMethodItem;
 import com.example.scanmore.PaymentMethodActivity;
@@ -30,6 +35,7 @@ import com.example.scanmore.Scanner.ScanActivity;
 import com.example.scanmore.Scanner.ScannedList.ScannedListActivity;
 import com.example.scanmore.Scanner.ScannedList.ScannedProdAdapter;
 import com.example.scanmore.SwishActivity;
+import com.example.scanmore.SwishFragment;
 import com.example.scanmore.Utils.Pair;
 
 import java.util.ArrayList;
@@ -46,6 +52,8 @@ public class CheckoutActivity extends AppCompatActivity {
     private Dialog paymentMethodDialog;
     private ListView listviewPaymentMethods;
     private List<PaymentMethodItem> paymentMethods;
+    private List<PaymentMethodItem> existingPayments;
+    private DatabaseHandler dbHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,16 +68,69 @@ public class CheckoutActivity extends AppCompatActivity {
         checkoutList = sa.getShoppingProducts();
         mAdapter = new CheckoutAdapter(checkoutList);
         scannedProducts.setAdapter(mAdapter);
+        dbHandler = new DatabaseHandler(this);
+
         initTextViews();
         paymentMethodDialog = new Dialog(this);
-
         paymentMethods = new ArrayList<PaymentMethodItem>();
-        paymentMethods.add(new PaymentMethodItem("1", "VISA", R.drawable.ic_mastercard));
-        paymentMethods.add(new PaymentMethodItem("2", "MASTERCARD", R.drawable.ic_visa));
         listviewPaymentMethods = (ListView) findViewById(R.id.payment_list_view);
         listviewPaymentMethods.setAdapter(new PaymentMethodAdapter(this, paymentMethods ));
+        createActivePayments();
+
 
     }
+
+    public void addPaymentMethod(String name, int icon){
+        PaymentMethodItem payment = new PaymentMethodItem(name, icon);
+        paymentMethods.add(payment);
+    }
+
+    public void removePaymentMethod(int position){
+        if(paymentMethods.get(position).getName().length() > 10){
+            dbHandler.deleteCreditCard(paymentMethods.get(position).getName());
+        }
+        else{
+            dbHandler.deleteSwish(paymentMethods.get(position).getName());
+        }
+        paymentMethods.remove(position);
+        listviewPaymentMethods.invalidateViews();
+    }
+
+    public void createActivePayments(){
+        List<PaymentMethodItem> swishList = dbHandler.getAllExistingSwish();
+        for( PaymentMethodItem p : swishList){
+            PaymentMethodItem newPmethod = new PaymentMethodItem(p.getName(), p.getPhoto());
+            paymentMethods.add(newPmethod);
+        }
+        List<PaymentMethodItem> creditList = dbHandler.getAllExistingCreditCards();
+        for( PaymentMethodItem p : creditList){
+            PaymentMethodItem newP = new PaymentMethodItem(p.getName(), p.getPhoto());
+            paymentMethods.add(newP);
+        }
+    }
+
+    public void openNoPaymentDialog(){
+        NoPaymentDialog noPaymentDialog = new NoPaymentDialog();
+        noPaymentDialog.show(getSupportFragmentManager(), "No Payment Dialog");
+    }
+
+    public void openCardDeletionDialog(final int position) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Remove payment method");
+        alert.setMessage("Are you sure you want to remove the selected payment method?");
+        alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                removePaymentMethod(position);
+            }
+        });
+        alert.setNegativeButton(R.string.avbryt, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alert.show();
+    }
+
     public void openPaymentMethodDialog(View v){
         ImageButton closeDialogButton;
         ImageButton swish;
@@ -133,4 +194,11 @@ public class CheckoutActivity extends AppCompatActivity {
         TextView totalPrice = (TextView) findViewById(R.id.checkout_price);
         totalPrice.setText(String.valueOf(sa.getTotalPrice()) + " SEK");
     }
+
+    public void updateTotalPrice(){
+        TextView totalPrice = (TextView) findViewById(R.id.checkout_price);
+        totalPrice.setText(String.valueOf(sa.getTotalPrice()) + " SEK");
+    }
+
+
 }

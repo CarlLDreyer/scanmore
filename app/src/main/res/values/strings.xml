@@ -57,4 +57,12 @@
     <string name="add_payment">ADD A NEW PAYMENT METHOD</string>
     <string name="total_price">Total price:</string>
     <string name="pay_with">Pay with</string>
+
+    <!-- Swish screen -->
+    <string name="mobile_number">Enter your mobile number:</string>
+    <string name="submit">SUBMIT</string>
+    <string name="swish_info">Tap Submit to connect the chosen Swish number to your account.</string>
+
+    <!-- CreditCard screen -->
+    <string name="next">NEXT</string>
 </resources>

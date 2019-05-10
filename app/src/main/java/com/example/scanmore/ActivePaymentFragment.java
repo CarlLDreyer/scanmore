@@ -80,7 +80,7 @@ public class ActivePaymentFragment extends Fragment implements View.OnClickListe
         deletionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pa.openCardDeletionDialog();
+
             }
         });
 

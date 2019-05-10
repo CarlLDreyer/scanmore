@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.scanmore.Database.DatabaseHandler;
+import com.example.scanmore.Payment.CheckoutActivity;
 import com.example.scanmore.Scanner.ScanActivity;
 import com.example.scanmore.Utils.DataHolder;
 import com.example.scanmore.Utils.PreferenceUtils;
@@ -171,7 +172,7 @@ public class MainActivity extends AppCompatActivity
         payMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                launchActivity(PayActivity.class);
+                launchActivity(CheckoutActivity.class);
             }
         });
 

@@ -73,6 +73,7 @@ public class CCValidityFragment extends Fragment {
             }
         });
 
+        et_validity.requestFocus();
 
         return view;
     }

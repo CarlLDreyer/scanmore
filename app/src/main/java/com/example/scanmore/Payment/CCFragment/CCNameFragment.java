@@ -102,6 +102,8 @@ public class CCNameFragment extends Fragment {
             }
         });
 
+        et_name.requestFocus();
+
         return view;
     }
 

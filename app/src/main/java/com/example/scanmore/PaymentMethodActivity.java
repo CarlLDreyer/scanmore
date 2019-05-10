@@ -15,6 +15,7 @@ import com.example.scanmore.Payment.CCFragment.CCNameFragment;
 import com.example.scanmore.Payment.CCFragment.CCNumberFragment;
 import com.example.scanmore.Payment.CCFragment.CCSecureCodeFragment;
 import com.example.scanmore.Payment.CCFragment.CCValidityFragment;
+import com.example.scanmore.Payment.CheckoutActivity;
 import com.example.scanmore.Payment.PaymentUtils.CreditCardUtils;
 import com.example.scanmore.Payment.PaymentUtils.ViewPagerAdapter;
 
@@ -22,6 +23,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 
 
 public class PaymentMethodActivity extends FragmentActivity implements FragmentManager.OnBackStackChangedListener {
@@ -50,6 +52,7 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
     String cardNumber, cardCVV, cardValidity, cardName;
 
     PayActivity pa = PayActivity.getInstance();
+    CheckoutActivity ca = CheckoutActivity.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,14 +144,18 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
                      viewPager.setCurrentItem(pos + 1);
             }
             else if(pos == 3 && cardCVV.length() == 3){
-                databaseHandler.insertCreditCard(cardNumber, cardName, cardValidity, CreditCardUtils.getCardType(cardNumber));
-                pa.addFragmentCard(cardNumber, cardName, cardValidity, CreditCardUtils.getCardType(cardNumber));
-                Intent intent = new Intent();
-                intent.putExtra("key", "value");
-                setResult(RESULT_OK, intent);
+                int cardType = 0;
+                int cardTypePicker = CreditCardUtils.getCardType(cardNumber);
+                if(cardTypePicker == 1){
+                    cardType = R.drawable.ic_visa;
+                }
+                else{
+                    cardType = R.drawable.ic_mastercard;
+                }
+                databaseHandler.insertCreditCard(cardNumber, cardName, cardValidity, cardType);
+                ca.addPaymentMethod(cardNumber, cardType);
                 finish();
 
-                Toast.makeText(PaymentMethodActivity.this, "Card added successfully!", Toast.LENGTH_SHORT).show();
             }
 
             else{

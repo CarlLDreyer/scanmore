@@ -102,6 +102,8 @@ public class CCSecureCodeFragment extends Fragment {
             }
         });
 
+        et_cvv.requestFocus();
+
         return view;
 
     }

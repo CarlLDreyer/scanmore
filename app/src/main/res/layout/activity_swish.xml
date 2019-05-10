@@ -7,46 +7,70 @@
     android:fitsSystemWindows="true"
     tools:context=".SwishActivity">
 
+    <ImageView
+        android:id="@id/swish_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_swish_logo"
+        android:layout_above="@id/phone_number_prompt"
+        android:layout_below="@id/toolbar"
+        android:padding="50dp"
+        android:layout_centerVertical="true"/>
+
     <TextView
         android:id="@+id/phone_number_prompt"
+        android:layout_above="@id/phone_number_input_wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="200dp"
-        android:text="Enter your mobile number:"
-        android:textSize="23dp"
+        android:text="@string/mobile_number"
+        android:textSize="23sp"
+        android:layout_marginBottom="10dp"
         android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/phone_number_input"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phone_number_input_wrapper"
         android:layout_width="350dp"
         android:layout_height="70dp"
-        android:layout_below="@+id/phone_number_prompt"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/text_input_border"
-        android:digits="0123456789+"
-        android:inputType="phone"
+        android:layout_centerVertical="true"
+        android:textColorHint="@android:color/white"
         android:padding="0dp"
-        android:textSize="38dp"
-        android:textAlignment="center"
-        android:maxLength="10"
-        android:textColor="@color/secondary_text" />
+        android:gravity="center"
+        android:background="@drawable/text_input_border">
+        <EditText
+            android:id="@+id/phone_number_input"
+            android:digits="0123456789+"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:inputType="phone"
+            android:textAlignment="center"
+            android:maxLength="10"
+            android:textSize="38sp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/secondary_text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
-        style="@style/ButtonStyle"
-        android:text="SUBMIT"
-        android:layout_height="80dp"
         android:id="@+id/submit_swish"
-        android:layout_alignParentBottom="true"/>
+        android:layout_width="360dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:text="@string/submit"
+        android:textSize="18sp"
+        android:textColor="@color/toolbar_color"/>
 
     <TextView
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/phone_number_input"
+        android:layout_below="@id/phone_number_input_wrapper"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-62dp"
-        android:text="Tap Submit to connect the chosen Swish number to your account. "
+        android:layout_marginTop="20dp"
+        android:text="@string/swish_info"
         android:textAlignment="center" />
 
 

@@ -87,6 +87,8 @@ public class CCNumberFragment extends Fragment {
             }
         });
 
+        et_number.requestFocus();
+
         return view;
     }
 

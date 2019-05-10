@@ -2,23 +2,18 @@ package com.example.scanmore.Payment.PaymentCheckout;
 
 public class PaymentMethodItem {
 
-    private String id;
     private String name;
     private int photo;
 
-    public PaymentMethodItem(String id, String name, int photo){
-        this.id = id;
+    public PaymentMethodItem(String name, int photo){
         this.name = name;
         this.photo = photo;
     }
 
-    public void setId(String id){
-        this.id = id;
+    public PaymentMethodItem(){
+
     }
 
-    public String getId(){
-        return id;
-    }
     public void setName(String name){
         this.name = name;
     }
@@ -26,6 +21,7 @@ public class PaymentMethodItem {
     public String getName(){
         return name;
     }
+
     public void setPhoto(int photo){
         this.photo = photo;
     }

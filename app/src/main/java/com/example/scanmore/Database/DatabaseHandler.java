@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import android.database.Cursor;
 
+import com.example.scanmore.Payment.PaymentCheckout.PaymentMethodItem;
+import com.example.scanmore.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -199,6 +202,61 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return creditCards;
     }
 
+    public List<PaymentMethodItem> getAllExistingCreditCards(){
+        List<PaymentMethodItem> creditCards = new ArrayList<>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + CreditCard.TABLE_NAME + " ORDER BY " +
+                CreditCard.COLUMN_ID + " DESC";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                //CreditCard creditCard = new CreditCard();
+                PaymentMethodItem creditCard = new PaymentMethodItem();
+                creditCard.setName(cursor.getString(cursor.getColumnIndex(CreditCard.COLUMN_CARD_NUMBER)));
+                creditCard.setPhoto(cursor.getInt(cursor.getColumnIndex(CreditCard.COLUMN_CARD_TYPE)));
+                creditCards.add(creditCard);
+            } while (cursor.moveToNext());
+        }
+
+        // close db connection
+        db.close();
+
+        // return notes list
+        return creditCards;
+    }
+    public List<PaymentMethodItem> getAllExistingSwish(){
+        List<PaymentMethodItem> swish = new ArrayList<>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + Swish.TABLE_NAME + " ORDER BY " +
+                Swish.COLUMN_ID + " DESC";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                PaymentMethodItem s = new PaymentMethodItem();
+                s.setName(cursor.getString(cursor.getColumnIndex(Swish.COLUMN_PHONE)));
+                s.setPhoto(R.drawable.ic_swish);
+                swish.add(s);
+            } while (cursor.moveToNext());
+        }
+
+        // close db connection
+        db.close();
+
+        // return notes list
+        return swish;
+    }
+
+
     public List<Swish> getAllSwish() {
         List<Swish> swishL = new ArrayList<>();
 
@@ -276,8 +334,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // return notes list
         return user;
-
     }
+
+    public CreditCard getCreditCard(String number) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "SELECT * FROM " + CreditCard.TABLE_NAME+ " WHERE " + CreditCard.COLUMN_CARD_NUMBER + " = '" + number + "'";
+
+        Cursor cursor = db.rawQuery(query, null);
+        CreditCard cc = new CreditCard();
+        if (cursor != null)
+
+            cursor.moveToFirst();
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cc.setCardName(cursor.getString(cursor.getColumnIndex(CreditCard.COLUMN_CARD_NAME)));
+            cc.setCardNumber(number);
+            cc.setCardValidity(cursor.getString(cursor.getColumnIndex(CreditCard.COLUMN_CARD_VALIDITY)));
+            cc.setCardType(Integer.parseInt(cursor.getString(cursor.getColumnIndex(CreditCard.COLUMN_CARD_TYPE))));
+
+        }
+
+        cursor.close();
+        db.close();
+
+        return cc;
+    }
+
     public User queryUser(String email, String password) {
 
         SQLiteDatabase db = this.getReadableDatabase();

@@ -77,7 +77,7 @@ public class SwishFragment extends Fragment implements View.OnClickListener {
         deletionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pa.openCardDeletionDialog();
+
             }
         });
         try{

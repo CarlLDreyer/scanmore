@@ -17,7 +17,6 @@ import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.CreditCard;
 import com.example.scanmore.Database.Swish;
 import com.example.scanmore.Payment.CCPreviewAdapter;
-import com.example.scanmore.Payment.CreditCardDeletionDialog;
 import com.example.scanmore.Payment.NoPaymentDialog;
 import com.example.scanmore.Scanner.ScanActivity;
 
@@ -105,10 +104,7 @@ public class PayActivity extends AppCompatActivity {
         paymentMethodDialog.show();
     }
 
-    public void openCardDeletionDialog() {
-        CreditCardDeletionDialog dialog = new CreditCardDeletionDialog();
-        dialog.show(getSupportFragmentManager(), "Card Deletion Dialog");
-    }
+
 
     public void openNoPaymentDialog(){
         NoPaymentDialog noPaymentDialog = new NoPaymentDialog();
