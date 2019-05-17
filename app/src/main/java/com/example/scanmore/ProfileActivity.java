@@ -39,10 +39,10 @@ public class ProfileActivity extends AppCompatActivity {
         setupToolbar();
         address = (TextView)findViewById(R.id.street_profile);
         address.setText("");
-        address.setText("Address: " + address1);
+        address.setText(address1);
         phone = (TextView)findViewById(R.id.mobile_profile);
         phone.setText("");
-        phone.setText("Phone number: " + phone1);
+        phone.setText(phone1);
         db = new DatabaseHandler(this);
         final List<User> users = db.getAllUsers();
 
@@ -50,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
         nameView = findViewById(R.id.profile_name);
         nameView.setText(user.getName());
         emailView = findViewById(R.id.email_profile);
-        emailView.setText("Email: " + user.getEmail());
+        emailView.setText(user.getEmail());
         //nameView.append(user.getName());
 
         //Will open the settings activity

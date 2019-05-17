@@ -30,13 +30,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Carl L Dreyer"
             android:paddingTop="10dp"
             android:textColor="@android:color/white"
             android:textSize="30sp" />
     </LinearLayout>
-
-
 
 
     <LinearLayout
@@ -44,7 +41,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="450dp">
+        android:layout_marginTop="350dp">
         <LinearLayout
             android:orientation="horizontal"
             android:paddingLeft="25dp"
@@ -61,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text=" Mail"/>
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -81,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="Address "/>
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -101,15 +98,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="Phone number"/>
+                />
         </LinearLayout>
 
 
     </LinearLayout>
-
-
-
-
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

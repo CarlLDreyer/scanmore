@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity
 
     public String currentHour(){
         Calendar calendar = Calendar.getInstance();
-        int hours = calendar.get(Calendar.HOUR);
+        int hours = calendar.get(Calendar.HOUR_OF_DAY);
 
         if(1 <= hours && hours <= 5){
             return "Good Midnight ";
