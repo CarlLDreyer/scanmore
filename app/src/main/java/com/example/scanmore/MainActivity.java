@@ -11,16 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.scanmore.Database.DatabaseHandler;
-import com.example.scanmore.Payment.CheckoutActivity;
-import com.example.scanmore.Scanner.ScanActivity;
-import com.example.scanmore.Utils.DataHolder;
-import com.example.scanmore.Utils.PreferenceUtils;
-import com.google.android.material.navigation.NavigationView;
-
-
-import java.util.Calendar;
-
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,6 +18,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.scanmore.Database.DatabaseHandler;
+import com.example.scanmore.Payment.CheckoutActivity;
+import com.example.scanmore.Scanner.ScanActivity;
+import com.example.scanmore.Utils.DataHolder;
+import com.example.scanmore.Utils.PreferenceUtils;
+import com.google.android.material.navigation.NavigationView;
+
+import java.util.Calendar;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity
                 "December"};
         String month = monthName[c.get(Calendar.MONTH)];
         TextView welcomeName = (TextView) findViewById(R.id.welcome_name);
-        welcomeName.setText("Welcome " + trimFirstWord(la.getActiveUser().getName()) + "!");
+        welcomeName.setText(currentHour() + trimFirstWord(la.getActiveUser().getName()) + "!");
         TextView mainMonth = (TextView) findViewById(R.id.main_month);
         mainMonth.setText(month);
 
@@ -198,6 +198,28 @@ public class MainActivity extends AppCompatActivity
     public void setupToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
+
+
+    public String currentHour(){
+        Calendar calendar = Calendar.getInstance();
+        int hours = calendar.get(Calendar.HOUR);
+
+        if(1 <= hours && hours <= 5){
+            return "Good Midnight ";
+        }
+        else if(6 <= hours && hours <= 10){
+            return "Good Morning ";
+        }else if(10 <= hours && hours <= 12){
+            return "Good Afternoon ";
+        }else if(13 <= hours && hours <= 17){
+            return "Good Aftermidday ";
+        }else if(18 <= hours && hours <= 22){
+            return "Good Evening! ";
+        }else {
+            return "Good Night ";
+        }
+
     }
 
     public void setupDatabaseInserts(DatabaseHandler db){
