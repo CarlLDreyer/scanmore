@@ -27,7 +27,6 @@ import android.widget.ToggleButton;
 import com.example.scanmore.BaseScannerActivity;
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.Product;
-import com.example.scanmore.PayActivity;
 import com.example.scanmore.Payment.CheckoutActivity;
 import com.example.scanmore.R;
 import com.example.scanmore.Scanner.ScannedList.ScannedListActivity;
@@ -51,7 +50,6 @@ import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 public class ScanActivity extends BaseScannerActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     public static boolean scanActive = false;
-   //private ArrayList<Product> shoppingProducts;
     private ArrayList<Pair<Product, Integer>> shoppingProducts;
     private RecyclerView rvProducts;
     private ShoppingListAdapter adapter;

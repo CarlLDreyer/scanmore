@@ -5,13 +5,17 @@
 
     <group>
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Scanner" />
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="My Profile" />
         <item
-            android:id="@+id/nav_pay"
+            android:id="@+id/nav_scanner"
+            android:icon="@drawable/ic_scanner"
+            android:title="Scan" />
+        <item
+            android:id="@+id/nav_checkout"
             android:icon="@drawable/ic_payment_black_24dp"
-            android:title="Pay" />
+            android:title="Checkout" />
         <item
             android:id="@+id/nav_shoppinglist"
             android:icon="@drawable/ic_view_list_black_24dp"

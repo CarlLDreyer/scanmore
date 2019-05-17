@@ -122,4 +122,8 @@ public class CCSecureCodeFragment extends Fragment {
         return getValue;
     }
 
+    public CreditCardEditText getEditText(){
+        return et_cvv;
+    }
+
 }

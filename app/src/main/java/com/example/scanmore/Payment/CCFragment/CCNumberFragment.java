@@ -100,6 +100,10 @@ public class CCNumberFragment extends Fragment {
         return null;
     }
 
+    public CreditCardEditText getEditText(){
+        return et_number;
+    }
+
 
 
 }

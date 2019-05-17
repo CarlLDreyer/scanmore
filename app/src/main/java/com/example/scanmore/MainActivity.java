@@ -116,18 +116,18 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_profile) {
             // Handle the camera action
+            launchActivity(ProfileActivity.class);
+        }
+        else if (id == R.id.nav_scanner) {
             launchActivity(ScanActivity.class);
         }
-        else if (id == R.id.nav_pay) {
-            launchActivity(PayActivity.class);
+        else if (id == R.id.nav_checkout) {
+            launchActivity(CheckoutActivity.class);
         }
         else if (id == R.id.nav_shoppinglist) {
-           // launchActivity(ShoppingListActivity.class);
-
             launchActivity(ToDoList.class);
-
         }
         else if (id == R.id.nav_logout) {
             PreferenceUtils.setLoggedInUserEmail(this, "");

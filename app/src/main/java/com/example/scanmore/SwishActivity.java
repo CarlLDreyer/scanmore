@@ -21,7 +21,6 @@ import androidx.appcompat.widget.Toolbar;
 import org.w3c.dom.Text;
 
 public class SwishActivity extends AppCompatActivity {
-    PayActivity pa = PayActivity.getInstance();
     CheckoutActivity ca = CheckoutActivity.getInstance();
     EditText phoneNumber;
     private TextInputLayout phoneNumberWrapper;
@@ -43,7 +42,7 @@ public class SwishActivity extends AppCompatActivity {
                 if(phoneNumber.getText().toString().length() >= 10){
                         databaseHandler.insertSwish(phoneNumber.getText().toString());
                         ca.addPaymentMethod(phoneNumber.getText().toString(), R.drawable.ic_swish);
-
+                        ca.initTextViews();
                         Toast.makeText(SwishActivity.this, "Swish payment added successfully!", Toast.LENGTH_SHORT).show();
                         finish();
                 }

@@ -80,7 +80,13 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.Checko
 
     @Override
     public int getItemCount() {
-        return checkoutProducts.size();
+        try{
+            return checkoutProducts.size();
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return 0;
     }
 
 

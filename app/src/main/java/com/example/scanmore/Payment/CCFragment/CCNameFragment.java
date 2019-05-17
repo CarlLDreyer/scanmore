@@ -115,5 +115,9 @@ public class CCNameFragment extends Fragment {
         return null;
     }
 
+    public CreditCardEditText getEditText(){
+        return et_name;
+    }
+
 
 }

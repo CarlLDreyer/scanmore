@@ -51,7 +51,6 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
 
     String cardNumber, cardCVV, cardValidity, cardName;
 
-    PayActivity pa = PayActivity.getInstance();
     CheckoutActivity ca = CheckoutActivity.getInstance();
 
     @Override
@@ -65,8 +64,6 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
 
         cardFrontFragment = new CardFrontFragment();
         cardBackFragment = new CardBackFragment();
-
-
 
         if (savedInstanceState == null) {
             // Add the fragment to the 'fragment_container' FrameLayout
@@ -134,14 +131,13 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
                 cardCVV = secureCodeFragment.getValue();
 
             if(pos == 0 && CreditCardUtils.isValid(cardNumber)){
-
                 viewPager.setCurrentItem(pos + 1);
                 }
-                else if(pos == 1 && !TextUtils.isEmpty(cardName)){
-                    viewPager.setCurrentItem(pos + 1);
-                }
-                else if(pos == 2 && CreditCardUtils.isValidDate(cardValidity)){
-                     viewPager.setCurrentItem(pos + 1);
+            else if(pos == 1 && !TextUtils.isEmpty(cardName) && cardName.length() >= 3){
+                viewPager.setCurrentItem(pos + 1);
+            }
+            else if(pos == 2 && CreditCardUtils.isValidDate(cardValidity)){
+                 viewPager.setCurrentItem(pos + 1);
             }
             else if(pos == 3 && cardCVV.length() == 3){
                 int cardType = 0;
@@ -153,15 +149,14 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
                     cardType = R.drawable.ic_mastercard;
                 }
                 databaseHandler.insertCreditCard(cardNumber, cardName, cardValidity, cardType);
-                ca.addPaymentMethod(cardNumber, cardType);
+                ca.addPaymentMethod(trimName(cardNumber), cardType);
+                ca.initTextViews();
                 finish();
-
             }
 
             else{
                 checkEntries();
             }
-
             }
         });
 
@@ -176,17 +171,16 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
         cardValidity = validityFragment.getValidity();
         cardCVV = secureCodeFragment.getValue();
 
-        if (TextUtils.isEmpty(cardName)) {
-            Toast.makeText(PaymentMethodActivity.this, "Enter Valid Name", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(cardNumber) || !CreditCardUtils.isValid(cardNumber.replace(" ",""))) {
-            Toast.makeText(PaymentMethodActivity.this, "Enter Valid card number", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(cardNumber) || cardNumber.length() < 16) {
+            numberFragment.getEditText().setError("Please enter a valid card number!");
+        } else if (TextUtils.isEmpty(cardName) || cardName.length() < 3) {
+            nameFragment.getEditText().setError("Please enter a valid name!");
         } else if (TextUtils.isEmpty(cardValidity)||!CreditCardUtils.isValidDate(cardValidity)) {
-            Toast.makeText(PaymentMethodActivity.this, "Enter correct validity", Toast.LENGTH_SHORT).show();
+            validityFragment.getEditText().setError("Please enter a valid date!");
         } else if (TextUtils.isEmpty(cardCVV)||cardCVV.length()<3) {
-            Toast.makeText(PaymentMethodActivity.this, "Enter valid security number", Toast.LENGTH_SHORT).show();
+            secureCodeFragment.getEditText().setError("Please enter a valid CVV!");
         } else
-            Toast.makeText(PaymentMethodActivity.this, "Your card is added", Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(PaymentMethodActivity.this, "The card has been successfully added!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -243,6 +237,11 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
 
     public void nextClick() {
         btnNext.performClick();
+    }
+
+    public String trimName(String s){
+        String[] sp = s.split(" ");
+        return sp[0]+ " **** **** " + sp[3];
     }
 
 

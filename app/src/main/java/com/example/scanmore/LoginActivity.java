@@ -62,8 +62,6 @@ public class LoginActivity extends AppCompatActivity {
 
         final DatabaseHandler dbHelper = new DatabaseHandler(this);
 
-        //this button should open the signup activity
-
         btSignUp.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -71,7 +69,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivityForResult(i, 1);
-
+                edtEmailWrapper.setError(null);
+                edtPasswordWrapper.setError(null);
             }
 
         });

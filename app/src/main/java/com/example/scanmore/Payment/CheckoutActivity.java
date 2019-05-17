@@ -23,7 +23,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scanmore.ActivePaymentFragment;
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.Product;
 import com.example.scanmore.Database.Swish;
@@ -32,11 +31,10 @@ import com.example.scanmore.Payment.PaymentCheckout.PaymentMethodItem;
 import com.example.scanmore.PaymentMethodActivity;
 import com.example.scanmore.R;
 import com.example.scanmore.Scanner.ScanActivity;
-import com.example.scanmore.Scanner.ScannedList.ScannedListActivity;
-import com.example.scanmore.Scanner.ScannedList.ScannedProdAdapter;
 import com.example.scanmore.SwishActivity;
-import com.example.scanmore.SwishFragment;
 import com.example.scanmore.Utils.Pair;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +63,12 @@ public class CheckoutActivity extends AppCompatActivity {
         sInstance = this;
         layoutManager = new LinearLayoutManager(this);
         scannedProducts.setLayoutManager(layoutManager);
-        checkoutList = sa.getShoppingProducts();
+        try{
+            checkoutList = sa.getShoppingProducts();
+        }
+        catch(NullPointerException e){e.printStackTrace();}
+
+        //checkoutList = sa.getShoppingProducts();
         mAdapter = new CheckoutAdapter(checkoutList);
         scannedProducts.setAdapter(mAdapter);
         dbHandler = new DatabaseHandler(this);
@@ -104,7 +107,7 @@ public class CheckoutActivity extends AppCompatActivity {
         }
         List<PaymentMethodItem> creditList = dbHandler.getAllExistingCreditCards();
         for( PaymentMethodItem p : creditList){
-            PaymentMethodItem newP = new PaymentMethodItem(p.getName(), p.getPhoto());
+            PaymentMethodItem newP = new PaymentMethodItem(trimName(p.getName()), p.getPhoto());
             paymentMethods.add(newP);
         }
     }
@@ -121,6 +124,7 @@ public class CheckoutActivity extends AppCompatActivity {
         alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 removePaymentMethod(position);
+                initTextViews();
             }
         });
         alert.setNegativeButton(R.string.avbryt, new DialogInterface.OnClickListener() {
@@ -190,15 +194,39 @@ public class CheckoutActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void initTextViews(){
+    public void initTextViews(){
         TextView totalPrice = (TextView) findViewById(R.id.checkout_price);
-        totalPrice.setText(String.valueOf(sa.getTotalPrice()) + " SEK");
+        try{
+            totalPrice.setText(String.valueOf(sa.getTotalPrice()) + " SEK");
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        TextView priceText = (TextView) findViewById(R.id.pay_with);
+
+        try{
+            if(paymentMethods.size() != 0){
+                priceText.setText("Pay with");
+            }
+            else{
+                priceText.setText("Please add a payment method!");
+            }
+        }
+        catch (NullPointerException e){ e.printStackTrace(); priceText.setText("Please add a payment method!"); }
     }
 
     public void updateTotalPrice(){
         TextView totalPrice = (TextView) findViewById(R.id.checkout_price);
-        totalPrice.setText(String.valueOf(sa.getTotalPrice()) + " SEK");
+        try{
+            totalPrice.setText(String.valueOf(sa.getTotalPrice()) + " SEK");
+        }
+        catch(NullPointerException e){
+            e.printStackTrace();
+        }
     }
-
+    public String trimName(String s){
+        String[] sp = s.split(" ");
+        return sp[0]+ " **** **** " + sp[3];
+    }
 
 }

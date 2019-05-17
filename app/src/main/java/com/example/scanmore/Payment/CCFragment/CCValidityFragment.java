@@ -86,4 +86,8 @@ public class CCValidityFragment extends Fragment {
         return null;
     }
 
+    public CreditCardEditText getEditText(){
+        return et_validity;
+    }
+
 }
