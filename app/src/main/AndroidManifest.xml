@@ -21,6 +21,8 @@
         android:theme="@style/AppTheme"
         tools:replace="android:label">
         <activity
+            android:name=".Settingsactivity"></activity>
+        <activity
             android:name=".ProfileActivity"
             android:label="Profile"
             android:screenOrientation="portrait" />
@@ -63,7 +65,7 @@
             android:name=".MainActivity"
             android:label="SCANMORE"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SwishActivity"
             android:label="Connect with Swish"
@@ -72,13 +74,15 @@
         <activity
             android:name=".ToDoList"
             android:label="Shopping List"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Scanner.ScannedList.ScannedListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Scanner.ScannedList.ScannedListActivity"
             android:label="Shopping Cart"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Payment.CheckoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Payment.CheckoutActivity"
             android:label="Checkout"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

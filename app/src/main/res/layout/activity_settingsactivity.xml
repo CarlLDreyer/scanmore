@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/gradient_bg"
+    android:alpha="0.8">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <ImageView android:src="@drawable/man"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:id="@+id/logInTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="sans-serif-light"
+            android:textSize="40sp"
+            android:text="Settings" />
+
+        <!-- Phone Label -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_phone_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textColorHint="@android:color/white">
+            <EditText android:id="@+id/input_phone"
+                android:layout_width="match_parent"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Phone" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- Address Label -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_address_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textColorHint="@android:color/white"
+            app:passwordToggleTint="@android:color/white">
+            <EditText android:id="@+id/input_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:inputType="text"
+                android:hint="Address"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Signup Button -->
+        <Button
+            android:id="@+id/btn_setSettings"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@android:color/white"
+            android:padding="12dp"
+            android:textSize="25sp"
+            android:textColor="@color/toolbar_color"
+            android:text="Profile Settings" />
+
+
+    </LinearLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@android:color/transparent"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/TransparentToolbar">
+
+    </androidx.appcompat.widget.Toolbar>
+
+</RelativeLayout>
