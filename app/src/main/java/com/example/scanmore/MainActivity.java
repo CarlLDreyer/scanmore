@@ -201,26 +201,36 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+
+    /**
+     * returns the string based on what time of the day it is in hour
+     * @return String
+     */
     public String currentHour(){
         Calendar calendar = Calendar.getInstance();
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
 
         if(1 <= hours && hours <= 5){
-            return "Good Midnight ";
+            return "Good midnight ";
         }
         else if(6 <= hours && hours <= 10){
-            return "Good Morning ";
+            return "Good morning ";
         }else if(10 <= hours && hours <= 12){
-            return "Good Afternoon ";
+            return "Good afternoon ";
         }else if(13 <= hours && hours <= 17){
-            return "Good Aftermidday ";
+            return "Good after midday ";
         }else if(18 <= hours && hours <= 22){
-            return "Good Evening! ";
+            return "Good evening! ";
         }else {
-            return "Good Night ";
+            return "Good night ";
         }
 
     }
+
+    /**
+     * Inserts a couple of products in the databse
+     * @param db
+     */
 
     public void setupDatabaseInserts(DatabaseHandler db){
         db.insertProduct("7350015508279", "Lundgrens ", 29);
