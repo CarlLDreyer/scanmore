@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity
         }else if(13 <= hours && hours <= 17){
             return "Good after midday ";
         }else if(18 <= hours && hours <= 22){
-            return "Good evening! ";
+            return "Good evening ";
         }else {
             return "Good night ";
         }
