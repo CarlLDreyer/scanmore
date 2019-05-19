@@ -6,16 +6,15 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.User;
 import com.example.scanmore.Utils.PreferenceUtils;
 import com.google.android.material.textfield.TextInputLayout;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,13 +42,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         sInstance = this;
-
         setupToolbar();
-
         btSignIn = findViewById(R.id.btSignIn);
-
         btSignUp = findViewById(R.id.btSignUp);
-
         edtEmail = findViewById(R.id.emailinput);
 
         edtEmailWrapper = findViewById(R.id.edt_email_wrapper);

@@ -3,12 +3,12 @@ package com.example.scanmore;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.scanmore.Database.DatabaseHandler;
 import com.example.scanmore.Database.User;
 import com.example.scanmore.Utils.PreferenceUtils;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
     private LoginActivity la;
@@ -18,13 +18,14 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         la = LoginActivity.getInstance();
         if(PreferenceUtils.getUserLoggedInStatus(this) || !PreferenceUtils.getLoggedInEmailUser(this).equals("")){
+
             User activeUser = dh.getUser(PreferenceUtils.getLoggedInEmailUser(this));
             la.setActiveUser(activeUser);
             Intent intentDos = new Intent(this, MainActivity.class);
             startActivity(intentDos);
         }
         else{
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(intent);
         }
     }

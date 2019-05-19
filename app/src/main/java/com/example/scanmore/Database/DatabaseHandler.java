@@ -77,6 +77,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.close();
     }
 
+    public void deleteUser(String email){
+        //Open the database
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        //Execute sql query to remove from database
+        //NOTE: When removing by String in SQL, value must be enclosed with ''
+        database.execSQL("DELETE FROM " + User.TABLE_NAME + " WHERE " + User.COLUMN_EMAIL + "= '" + email + "'");
+
+        //Close the database
+        database.close();
+
+    }
+
     public long insertSwish(String phoneNumber) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();

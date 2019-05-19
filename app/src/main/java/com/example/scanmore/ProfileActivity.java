@@ -1,9 +1,12 @@
 package com.example.scanmore;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -20,10 +23,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     private TextView address;
     private TextView phone;
+    private Button buttonDelete;
 
     TextView nameView;
     TextView emailView;
     DatabaseHandler db;
+
 
     LoginActivity la = LoginActivity.getInstance();
 
@@ -37,6 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
         String phone1 = intent.getStringExtra("phone");
 
         setupToolbar();
+        buttonDelete = (Button)findViewById(R.id.btn_deleteProfile);
         address = (TextView)findViewById(R.id.street_profile);
         address.setText("");
         address.setText(address1);
@@ -62,6 +68,13 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteProfileAlert();
+            }
+        });
     }
 
     private void setupToolbar() {
@@ -80,6 +93,28 @@ public class ProfileActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void deleteProfileAlert(){
+        final User activeUser2 = la.getActiveUser();
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Remove profile");
+        alert.setMessage("Are you sure you want to remove this proofile?");
+        alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+              db.deleteUser(activeUser2.getEmail());
+
+              Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+              startActivity(intent);
+
+            }
+        });
+        alert.setNegativeButton(R.string.avbryt, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alert.show();
     }
 
 }
