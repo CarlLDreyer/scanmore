@@ -100,6 +100,9 @@ TextView phone = findViewById(R.id.mobile_p);
                     returnIntent.putExtra("address", getAddress());
                     startActivityForResult(returnIntent, 1);
 
+                    //prevent going back to settings from profile
+                    finish();
+
                 }
             }
         });
