@@ -91,9 +91,11 @@ public class CheckoutActivity extends AppCompatActivity {
     public void removePaymentMethod(int position){
         if(paymentMethods.get(position).getName().length() > 10){
             dbHandler.deleteCreditCard(paymentMethods.get(position).getName());
+            System.out.println(paymentMethods.get(position).getName());
         }
         else{
             dbHandler.deleteSwish(paymentMethods.get(position).getName());
+            System.out.println(paymentMethods.get(position).getName());
         }
         paymentMethods.remove(position);
         listviewPaymentMethods.invalidateViews();
@@ -107,7 +109,7 @@ public class CheckoutActivity extends AppCompatActivity {
         }
         List<PaymentMethodItem> creditList = dbHandler.getAllExistingCreditCards();
         for( PaymentMethodItem p : creditList){
-            PaymentMethodItem newP = new PaymentMethodItem(trimName(p.getName()), p.getPhoto());
+            PaymentMethodItem newP = new PaymentMethodItem(p.getName(), p.getPhoto());
             paymentMethods.add(newP);
         }
     }

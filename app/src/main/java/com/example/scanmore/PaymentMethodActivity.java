@@ -149,7 +149,7 @@ public class PaymentMethodActivity extends FragmentActivity implements FragmentM
                     cardType = R.drawable.ic_mastercard;
                 }
                 databaseHandler.insertCreditCard(cardNumber, cardName, cardValidity, cardType);
-                ca.addPaymentMethod(trimName(cardNumber), cardType);
+                ca.addPaymentMethod(cardNumber, cardType);
                 ca.initTextViews();
                 finish();
             }

@@ -154,9 +154,7 @@ public class PaymentMethodAdapter extends ArrayAdapter<PaymentMethodItem> {
         ImageView test = (ImageView) CCDialog.findViewById(R.id.active_card_type_two);
         Button dismiss_cc_popup = (Button) CCDialog.findViewById(R.id.dismiss_confirm);
         TextView pay_with_number = (TextView) CCDialog.findViewById(R.id.cc_number_confirm);
-        pay_with_number.setText(cc.getCardNumber());
-        TextView pay_with_name = (TextView) CCDialog.findViewById(R.id.cc_name_confirm);
-        pay_with_name.setText(cc.getCardName());
+        pay_with_number.setText(paymentMethods.get(pos).getName());
 
         TextView total_pay = (TextView) CCDialog.findViewById(R.id.total_text_confirm);
         int total = sa.getTotalPrice();

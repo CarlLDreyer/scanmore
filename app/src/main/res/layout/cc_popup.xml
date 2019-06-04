@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="365dp"
-    android:layout_height="550dp"
+    android:layout_height="450dp"
     android:background="@drawable/rounded_layout_swish"
     android:id="@+id/CC_popup"
     android:layout_gravity="center">
@@ -83,45 +83,13 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/name_text"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/pay_with_text"
-        android:layout_marginTop="30dp"
-        android:gravity="center">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name"
-            android:textStyle="bold"
-            android:textSize="19sp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="45dp"/>
-
-        <LinearLayout
-            android:layout_width="230dp"
-            android:layout_height="match_parent"
-            android:background="@color/confirm_fill"
-            android:gravity="center"
-            android:layout_marginEnd="20dp">
-
-            <TextView
-                android:id="@+id/cc_name_confirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="19sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/receipt_text"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/name_text"
+        android:layout_below="@id/pay_with_text"
         android:layout_marginTop="30dp">
 
         <TextView
